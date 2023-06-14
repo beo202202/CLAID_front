@@ -85,3 +85,27 @@ async function kakaoLogout() {
 
     window.location.replace(`../kakao.html`);
 }
+
+async function requestUserInfo() {
+    sns_id = 2824936242;
+    /**
+     * 작성자 : 이준영
+     * 내용 : 2824936242의 정보를 가져옴. test 함수로 이 함수를 활용할 예정
+     * 최초 작성일 : 2023.06.14
+     */
+    await fetch(`${backend_base_url}/user/kakao/${sns_id}/`, {
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('HTTP status ' + response.status);
+            }
+            return response.json();
+        })
+        .then(response => {
+            alert(JSON.stringify(response));
+        })
+        .catch(error => {
+            console.error('HTTP 상태 코드: ', error.message);
+            alert(error.message);
+        });
+}
