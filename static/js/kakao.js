@@ -33,6 +33,7 @@ function displayToken() {
         console.log('비로그인 중')
     }
 };
+
 displayPayload()
 function displayPayload() {
     /**
@@ -47,4 +48,40 @@ function displayPayload() {
         var login_type = parsedPayload.login_type;
         $('#login_type').val(login_type);
     }
+}
+
+async function kakaoLogout() {
+    /**
+     * 작성자 : 이준영
+     * 내용 : jwt token로 카카오 access 시간 만료
+     * 최초 작성일 : 2023.06.14
+     */
+    if (access_token == undefined) {
+        alert('비로그인입니다.')
+        return
+    }
+
+    // 카카오 토큰을 만료시키기
+    try {
+        const response = await $.ajax({
+            url: `${backend_base_url}/user/kakao/logout/`,
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            },
+            // data: {},
+            // dataType: 'json',
+        });
+        alert(JSON.stringify(response));
+    } catch (error) {
+        console.error('HTTP 상태 코드: ', error.status);
+        console.error('백엔드로부터의 응답: ', error.responseJSON);
+        alert(JSON.stringify(error.responseJSON));
+    }
+    // JWT 토큰 삭제
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('payload');
+
+    window.location.replace(`../kakao.html`);
 }
