@@ -109,3 +109,45 @@ async function requestUserInfo() {
             alert(error.message);
         });
 }
+
+async function kakaoUnLink() {
+    /**
+     * 작성자 : 이준영
+     * 내용 : 카카오 연결 끊기, DB 삭제는 안함
+     * 최초 작성일 : 2023.06.14
+     */
+    if (access_token == undefined) {
+        alert('비로그인입니다.')
+        return
+    }
+    await fetch(`${backend_base_url}/user/kakao/unlink/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        },
+    })
+        .then(response => {
+            if (response.status === 200) {
+                return response.json().then(data => {
+                    alert(data.message);
+                });
+            } else {
+                return response.json().then(data => {
+                    alert(data.message);
+                    throw new Error('Server response: ' + data.message);
+                });
+            }
+        });
+    // JWT 토큰 삭제
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('payload');
+
+    window.location.replace(`../kakao.html`);
+}
+
+// 통합 시 넣기?
+function requestJWTUserInfo() {
+
+}
