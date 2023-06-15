@@ -87,27 +87,25 @@ async function kakaoLogout() {
 }
 
 async function requestUserInfo() {
-    sns_id = 2824936242;
-    /**
-     * 작성자 : 이준영
-     * 내용 : 2824936242의 정보를 가져옴. test 함수로 이 함수를 활용할 예정
-     * 최초 작성일 : 2023.06.14
-     */
-    await fetch(`${backend_base_url}/user/kakao/${sns_id}/`, {
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('HTTP status ' + response.status);
-            }
-            return response.json();
-        })
-        .then(response => {
+    let sns_id = 2824936242;
+    $.ajax({
+        url: `${backend_base_url}/user/kakao/${sns_id}/`,
+        type: 'GET',
+        success: function (response) {
             alert(JSON.stringify(response));
-        })
-        .catch(error => {
-            console.error('HTTP 상태 코드: ', error.message);
-            alert(error.message);
-        });
+            let imgElement = $("#image_profile")[0];
+            if (!imgElement) {
+                imgElement = $('<img id="image_profile">');
+                $('body').append(imgElement);
+            }
+            imgElement.src = response.profile_image;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            let errorMessage = `${jqXHR.responseJSON.error}, status code: ${jqXHR.status}`;
+            console.error('HTTP 상태 코드: ', errorMessage);
+            alert(errorMessage);
+        }
+    });
 }
 
 async function kakaoUnLink() {
@@ -147,6 +145,20 @@ async function kakaoUnLink() {
     window.location.replace(`../kakao.html`);
 }
 
+displayProfile()
+function displayProfile() {
+    let payload = JSON.parse(localStorage.getItem('payload'));
+    let imgElement = document.getElementById('image_profile');
+    if (!payload) {
+        return;
+    }
+    if (!imgElement) {
+        imgElement = document.createElement('img');
+        imgElement.id = 'image_profile';
+        document.body.appendChild(imgElement);
+    }
+    imgElement.src = payload.profile_image;
+}
 // 통합 시 넣기?
 function requestJWTUserInfo() {
 
