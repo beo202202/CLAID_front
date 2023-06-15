@@ -69,10 +69,15 @@
 
 
         <div>
-            <button id="update_btn" type="button" onclick="putArticle(getArticleIdFromUrl())">수정(내게시글일때만나타나게)</button>
+            <button id="edit_button" type="button" onclick="putArticle()">수정(내게시글일때만나타나게)</button>
         </div>
         <div>
-            <button id="delete_btn" type="button" onclick="deleteArticle(getArticleIdFromUrl())">삭제(내게시글일때만나타나게)</button>
+            <button id="save_button" type="button" onclick="saveEditedArticle(getArticleIdFromUrl())">저장(수정버튼 누르면
+                나타나게)</button>
+        </div>
+        <div>
+            <button id="delete_btn" type="button"
+                onclick="deleteArticle(getArticleIdFromUrl())">삭제(내게시글일때만나타나게)</button>
         </div>
 
         <div class="container">
@@ -80,16 +85,16 @@
             <div class="detail_article">
                 <div>이미지</div>
                 <div id="detail_image"></div>
-                
+
                 <div>내용</div>
                 <div id="detail_content">게시글 내용</div>
-                
+
                 <div>음악</div>
                 <div id="detail_song"></div>
-                
+
                 <div>작성시간</div>
                 <div id="detail_created_at"></div>
-                
+
                 <div>수정시간</div>
                 <div id="detail_updated_at"></div>
             </div>

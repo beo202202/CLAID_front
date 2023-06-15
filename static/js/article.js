@@ -12,7 +12,7 @@ window.onload = () => {
  * 업데이트 일자 : 2023.06.15
  */
 async function postArticle() {
-    console.log("upload눌림")
+    console.log("게시글 작성 눌림")
     const title = document.getElementById("title").value
     const content = document.getElementById("content").value
     const article_image = document.getElementById("article_image").files[0]
@@ -34,13 +34,20 @@ async function postArticle() {
         },
         body: formdata
     })
-    if (response.status == 201) {
-        alert("작성완료!")
-        window.location.replace('index.html')
+    if (title == "" || content == "" || song == null) {
+        alert("제목,내용,음악파일은 필수")
+        location.reload();
+    } else if (article_image == null) {
+        formdata.append('article_image', '')
     } else {
-        alert(response.statusText)
+        if (response.status == 201) {
+            alert("작성완료!")
+            window.location.replace('index.html')
+        } else {
+            alert(response.statusText)
+            location.reload();
+        }
     }
-
 }
 
 /**
@@ -57,8 +64,8 @@ async function getArticles() {
         return response_json
     } else {
         alert("게시글을 불러오는데 실패했습니다.")
-        
-        
+
+
     }
 
 }
@@ -71,9 +78,9 @@ async function getArticles() {
  * 최초 작성일 : 2023.06.15
  * 업데이트 일자 : 2023.06.15
  */
-function articleDetail(article_id) {
-    console.log(article_id)
-    window.location.href = `${frontend_base_url}/article_detail.html?article_id=${article_id}`
+function articleDetail(articleId) {
+    console.log(articleId)
+    window.location.href = `${frontend_base_url}/article_detail.html?article_id=${articleId}`
 
 }
 
