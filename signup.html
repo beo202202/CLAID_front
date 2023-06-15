@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLAID</title>
+    <script src="static/js/api.js"></script>
+    <script src="static/js/article.js"></script>
+    <link href="static/css/style.css" rel="stylesheet" />
+</head>
+
+
+<body>
+    <div class="logo">
+        <a href="/index.html"><img id="logo" src="https://i.postimg.cc/k4nYpWGM/image-1.png" alt="로고"></a>
+    </div>
+    <div class="sign_">
+        <h1>회원가입</h1>
+        <form action="email">
+            <div class="signup_">
+                <div class="sign_input">
+                    <div>
+                        <input type="text" name="nickname" id="nickname" placeholder="nickname">
+                    </div>
+                    <div>
+                        <input type="email" name="email" id="email" placeholder="email">
+                    </div>
+                    <div>
+                        <input type="password" name="password" id="password" placeholder="password">
+                    </div>
+                    <div>
+                        <input type="password" name="password_check" id="password_check" onkeypress="EnterSignup()" placeholder="password_check">
+                    </div>
+                </div>
+                <div class="sign_btn">
+                    <button type="button" id="save_mail" onclick="saveMail()">인증메일보내기</button>
+                </div>
+            </div>
+            <a href="login.html">로그인</a>
+    </div>
+
+    </form>
+</body>
+
+</html>
+
