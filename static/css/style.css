@@ -5,14 +5,6 @@ body {
 body {
     margin: 0;
 }
-/*loginout*/
-#login_container {
-    display: block;
-}
-
-#logged_in_container {
-    display: block;
-}
 
 /*nav*/
 .search_div {
@@ -70,6 +62,7 @@ body {
     width: 1000px;
     height: 90px;
 }
+
 .main_div {
     display: flex;
 }
@@ -111,6 +104,7 @@ body {
     border: none;
     font-weight: 500;
 }
+
 .sign_a button:hover {
     font-size: 20px;
     color: rgb(83, 10, 219);
@@ -160,7 +154,7 @@ h1 {
     margin-bottom: 10px;
 }
 
-.sign_btn button{
+.sign_btn button {
     text-align: center;
     width: 249px;
     font-size: 20px;
@@ -186,6 +180,9 @@ h1 {
     text-align: center;
 }
 
+.kakao-login-img {
+    width: 80%;
+}
 
 .sign_input {
     /*div 가운데 정렬*/
@@ -201,4 +198,3 @@ h1 {
     text-align: center;
     border-color: rgb(83, 10, 219);
 }
-
