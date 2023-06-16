@@ -1,3 +1,7 @@
+window.onload = () => {
+    getArticleDetail()
+}
+
 console.log('detail');
 /**
  * 작성자 : 공민영
@@ -14,44 +18,32 @@ function getArticleIdFromUrl() {
  * 작성자 : 공민영
  * 내용 : 게시글 상세보기
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 최종 수정자 : 이준영
+ * 수정 내용 : 너무 많은 코드를 JQuery로 간단히 변경, DB 오디오 연결
+ * 업데이트 일자 : 2023.06.17
  */
-window.onload = async function () {
+async function getArticleDetail() {
     const response = await getArticle(getArticleIdFromUrl());
     console.log(response);
 
-    const payload = localStorage.getItem("payload");
-    const payload_parse = JSON.parse(payload);
-    console.log(payload_parse);
+    const payload = JSON.parse(localStorage.getItem("payload"));
+    console.log(payload);
 
-    setButtonVisibility()
-    showName()
+    setButtonVisibility();
+    showName();
 
-    const articleTitle = document.getElementById("detail_title");
-    const articleImage = document.getElementById("detail_image");
-    const articleContent = document.getElementById("detail_content");
-    const articleSong = document.getElementById("detail_song");
-    const articleCreatedAt = document.getElementById("detail_created_at");
-    const articleUpdatedAt = document.getElementById("detail_updated_at");
-    const articleNickname = document.getElementById("nickname");
+    $("#detail_title").text(response.title);
+    $("#detail_content").text(response.content);
+    $("#playback_bar").attr("src", backend_base_url + response.song);
+    $(".playback_bar").prop("volume", 0.1);
+    $("#detail_created_at").text(response.created_at);
+    $("#detail_updated_at").text(response.updated_at);
+    $("#nickname").text(payload.nickname);
 
-    articleTitle.innerText = response.title;
-    articleContent.innerText = response.content;
-    articleSong.innerText = response.song;
-    articleCreatedAt.innerText = response.created_at;
-    articleUpdatedAt.innerText = response.updated_at;
-    articleNickname.innerText = payload_parse.nickname;
-
-    const newImage = document.createElement("img");
-    if (response.article_image) { // 이미지가 있을 때
-        newImage.setAttribute("src", `${backend_base_url}${response.article_image}`);
-    } else { // 이미지가 없을 때
-        newImage.setAttribute("src", "default.PNG");
-    }
-    newImage.setAttribute("class", "img_size");
-    articleImage.appendChild(newImage);
+    const articleImage = $("#detail_image");
+    const newImage = $("<img>").attr("src", response.article_image ? `${backend_base_url}${response.article_image}` : "../static/img/default.PNG").addClass("img_size");
+    articleImage.empty().append(newImage);
 }
-
 
 /**
  * 작성자 : 공민영
@@ -68,7 +60,6 @@ async function getArticle(articleId) {
     } else {
         alert(response.statusText);
     }
-
 }
 
 
@@ -90,21 +81,21 @@ function putArticle() {
     const image = imageElement.textContent;
     const song = songElement.textContent;
 
-    titleElement.innerHTML = 
-    `<label for="edit_title"></label><br>
+    titleElement.innerHTML =
+        `<label for="edit_title"></label><br>
     <input type="text" id="edit_title" maxlength="20" placeholder="title(20자 이내)" value="${title}">`;
-    
-    contentElement.innerHTML =  
-    `<label for="edit_content"></label><br>
+
+    contentElement.innerHTML =
+        `<label for="edit_content"></label><br>
     <textarea id="edit_content">${content}</textarea>`;
 
     // 이미지와 음악 파일 업로드를 위한 input 요소 추가
-    imageElement.innerHTML = 
-    `<label for="edit_image"></label><br>
+    imageElement.innerHTML =
+        `<label for="edit_image"></label><br>
      <input type="file" id="edit_image" value="${image ? image.name : ''}">`;
 
-    songElement.innerHTML = 
-    `<label for="edit_song">song</label>
+    songElement.innerHTML =
+        `<label for="edit_song">song</label>
     <input type="file" id="edit_song" value="${song ? song.name : ''}">`;
     /**
      * 작성자 : 공민영
@@ -220,7 +211,7 @@ async function setButtonVisibility() {
     const payload_parse = JSON.parse(payload);
     const articleAuthorId = payload_parse.user_id;
     console.log(articleAuthorId);
-    
+
     if (loggedInUserId === articleAuthorId) {
         editButton.style.display = "block";
         deleteButton.style.display = "block";
