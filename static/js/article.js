@@ -1,4 +1,5 @@
 window.onload = () => {
+    checkAccessToken2()
     showName();
 }
 
@@ -108,3 +109,16 @@ function handleLogout() {
     localStorage.removeItem("payload");
     location.reload();
 }
+
+/**
+ * 작성자 : 이준영
+ * 내용 : 토큰 체크2
+ * 최초 작성일 : 2023.06.17
+ */
+function checkAccessToken2() {
+    var access_token = localStorage.getItem('access_token');
+    if (!access_token) {
+        alert('로그인 하셔야 됩니다.')
+        window.location.replace(`../login.html`);
+    }
+};
