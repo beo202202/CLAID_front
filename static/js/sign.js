@@ -1,6 +1,3 @@
-const backend_base_url = "http://127.0.0.1:8000"
-const frontend_base_url = "http://127.0.0.1:5500"
-
 window.onload = () => {
 
 }
@@ -86,8 +83,9 @@ async function handleLogin() {
         const response_json = await response.json();
         console.log(response_json);
 
-        localStorage.setItem("access", response_json.access);
-        localStorage.setItem("refresh", response_json.refresh);
+
+        localStorage.setItem("access_token", response_json.access);
+        localStorage.setItem("refresh_token", response_json.refresh);
 
         const base64Url = response_json.access.split('.')[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -108,8 +106,6 @@ async function handleLogin() {
         alert("인증이 완료되지않았거나 가입되지않은 이메일입니다.");
     }
 }
-
-
 
 /**
  * 작성자 : 공민영
@@ -136,14 +132,13 @@ async function showName() {
  * 업데이트 일자 : 2023.06.15
  */
 document.addEventListener('DOMContentLoaded', function () {
-    const get_access = localStorage.getItem('access');
-    if (get_access) {
+    var access_token = localStorage.getItem('access_token');
+    if (access_token) {
         document.getElementById('login_container').style.display = 'none';
     } else {
         document.getElementById('logged_in_container').style.display = 'none';
     }
 });
-
 
 /**
  * 작성자 : 공민영
@@ -152,8 +147,8 @@ document.addEventListener('DOMContentLoaded', function () {
  * 업데이트 일자 : 2023.06.15
  */
 function handleLogout() {
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
     localStorage.removeItem("payload");
     location.reload();
 }
