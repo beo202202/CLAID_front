@@ -103,7 +103,8 @@
                 </div>
                 <div>
                     <label for="song">song</label>
-                    <input type="file" name="song" id="song">
+                    <input type="file" name="song" id="song" accept="audio/mp3, audio/wav, audio/ogg"
+                        onchange="showPreviewAudio(event)">
                 </div>
                 <div style="color: gray; font-size: 15px;">mp3 wav ogg 파일만 업로드 가능합니다</div>
             </div>

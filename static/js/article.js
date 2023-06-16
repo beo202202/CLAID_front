@@ -137,3 +137,23 @@ function showPreviewImage(event) {
         }
     }
 }
+
+/**
+ * 작성자 : 이준영
+ * 내용 : 오디오 미리보기
+ * 최초 작성일 : 2023.06.17
+ */
+function showPreviewAudio(event) {
+    if (event.target.files.length > 0) {
+        var file = event.target.files[0];
+        var src = URL.createObjectURL(file);
+
+        if (file.size > 10 * 1024 * 1024) {
+            alert("오디오 파일의 크기는 10MB를 초과할 수 없습니다.");
+            return;
+        }
+
+        $('.playback_bar').attr('src', src);
+        $('.playback_bar').prop('volume', 0.1);
+    }
+}
