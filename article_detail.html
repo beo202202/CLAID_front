@@ -6,8 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글 상세보기</title>
-    <script src="static/js/detail.js"></script>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
     <script src="static/js/base.js"></script>
+    <script src="static/js/detail.js"></script>
     <link href="static/css/article_style.css" rel="stylesheet" />
 </head>
 
@@ -94,10 +99,8 @@
             <div class="detail_article">
                 <!-- 음악 재생 바 -->
                 <div>
-                    <audio controls class="playback_bar">
-                        <source src="..." class="playback_bar" id="playback_bar" controls>
+                    <audio controls class="playback_bar" id="playback_bar" name="media" src="#" />
                 </div>
-                <div id="detail_song">음악파일제목같은 경로,,ㅎㅎ</div>
             </div>
         </div>
         <div class="detail_article">
