@@ -1,4 +1,5 @@
 console.log('detail');
+const backend_base_url = 'http://http://127.0.0.1:8000/';
 
 /**
  * 작성자 : 공민영
