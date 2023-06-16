@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글 상세보기</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
     <script src="static/js/article.js"></script>
     <script src="static/js/base.js"></script>
     <link href="static/css/article_style.css" rel="stylesheet" />
@@ -71,7 +76,8 @@
                 <!-- 이미지파일 -->
                 <div class="detail_article">
                     <label for="article_image">이미지파일</label><br>
-                    <input type="file" class="detail_one_file" name="article_image" id="article_image">
+                    <input type="file" class="detail_one_file" name="article_image" id="article_image"
+                        onchange="showPreviewImage(event)">
                     <img id="preview" />
                 </div>
                 <div class="img_title_cont">
