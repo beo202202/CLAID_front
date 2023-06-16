@@ -126,12 +126,9 @@ async function showName() {
 }
 
 /**
- * 작성자 : 공민영
- * 내용 : 로그인 로그아웃 시 버튼 바꾸기
- * 최초 작성일 : 2023.06.15
- * 수정자 : 이준영
- * 수정 내용 : 오류 수정, 함수명, 이벤트 수정
- * 업데이트 일자 : 2023.06.15
+ * 작성자 : 이준영
+ * 내용 : 토큰 체크
+ * 최초 작성일 : 2023.06.17
  */
 function checkAccessToken() {
     var access_token = localStorage.getItem('access_token');
