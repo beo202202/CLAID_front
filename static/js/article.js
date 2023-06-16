@@ -53,34 +53,6 @@ async function postArticle() {
     }
 }
 
-/**
- * 작성자 : 공민영
- * 내용 : 게시글 가져오기
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
- */
-async function getArticles() {
-    const response = await fetch('http://127.0.0.1:8000/article/');
-
-    if (response.status == 200) {
-        const response_json = await response.json();
-        return response_json
-    } else {
-        alert("게시글을 불러오는데 실패했습니다.");
-    }
-}
-
-/**
- * 작성자 : 공민영
- * 내용 : 게시글 상세보기 url
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
- */
-function articleDetail(articleId) {
-    console.log(articleId);
-    window.location.href = `${frontend_base_url}/article_detail.html?article_id=${articleId}`
-}
-
 //작성 이미지 미리보기
 function showPreview(event) {
     if (event.target.files.length > 0) {
