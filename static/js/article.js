@@ -7,8 +7,9 @@ window.onload = () => {
  * 내용 : 게시글 작성하기
  * 최초 작성일 : 2023.06.15
  * 최종 수정자 : 이준영
- * 수정내용 : 작성완료 시 오류 나면 초기화하는 문제
+ * 수정내용 : 1. 작성완료 시 오류 나면 초기화하는 문제
  * => 전송요청 후 체크가 아니라 체크 후 전송하도록 바꿈.
+ * 2. 이미지 파일이 올라가지 않는 문제 해결
  * 업데이트 일자 : 2023.06.17
  */
 async function postArticle() {
@@ -16,31 +17,35 @@ async function postArticle() {
     const title = document.getElementById("title").value;
     const content = document.getElementById("content").value;
     const article_image = document.getElementById("article_image").files[0];
+
+    console.log(article_image);
     const song = document.getElementById("song").files[0];
 
     const formdata = new FormData();
 
     formdata.append('title', title);
     formdata.append('content', content);
-    formdata.append('article_image', article_image);
+    if (article_image == undefined) {
+        formdata.append('article_image', '');
+    } else {
+        formdata.append('article_image', article_image);
+    }
+    // formdata.append('article_image', article_image);
     formdata.append('song', song);
 
-    let access_token = localStorage.getItem("access_token");
-
     if (title == "" || content == "" || song == null) {
-        alert("제목, 내용, 음악파일은 필수입니다.");
-        return;
+        alert("제목,내용,음악파일은 필수");
     } else {
         const response = await fetch(`${backend_base_url}/article/`, {
             method: 'POST',
             headers: {
-                "Authorization": `Bearer ${access_token}`
+                "Authorization": 'Bearer ' + localStorage.getItem("access_token")
             },
             body: formdata
         })
         if (response.status == 201) {
             alert("작성완료!");
-            window.location.replace('index.html');
+            window.location.replace('../index.html');
         } else {
             alert(response.statusText);
             location.reload();
