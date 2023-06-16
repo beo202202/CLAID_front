@@ -46,7 +46,7 @@ window.onload = async function () {
     if (response.article_image) { // 이미지가 있을 때
         newImage.setAttribute("src", `${backend_base_url}${response.article_image}`);
     } else { // 이미지가 없을 때
-        newImage.setAttribute("src", "default.PNG");
+        newImage.setAttribute("src", "../static/img/default.PNG");
     }
     newImage.setAttribute("class", "img_size");
     articleImage.appendChild(newImage);
@@ -90,21 +90,21 @@ function putArticle() {
     const image = imageElement.textContent;
     const song = songElement.textContent;
 
-    titleElement.innerHTML = 
-    `<label for="edit_title"></label><br>
+    titleElement.innerHTML =
+        `<label for="edit_title"></label><br>
     <input type="text" id="edit_title" maxlength="20" placeholder="title(20자 이내)" value="${title}">`;
-    
-    contentElement.innerHTML =  
-    `<label for="edit_content"></label><br>
+
+    contentElement.innerHTML =
+        `<label for="edit_content"></label><br>
     <textarea id="edit_content">${content}</textarea>`;
 
     // 이미지와 음악 파일 업로드를 위한 input 요소 추가
-    imageElement.innerHTML = 
-    `<label for="edit_image"></label><br>
+    imageElement.innerHTML =
+        `<label for="edit_image"></label><br>
      <input type="file" id="edit_image" value="${image ? image.name : ''}">`;
 
-    songElement.innerHTML = 
-    `<label for="edit_song">song</label>
+    songElement.innerHTML =
+        `<label for="edit_song">song</label>
     <input type="file" id="edit_song" value="${song ? song.name : ''}">`;
     /**
      * 작성자 : 공민영
@@ -220,7 +220,7 @@ async function setButtonVisibility() {
     const payload_parse = JSON.parse(payload);
     const articleAuthorId = payload_parse.user_id;
     console.log(articleAuthorId);
-    
+
     if (loggedInUserId === articleAuthorId) {
         editButton.style.display = "block";
         deleteButton.style.display = "block";
