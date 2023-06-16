@@ -5,6 +5,51 @@ window.onload = () => {
     showName();
 
 }
+/**
+ * 작성자 : 공민영
+ * 내용 : 닉네임 가져와서 보여줌
+ * 최초 작성일 : 2023.06.15
+ * 업데이트 일자 : 2023.06.15
+ */
+async function showName() {
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload);
+    console.log(payload_parse);
+
+    const intro = document.getElementById("intro");
+
+
+    // payload 에서 가져온 정보를 html에 보이게하기(id 이용)
+    intro.innerText = payload_parse.nickname;
+}
+
+/**
+ * 작성자 : 공민영
+ * 내용 : 로그인 로그아웃 시 버튼 바꾸기
+ * 최초 작성일 : 2023.06.15
+ * 업데이트 일자 : 2023.06.15
+ */
+document.addEventListener('DOMContentLoaded', function () {
+    var access_token = localStorage.getItem('access_token');
+    if (access_token) {
+        document.getElementById('login_container').style.display = 'none';
+    } else {
+        document.getElementById('logged_in_container').style.display = 'none';
+    }
+});
+
+/**
+ * 작성자 : 공민영
+ * 내용 : 로그아웃
+ * 최초 작성일 : 2023.06.15
+ * 업데이트 일자 : 2023.06.15
+ */
+function handleLogout() {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("payload");
+    location.reload();
+}
 
 /**
  * 작성자 : 공민영

@@ -1,5 +1,4 @@
 console.log('detail');
-
 /**
  * 작성자 : 공민영
  * 내용 : 게시글 아이디 가져오기
@@ -24,6 +23,9 @@ window.onload = async function () {
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload);
     console.log(payload_parse);
+
+    setButtonVisibility()
+    showName()
 
     const articleTitle = document.getElementById("detail_title");
     const articleImage = document.getElementById("detail_image");
@@ -50,6 +52,7 @@ window.onload = async function () {
     articleImage.appendChild(newImage);
 }
 
+
 /**
  * 작성자 : 공민영
  * 내용 : 디테일뷰 가져오기
@@ -65,6 +68,7 @@ async function getArticle(articleId) {
     } else {
         alert(response.statusText);
     }
+
 }
 
 
@@ -96,7 +100,7 @@ function putArticle() {
 
     // 이미지와 음악 파일 업로드를 위한 input 요소 추가
     imageElement.innerHTML = 
-    `<label for="edit_image">이미지파일</label><br>
+    `<label for="edit_image"></label><br>
      <input type="file" id="edit_image" value="${image ? image.name : ''}">`;
 
     songElement.innerHTML = 
@@ -136,7 +140,7 @@ async function saveEditedArticle(articleId) {
     formdata.append("article_image", editedImage);
     formdata.append("song", editedSong);
 
-    let access_token = localStorage.getItem("access");
+    let access_token = localStorage.getItem("access_token");
 
     const response = await fetch(`${backend_base_url}/article/${articleId}/`, {
         method: "PUT",
@@ -179,7 +183,7 @@ async function deleteArticle(articleId) {
     console.log("deleteArticle()눌림");
     console.log(articleId);
 
-    let access_token = localStorage.getItem("access");
+    let access_token = localStorage.getItem("access_token");
 
     if (confirm("삭제하시겠습니까?")) {
         const response = await fetch(`${backend_base_url}/article/${articleId}/`, {
@@ -198,33 +202,76 @@ async function deleteArticle(articleId) {
     }
 }
 
-// /**
-//  * 작성자 : 공민영
-//  * 내용 : 내 게시글일 경우에만 수정/삭제버튼 보이기
-//  * 최초 작성일 : 2023.06.15
-//  * 업데이트 일자 : 2023.06.15
-//  */
-// async function setButtonVisibility() {
-//     console.log("콘솔테스트");
-//     const editButton = document.getElementById("edit_button");
-//     const deleteButton = document.getElementById("delete_button");
+/**
+ * 작성자 : 공민영
+ * 내용 : 내 게시글일 경우에만 수정/삭제버튼 보이기
+ * 최초 작성일 : 2023.06.15
+ * 업데이트 일자 : 2023.06.15
+ */
+async function setButtonVisibility() {
+    const editButton = document.getElementById("edit_button");
+    const deleteButton = document.getElementById("delete_button");
+
+    const response = await getArticle(getArticleIdFromUrl());
+    const loggedInUserId = response.user;
+    console.log(loggedInUserId);
+
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload);
+    const articleAuthorId = payload_parse.user_id;
+    console.log(articleAuthorId);
     
-//     const response = await getArticle(getArticleIdFromUrl());
-//     // 게시글 작성자 ID 가져오기
-//     const articleAuthorId = response.user;
+    if (loggedInUserId === articleAuthorId) {
+        editButton.style.display = "block";
+        deleteButton.style.display = "block";
+    } else {
+        editButton.style.display = "none";
+        deleteButton.style.display = "none";
+    }
+}
+
+/**
+ * 작성자 : 공민영
+ * 내용 : 닉네임 가져와서 보여줌
+ * 최초 작성일 : 2023.06.15
+ * 업데이트 일자 : 2023.06.15
+ */
+async function showName() {
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload);
+    console.log(payload_parse);
+
+    const intro = document.getElementById("intro");
 
 
-//     const payload = localStorage.getItem("payload");
-//     const payload_parse = JSON.parse(payload);
-//     // 현재 로그인된 사용자 ID가져오기
-//     const loggedInUserId = payload_parse.user_id;
+    // payload 에서 가져온 정보를 html에 보이게하기(id 이용)
+    intro.innerText = payload_parse.nickname;
+}
 
-//     if (loggedInUserId === articleAuthorId) {
-//         editButton.style.display = "block";
-//         deleteButton.style.display = "block";
-//     } else {
-//         editButton.style.display = "none";
-//         deleteButton.style.display = "none";
-//     }
-// }
+/**
+ * 작성자 : 공민영
+ * 내용 : 로그인 로그아웃 시 버튼 바꾸기
+ * 최초 작성일 : 2023.06.15
+ * 업데이트 일자 : 2023.06.15
+ */
+document.addEventListener('DOMContentLoaded', function () {
+    var access_token = localStorage.getItem('access_token');
+    if (access_token) {
+        document.getElementById('login_container').style.display = 'none';
+    } else {
+        document.getElementById('logged_in_container').style.display = 'none';
+    }
+});
 
+/**
+ * 작성자 : 공민영
+ * 내용 : 로그아웃
+ * 최초 작성일 : 2023.06.15
+ * 업데이트 일자 : 2023.06.15
+ */
+function handleLogout() {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("payload");
+    location.reload();
+}
