@@ -1,0 +1,209 @@
+body {
+    margin: 0;
+}
+
+/*logo*/
+#logo {
+    width: 300px;
+}
+
+/*수정삭제버튼*/
+.detail_button {
+    display: flex;
+    float: right;
+    margin-right: 280px;
+}
+
+.detail_button button {
+    background-color: rgb(210, 174, 243);
+    color: white;
+    border: solid 1px rgb(83, 10, 219);
+    margin: 5px;
+}
+
+#edit_button {
+    display: block;
+}
+
+#save_button {
+    display: none;
+}
+
+#delete_btn {
+    display: block;
+}
+
+#edit_title {
+    width: 400px;
+    height: 30px;
+}
+
+#edit_content {
+    width: 400px;
+    height: 320px;
+}
+
+#edit_image {
+    width: 400px;
+    height: 400px;
+    background-color: rgb(210, 174, 243);
+}
+
+#edit_song {
+    width: 800px;
+    margin-bottom: 20px;
+}
+
+/*detail*/
+#detail_title {
+    width: 400px;
+    height: 30px;
+    color: rgb(83, 10, 219);
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#detail_content {
+    width: 400px;
+    height: 320px;
+    background-color: white;
+    padding: 10px;
+    overflow: auto;
+}
+
+
+/*index*/
+.mytitle>button:hover {
+    border: 2px solid white;
+    /*이미지 버튼 만들어서 hover시 나타나게*/
+}
+
+.card_title {
+    text-align: center;
+}
+
+.article_list {
+    display: flex;
+    justify-content: center;
+    /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
+    flex-wrap: wrap;
+}
+
+.col {
+    width: 300px;
+    height: 400px;
+    margin: 20px;
+    box-shadow: 0px 0px 3px 0px gray;
+}
+
+.col:hover {
+    background-color: rgb(210, 174, 243);
+
+}
+.card {
+    position: relative;
+}
+
+.card_img_top {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top: 800%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.card_file {
+    text-align: center;
+}
+
+.card_file {
+    margin-top: 310px;
+}
+
+/*article_create*/
+#postbtn{
+    margin-top: 20px;
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    background-color: rgb(83, 10, 219);
+    color: white;
+    border: solid 1px rgb(83, 10, 219);
+}
+
+#postbtn:hover{
+    background-color: white;
+    color: rgb(83, 10, 219);
+    border: solid 1px rgb(83, 10, 219);
+}
+
+.detail_list {
+    text-align: center;
+    /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
+    flex-wrap: wrap;
+    background-color: rgb(242, 227, 255);
+    width: 900px;
+    height: 700px;
+    margin-left: 20%;
+    box-shadow: 0px 0px 3px 0px gray;
+}
+
+
+.img_title {
+    display: flex;
+}
+
+.detail_one_file {
+    width: 250px;
+    height: 250px;
+    background-color: rgb(210, 174, 243);
+}
+
+.detail_title {
+    width: 400px;
+    height: 30px;
+}
+
+.detail_content {
+    width: 400px;
+    height: 320px;
+}
+
+.playback_bar {
+    width: 800px;
+    margin-bottom: 20px;
+}
+
+/*article_detail*/
+.detail_article {
+    display: flex;
+    margin: 20px;
+    justify-content: center;
+    /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
+    flex-wrap: wrap;
+}
+
+#article_title {
+    text-align: center;
+}
+
+#article_content {
+    text-align: center;
+    padding: 20px;
+    margin-left: 200px;
+    width: 370px;
+    height: 370px;
+}
+
+
+.img_size {
+    width: 400px;
+    height: 400px;
+}
+
+#article_image {
+    width: 400px;
+    height: 400px;
+}

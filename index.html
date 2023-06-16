@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLAID</title>
+    <script src="static/js/api.js"></script>
+    <script src="static/js/article.js"></script>
+    <link href="static/css/article_style.css" rel="stylesheet" />
+    <link href="static/css/style.css" rel="stylesheet" />
+</head>
+
+
+
+<body>
+
+    <form>
+
+        <div class="main_div">
+            <!--로고-->
+            <div>
+                <a href="/index.html"><img id="main_logo" src="https://i.postimg.cc/k4nYpWGM/image_1.png" alt="로고"></a>
+            </div>
+            <div class="main_">
+                <div class="main_nav">
+                    <!--로그인 전 버튼들-->
+                    <div class="nav_">
+                        <div class="nav_sign" id="login_container">
+                            <div class="href_a">
+                                <div class="sign_a">
+                                    <a href="signup.html">회원가입</a>
+                                </div>
+                                <div class="sign_a">
+                                    <a href="login.html">로그인</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--로그인 후 버튼들-->
+                    <div class="nav_">
+                        <div class="nav_sign" id="logged_in_container">
+                            <div class="href_a">
+                                <div class="sign_a" id="article_admin">
+                                    <a href="article_create.html">게시글 작성</a>
+                                </div>
+                                <div class="sign_a">
+                                    <button type="button" onclick="handleLogout()">logout</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="search_div">
+                    <input class="search" type="search" placeholder="search">
+                    <button class="search_btn" type="submit">search</button>
+                </div>
+
+                <div class="intro">
+                        <div>반가워요!</div>
+                        <a href="mypage.html">
+                        <div id="intro"></div>
+
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="article_list" id="article_list">
+            <!-- 반복적으로 나올것 -->
+            <div class="col">
+                <div class="card">
+                    <div class="card_body">
+                        <!-- 제목 -->
+                        <h4 class="card_title" id="card_title"></h4>
+                    </div>
+
+                    <div class="card_play">
+                        <!-- 이미지 -->
+                        <img src="..." class="card_img_top" id="article_image" alt="...">
+
+                        <!-- 음악 재생 바 -->
+                        <audio controls class="card_file">
+                        <source src="..." class="card_file" id="card_file" controls>
+                        브라우저가 audio를 지원하지 않습니다.
+                        <button id="btnPlay">재생 버튼</button>
+                        <button id="btnPause">일시정지 버튼</button>
+                        <button id="btnStop">정지 버튼</button>
+                    </audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

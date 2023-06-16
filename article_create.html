@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 상세보기</title>
+    <script src="static/js/api.js"></script>
+    <script src="static/js/article.js"></script>
+    <link href="static/css/article_style.css" rel="stylesheet" />
+    <link href="static/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="main_div">
+        <!--로고-->
+        <div>
+            <a href="/index.html"><img id="main_logo" src="https://i.postimg.cc/k4nYpWGM/image_1.png" alt="로고"></a>
+        </div>
+        <div class="main_">
+            <div class="main_nav">
+                <!--로그인 전 버튼들-->
+                <div class="nav_">
+                    <div class="nav_sign" id="login_container">
+                        <div class="href_a">
+                            <div class="sign_a">
+                                <a href="signup.html">회원가입</a>
+                            </div>
+                            <div class="sign_a">
+                                <a href="login.html">로그인</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--로그인 후 버튼들-->
+                <div class="nav_">
+                    <div class="nav_sign" id="logged_in_container">
+                        <div class="href_a">
+                            <div class="sign_a" id="article_admin">
+                                <a href="article_create.html">게시글 작성</a>
+                            </div>
+                            <div class="sign_a">
+                                <button type="button" onclick="handleLogout()">logout</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="search_div">
+                <input class="search" type="search" placeholder="search">
+                <button class="search_btn" type="submit">search</button>
+            </div>
+
+            <div class="intro">
+                <div>반가워요!</div>
+                <a href="mypage.html">
+                    <div id="intro"></div>
+
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <form class="form">
+
+        <div class="detail_list">
+            <div class="img_title">
+                <!-- 이미지파일 -->
+                <div class="detail_article">
+                    <label for="article_image">이미지파일</label><br>
+                    <input type="file" class="detail_one_file" name="article_image" id="article_image">
+                    <img id="preview"/>
+                </div>
+                <div class="img_title_cont">
+                    <!-- 제목 -->
+                    <div class="detail_article">
+                        <label for="title">제목</label><br>
+                        <input type="text" maxlength="20" class="detail_title" name="title" id="title" placeholder="title(20자 이내)">
+                    </div>
+                    <!-- 내용 -->
+                    <div class="detail_article">
+                        <label for="content">내용</label><br>
+                        <textarea class="detail_content" name="content" id="content" rows="5"></textarea>
+                    </div>
+                </div>
+
+            </div>
+            <!-- 음악파일 -->
+            <div class="detail_article">
+                <!-- 음악 재생 바 -->
+                <div>
+                    <audio controls class="playback_bar">
+                        <source src="..." class="playback_bar" id="playback_bar" controls>
+                </div>
+                <div>
+                    <label for="song">song</label>
+                    <input type="file" name="song" id="song">
+                </div>
+                <div style="color: gray; font-size: 15px;">mp3 wav ogg 파일만 업로드 가능합니다</div>
+            </div>
+
+
+            <div>
+                <button id="postbtn" type="button" onclick="postArticle()">작성완료</button>
+            </div>
+
+    </form>
+
+
+</body>
+
+</html>
