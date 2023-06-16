@@ -54,13 +54,28 @@ async function postArticle() {
     }
 }
 
-//작성 이미지 미리보기
-function showPreview(event) {
+/**
+ * 작성자 : 이준영
+ * 내용 : 이미지 미리보기
+ * 최초 작성일 : 2023.06.17
+ */
+function showPreviewImage(event) {
     if (event.target.files.length > 0) {
-        var src = URL.createObjectURL(event.target.files[0]);
-        var preview = document.getElementById("preview");
-        preview.src = src;
-        preview.style.display = "block";
+        var file = event.target.files[0];
+        var fileSize = file.size / 1024; // 파일 크기를 KB 단위로 계산
+        if (fileSize <= 300) {
+            var src = URL.createObjectURL(file);
+            $('.detail_one_file').css({
+                'background-image': 'url(' + src + ')',
+                'background-size': 'cover',
+                'background-position': 'center',
+                'background-repeat': 'no-repeat'
+            });
+        } else {
+            alert('이미지 파일 크기는 300KB 이하여야 합니다.');
+            $('#article_image').val('');
+            $('.detail_one_file').css('background-image', 'none');
+        }
     }
 }
 
