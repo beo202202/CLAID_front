@@ -6,11 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글 상세보기</title>
-    <script src="static/js/api.js"></script>
-    <script src="static/js/article.js"></script>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <script src="static/js/base.js"></script>
     <script src="static/js/detail.js"></script>
     <link href="static/css/article_style.css" rel="stylesheet" />
-    <link href="static/css/style.css" rel="stylesheet" />
 </head>
 
 
@@ -58,10 +61,9 @@
                 </div>
 
                 <div class="intro">
+                    <div>반가워요!</div>
                     <a href="mypage.html">
-                        <div>반가워요!</div>
                         <div id="intro"></div>
-
                     </a>
                 </div>
             </div>
@@ -70,21 +72,20 @@
 
         <div class="detail_button">
             <div>
-                <button id="edit_button" type="button" onclick="putArticle()">수정</button>
+                <button id="edit_button" type="button" onclick="putArticle()" style="display:none">수정</button>
             </div>
             <div>
                 <button id="save_button" type="button" onclick="saveEditedArticle(getArticleIdFromUrl())">저장</button>
             </div>
             <div>
-                <button id="delete_button" type="button"
-                    onclick="deleteArticle(getArticleIdFromUrl())">삭제</button>
+                <button id="delete_button" type="button" onclick="deleteArticle(getArticleIdFromUrl())"
+                    style="display:none">삭제</button>
             </div>
         </div>
 
         <div class="detail_list">
-            <div class="img_title">
-                <div class="detail_article">
-                    <div id="detail_image"></div>
+            <div class="detail_article">
+                <div class="img_title" id="detail_image">
                 </div>
                 <div class="img_title_cont">
                     <div class="detail_article">
@@ -99,20 +100,18 @@
             <div class="detail_article">
                 <!-- 음악 재생 바 -->
                 <div>
-                    <audio controls class="playback_bar">
-                        <source src="..." class="playback_bar" id="playback_bar" controls>
+                    <audio controls class="playback_bar" id="playback_bar" name="media" src="#" />
                 </div>
-                <div id="detail_song">음악파일제목같은 경로,,ㅎㅎ</div>
             </div>
         </div>
         <div class="detail_article">
-            <div>작성시간</div>
+            <div>작성시간:</div>
             <div id="detail_created_at"></div>
 
-            <div>수정시간</div>
+            <div>수정시간:</div>
             <div id="detail_updated_at"></div>
 
-            <div>작성자</div>
+            <div>작성자:</div>
             <div id="nickname"></div>
         </div>
     </form>

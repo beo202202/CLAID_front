@@ -1,8 +1,5 @@
-const backend_base_url = "http://127.0.0.1:8000"
-const frontend_base_url = "http://127.0.0.1:5500"
-
 window.onload = () => {
-
+    checkAccessToken();
 }
 
 /**
@@ -86,8 +83,9 @@ async function handleLogin() {
         const response_json = await response.json();
         console.log(response_json);
 
-        localStorage.setItem("access", response_json.access);
-        localStorage.setItem("refresh", response_json.refresh);
+
+        localStorage.setItem("access_token", response_json.access);
+        localStorage.setItem("refresh_token", response_json.refresh);
 
         const base64Url = response_json.access.split('.')[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -109,51 +107,58 @@ async function handleLogin() {
     }
 }
 
-
-
 /**
  * 작성자 : 공민영
  * 내용 : 닉네임 가져와서 보여줌
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 최종 수정자 : 이준영
+ * 수정내용 : 페이로드가 없을 때 오류 뿜뿜 수정
+ * showName() > showPayload()로 변경
+ * 업데이트 일자 : 2023.06.17
  */
-async function showName() {
+async function showPayload() {
     const payload = localStorage.getItem("payload");
-    const payload_parse = JSON.parse(payload);
-    console.log(payload_parse);
+    if (payload) {
+        const payload_parse = JSON.parse(payload);
+        console.log(payload_parse);
 
-    const intro = document.getElementById("intro");
-
-
-    // payload 에서 가져온 정보를 html에 보이게하기(id 이용)
-    intro.innerText = payload_parse.nickname;
+        $("#intro").text(payload.nickname);
+    }
 }
 
 /**
- * 작성자 : 공민영
- * 내용 : 로그인 로그아웃 시 버튼 바꾸기
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 작성자 : 이준영
+ * 내용 : 토큰 체크
+ * 최초 작성일 : 2023.06.17
  */
-document.addEventListener('DOMContentLoaded', function () {
-    const get_access = localStorage.getItem('access');
-    if (get_access) {
-        document.getElementById('login_container').style.display = 'none';
+function checkAccessToken() {
+    var access_token = localStorage.getItem('access_token');
+    if (access_token) {
+        // document.getElementById('login_container').style.display = 'none';
+        window.location.replace(`../index.html`);
     } else {
         document.getElementById('logged_in_container').style.display = 'none';
     }
-});
+};
 
+// 카카오 로그인 ###############################################
+function loginWithKakao() {
+    /**
+     * 작성자 : 이준영
+     * 내용 : kakao_code 가져오고 임시 주소로 이동.
+     * 최초 작성일 : 2023.06.14
+     * 수정 내용 : sign.js로 통합, 토큰 확인하여 반복 로그인 방지
+     * 업데이트일 : 2023.06.17
+     */
+    var access_token = localStorage.getItem('access_token');
 
-/**
- * 작성자 : 공민영
- * 내용 : 로그아웃
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
- */
-function handleLogout() {
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
-    localStorage.removeItem("payload");
-    location.reload();
+    if (!access_token) {
+        Kakao.Auth.authorize({
+            redirectUri: `${frontend_base_url}/temp.html`,
+        });
+    }
+    else {
+        alert('이미 로그인 중입니다!');
+        window.location.replace(`../index.html`);
+    }
 }

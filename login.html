@@ -6,18 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLAID</title>
-    <script src="static/js/api.js"></script>
-    <script src="static/js/article.js"></script>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src='../static/js/base.js' async></script>
+
+    <script src="static/js/sign.js"></script>
     <link href="static/css/style.css" rel="stylesheet" />
 </head>
 
 
 <body>
+    <!-- kakao js -->
+    <script src=" https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js"
+        integrity="sha384-x+WG2i7pOR+oWb6O5GV5f1KN2Ko6N7PTGPS7UlasYWNxZMKQA63Cj/B2lbUmUfuC"
+        crossorigin="anonymous"></script>
+    <script>
+        Kakao.init('13071058148f34624ffc0412a6af5381'); // 사용하려는 앱의 JavaScript 키 입력
+
+        // SDK 초기화 여부를 판단합니다.
+        console.log(Kakao.isInitialized());
+    </script>
+
     <div class="logo">
         <a href="/index.html"><img id="logo" src="https://i.postimg.cc/k4nYpWGM/image-1.png" alt="로고"></a>
     </div>
     <div class="sign_">
         <h1>로그인</h1>
+        <div class="sns_login">
+            <a id="kakao-login-btn" href="javascript:loginWithKakao()">
+                <img src="../static/img/kakao_login_large_wide.png" class="kakao-login-img" alt="카카오 로그인 버튼" />
+            </a>
+        </div>
         <form>
             <div class="login_">
                 <div class="sign_input">

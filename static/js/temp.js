@@ -33,6 +33,7 @@ async function setJWT(response) {
      * 내용 : 받아온 JWT Totken을 로컬 스토리지에 저장
      * 에러 발생 시, 에러 문구를 띄워주고 이전 페이지(로그인페이지)로 이동
      * 최초 작성일 : 2023.06.14
+     * 업데이트 일 : 2023.06.16
      */
     const response_json = response;
     console.log(response);
@@ -50,8 +51,8 @@ async function setJWT(response) {
     );
     localStorage.setItem("payload", jsonPayload);
     // window.history.back();
-    // window.location.replace(`../kakao.html`);
-    window.location.replace(`../google.html`);
+
+    window.location.replace(`../index.html`);
 }
 
 async function getKakaoJWT(kakao_code) {
@@ -70,7 +71,7 @@ async function getKakaoJWT(kakao_code) {
         .catch(error => {
             console.error(error);
             alert("다시 로그인 해주세요.");
-            window.location.href = '../kakao.html';
+            window.location.href = '../login.html';
         });
 }
 
