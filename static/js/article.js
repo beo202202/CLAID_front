@@ -167,5 +167,7 @@ function showPreviewAudio(event) {
             $('.playback_bar').attr('src', '');
             return;
         }
+    } else {
+        $('.playback_bar').attr('src', '');
     }
 }
