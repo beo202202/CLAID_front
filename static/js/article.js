@@ -118,6 +118,8 @@ function checkAccessToken2() {
  * 작성자 : 이준영
  * 내용 : 이미지 미리보기
  * 최초 작성일 : 2023.06.17
+ * 수정 내용 : 이미지 선택 해제 시 미리보기 삭제
+ * 업데이트 일 : 2023. 06.17
  */
 function showPreviewImage(event) {
     if (event.target.files.length > 0) {
