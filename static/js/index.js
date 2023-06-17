@@ -1,24 +1,26 @@
 window.onload = () => {
     // 게시글 가져오기
     loadArticles();
-    showName();
+    showPayload();
 }
+
 /**
  * 작성자 : 공민영
  * 내용 : 닉네임 가져와서 보여줌
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 최종 수정자 : 이준영
+ * 수정내용 : 페이로드가 없을 때 오류 뿜뿜 수정
+ * showName() > showPayload()로 변경
+ * 업데이트 일자 : 2023.06.17
  */
-async function showName() {
+async function showPayload() {
     const payload = localStorage.getItem("payload");
-    const payload_parse = JSON.parse(payload);
-    console.log(payload_parse);
+    if (payload) {
+        const payload_parse = JSON.parse(payload);
+        console.log(payload_parse);
 
-    const intro = document.getElementById("intro");
-
-
-    // payload 에서 가져온 정보를 html에 보이게하기(id 이용)
-    intro.innerText = payload_parse.nickname;
+        $("#intro").text(payload.nickname);
+    }
 }
 
 /**
@@ -205,24 +207,6 @@ function showPreview(event) {
         preview.src = src;
         preview.style.display = "block";
     }
-}
-
-/**
- * 작성자 : 공민영
- * 내용 : 닉네임 가져와서 보여줌
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
- */
-async function showName() {
-    const payload = localStorage.getItem("payload");
-    const payload_parse = JSON.parse(payload);
-    console.log(payload_parse);
-
-    const intro = document.getElementById("intro");
-
-
-    // payload 에서 가져온 정보를 html에 보이게하기(id 이용)
-    intro.innerText = payload_parse.nickname;
 }
 
 /**
