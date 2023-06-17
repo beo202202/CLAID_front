@@ -1,5 +1,6 @@
 window.onload = () => {
     getArticleDetail()
+    showPayload();
 }
 
 console.log('detail');
@@ -20,25 +21,23 @@ function getArticleIdFromUrl() {
  * 최초 작성일 : 2023.06.15
  * 최종 수정자 : 이준영
  * 수정 내용 : 너무 많은 코드를 JQuery로 간단히 변경, DB 오디오 연결
+ * 일부 playload함수로 이동, nickname 오류 수정
+ * 작성시간, 업데이트시간을 상대적이게 표현
  * 업데이트 일자 : 2023.06.17
  */
 async function getArticleDetail() {
     const response = await getArticle(getArticleIdFromUrl());
     console.log(response);
 
-    const payload = JSON.parse(localStorage.getItem("payload"));
-    console.log(payload);
-
     setButtonVisibility();
-    showName();
 
     $("#detail_title").text(response.title);
     $("#detail_content").text(response.content);
     $("#playback_bar").attr("src", backend_base_url + response.song);
     $(".playback_bar").prop("volume", 0.1);
-    $("#detail_created_at").text(response.created_at);
-    $("#detail_updated_at").text(response.updated_at);
-    $("#nickname").text(payload.nickname);
+    $("#nickname").text(response.user.nickname);
+    $("#detail_created_at").text(timeago(response.created_at));
+    $("#detail_updated_at").text(timeago(response.updated_at));
 
     const articleImage = $("#detail_image");
     const newImage = $("<img>").attr("src", response.article_image ? `${backend_base_url}${response.article_image}` : "../static/img/default.PNG").addClass("img_size");
@@ -225,18 +224,19 @@ async function setButtonVisibility() {
  * 작성자 : 공민영
  * 내용 : 닉네임 가져와서 보여줌
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 최종 수정자 : 이준영
+ * 수정내용 : 페이로드가 없을 때 오류 뿜뿜 수정
+ * showName() > showPayload()로 변경
+ * 업데이트 일자 : 2023.06.17
  */
-async function showName() {
+async function showPayload() {
     const payload = localStorage.getItem("payload");
-    const payload_parse = JSON.parse(payload);
-    console.log(payload_parse);
+    if (payload) {
+        const payload_parse = JSON.parse(payload);
+        console.log(payload_parse);
 
-    const intro = document.getElementById("intro");
-
-
-    // payload 에서 가져온 정보를 html에 보이게하기(id 이용)
-    intro.innerText = payload_parse.nickname;
+        $("#intro").text(payload.nickname);
+    }
 }
 
 /**
