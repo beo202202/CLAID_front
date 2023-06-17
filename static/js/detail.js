@@ -1,8 +1,9 @@
 window.onload = () => {
     getArticleDetail()
+    showPayload();
+    setButtonVisibility();
 }
 
-console.log('detail');
 /**
  * 작성자 : 공민영
  * 내용 : 게시글 아이디 가져오기
@@ -20,25 +21,20 @@ function getArticleIdFromUrl() {
  * 최초 작성일 : 2023.06.15
  * 최종 수정자 : 이준영
  * 수정 내용 : 너무 많은 코드를 JQuery로 간단히 변경, DB 오디오 연결
+ * 일부 playload함수로 이동, nickname 오류 수정
+ * 작성시간, 업데이트시간을 상대적이게 표현
  * 업데이트 일자 : 2023.06.17
  */
 async function getArticleDetail() {
     const response = await getArticle(getArticleIdFromUrl());
-    console.log(response);
-
-    const payload = JSON.parse(localStorage.getItem("payload"));
-    console.log(payload);
-
-    setButtonVisibility();
-    showName();
 
     $("#detail_title").text(response.title);
     $("#detail_content").text(response.content);
     $("#playback_bar").attr("src", backend_base_url + response.song);
     $(".playback_bar").prop("volume", 0.1);
-    $("#detail_created_at").text(response.created_at);
-    $("#detail_updated_at").text(response.updated_at);
-    $("#nickname").text(payload.nickname);
+    $("#nickname").text(response.user.nickname);
+    $("#detail_created_at").text(timeago(response.created_at));
+    $("#detail_updated_at").text(timeago(response.updated_at));
 
     const articleImage = $("#detail_image");
     const newImage = $("<img>").attr("src", response.article_image ? `${backend_base_url}${response.article_image}` : "../static/img/default.PNG").addClass("img_size");
@@ -116,9 +112,6 @@ function putArticle() {
  * 업데이트 일자 : 2023.06.15
  */
 async function saveEditedArticle(articleId) {
-    console.log("수정 후 저장 눌림");
-    console.log(articleId);
-
     const editedTitle = document.getElementById("edit_title").value;
     const editedContent = document.getElementById("edit_content").value;
     const editedImage = document.getElementById("edit_image").files[0];
@@ -171,9 +164,6 @@ async function saveEdited() {
  * 업데이트 일자 : 2023.06.15
  */
 async function deleteArticle(articleId) {
-    console.log("deleteArticle()눌림");
-    console.log(articleId);
-
     let access_token = localStorage.getItem("access_token");
 
     if (confirm("삭제하시겠습니까?")) {
@@ -183,7 +173,6 @@ async function deleteArticle(articleId) {
                 "Authorization": `Bearer ${access_token}`
             },
         });
-        console.log(response.user);
         if (response.status == 204) {
             alert("삭제가 완료되었습니다.");
             window.location.replace('index.html');
@@ -197,46 +186,52 @@ async function deleteArticle(articleId) {
  * 작성자 : 공민영
  * 내용 : 내 게시글일 경우에만 수정/삭제버튼 보이기
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 최종 수정자 : 이준영
+ * 수정 내용 : 함수가 잘 작동하게 수정함.
+ * 업데이트 일자 : 2023.06.17
  */
 async function setButtonVisibility() {
-    const editButton = document.getElementById("edit_button");
-    const deleteButton = document.getElementById("delete_button");
+    const editButton = $("#edit_button");
+    const deleteButton = $("#delete_button");
 
     const response = await getArticle(getArticleIdFromUrl());
-    const loggedInUserId = response.user;
-    console.log(loggedInUserId);
+    const loggedInUserId = response.user.pk;
 
     const payload = localStorage.getItem("payload");
-    const payload_parse = JSON.parse(payload);
-    const articleAuthorId = payload_parse.user_id;
-    console.log(articleAuthorId);
+    if (payload) {
+        const payload_parse = JSON.parse(payload);
+        const articleAuthorId = payload_parse.user_id;
 
-    if (loggedInUserId === articleAuthorId) {
-        editButton.style.display = "block";
-        deleteButton.style.display = "block";
+        if (loggedInUserId === articleAuthorId) {
+            editButton.show();
+            deleteButton.show();
+        } else {
+            editButton.hide();
+            deleteButton.hide();
+        }
     } else {
-        editButton.style.display = "none";
-        deleteButton.style.display = "none";
+        editButton.hide();
+        deleteButton.hide();
     }
 }
+
 
 /**
  * 작성자 : 공민영
  * 내용 : 닉네임 가져와서 보여줌
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 최종 수정자 : 이준영
+ * 수정내용 : 페이로드가 없을 때 오류 뿜뿜 수정
+ * showName() > showPayload()로 변경
+ * 업데이트 일자 : 2023.06.17
  */
-async function showName() {
+async function showPayload() {
     const payload = localStorage.getItem("payload");
-    const payload_parse = JSON.parse(payload);
-    console.log(payload_parse);
+    if (payload) {
+        const payload_parse = JSON.parse(payload);
 
-    const intro = document.getElementById("intro");
-
-
-    // payload 에서 가져온 정보를 html에 보이게하기(id 이용)
-    intro.innerText = payload_parse.nickname;
+        $("#intro").text(payload.nickname);
+    }
 }
 
 /**
