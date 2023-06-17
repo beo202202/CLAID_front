@@ -140,3 +140,25 @@ function checkAccessToken() {
         document.getElementById('logged_in_container').style.display = 'none';
     }
 };
+
+// 카카오 로그인 ###############################################
+function loginWithKakao() {
+    /**
+     * 작성자 : 이준영
+     * 내용 : kakao_code 가져오고 임시 주소로 이동.
+     * 최초 작성일 : 2023.06.14
+     * 수정 내용 : sign.js로 통합, 토큰 확인하여 반복 로그인 방지
+     * 업데이트일 : 2023.06.17
+     */
+    var access_token = localStorage.getItem('access_token');
+
+    if (!access_token) {
+        Kakao.Auth.authorize({
+            redirectUri: `${frontend_base_url}/temp.html`,
+        });
+    }
+    else {
+        alert('이미 로그인 중입니다!');
+        window.location.replace(`../index.html`);
+    }
+}
