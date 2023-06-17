@@ -136,6 +136,13 @@ function showPreviewImage(event) {
             $('#article_image').val('');
             $('.detail_one_file').css('background-image', 'none');
         }
+    } else {
+        $('.detail_one_file').css({
+            'background-image': 'none',
+            'background-size': 'auto',
+            'background-position': 'unset',
+            'background-repeat': 'unset'
+        });
     }
 }
 
@@ -149,12 +156,14 @@ function showPreviewAudio(event) {
         var file = event.target.files[0];
         var src = URL.createObjectURL(file);
 
-        if (file.size > 10 * 1024 * 1024) {
+        if (file.size <= 10 * 1024 * 1024) {
+            $('.playback_bar').attr('src', src);
+            $('.playback_bar').prop('volume', 0.1);
+        }
+        else {
             alert("오디오 파일의 크기는 10MB를 초과할 수 없습니다.");
+            $('.playback_bar').attr('src', '');
             return;
         }
-
-        $('.playback_bar').attr('src', src);
-        $('.playback_bar').prop('volume', 0.1);
     }
 }
