@@ -152,6 +152,8 @@ function showPreviewImage(event) {
  * 작성자 : 이준영
  * 내용 : 오디오 미리보기
  * 최초 작성일 : 2023.06.17
+ * 수정 내용 : 오디오 선택 해제 시 미리보기 삭제
+ * 업데이트 일 : 2023. 06.17
  */
 function showPreviewAudio(event) {
     if (event.target.files.length > 0) {
