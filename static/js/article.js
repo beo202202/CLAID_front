@@ -14,12 +14,10 @@ window.onload = () => {
  * 업데이트 일자 : 2023.06.17
  */
 async function postArticle() {
-    console.log("게시글 작성 눌림");
     const title = document.getElementById("title").value;
     const content = document.getElementById("content").value;
     const article_image = document.getElementById("article_image").files[0];
 
-    console.log(article_image);
     const song = document.getElementById("song").files[0];
 
     const formdata = new FormData();
@@ -67,7 +65,6 @@ async function showPayload() {
     const payload = localStorage.getItem("payload");
     if (payload) {
         const payload_parse = JSON.parse(payload);
-        console.log(payload_parse);
 
         $("#intro").text(payload.nickname);
     }
