@@ -14,12 +14,10 @@ window.onload = () => {
  * 업데이트 일자 : 2023.06.17
  */
 async function postArticle() {
-    console.log("게시글 작성 눌림");
     const title = document.getElementById("title").value;
     const content = document.getElementById("content").value;
     const article_image = document.getElementById("article_image").files[0];
 
-    console.log(article_image);
     const song = document.getElementById("song").files[0];
 
     const formdata = new FormData();
@@ -67,7 +65,6 @@ async function showPayload() {
     const payload = localStorage.getItem("payload");
     if (payload) {
         const payload_parse = JSON.parse(payload);
-        console.log(payload_parse);
 
         $("#intro").text(payload.nickname);
     }
@@ -118,6 +115,8 @@ function checkAccessToken2() {
  * 작성자 : 이준영
  * 내용 : 이미지 미리보기
  * 최초 작성일 : 2023.06.17
+ * 수정 내용 : 이미지 선택 해제 시 미리보기 삭제
+ * 업데이트 일 : 2023. 06.17
  */
 function showPreviewImage(event) {
     if (event.target.files.length > 0) {
@@ -136,6 +135,13 @@ function showPreviewImage(event) {
             $('#article_image').val('');
             $('.detail_one_file').css('background-image', 'none');
         }
+    } else {
+        $('.detail_one_file').css({
+            'background-image': 'none',
+            'background-size': 'auto',
+            'background-position': 'unset',
+            'background-repeat': 'unset'
+        });
     }
 }
 
@@ -143,18 +149,24 @@ function showPreviewImage(event) {
  * 작성자 : 이준영
  * 내용 : 오디오 미리보기
  * 최초 작성일 : 2023.06.17
+ * 수정 내용 : 오디오 선택 해제 시 미리보기 삭제
+ * 업데이트 일 : 2023. 06.17
  */
 function showPreviewAudio(event) {
     if (event.target.files.length > 0) {
         var file = event.target.files[0];
         var src = URL.createObjectURL(file);
 
-        if (file.size > 10 * 1024 * 1024) {
+        if (file.size <= 10 * 1024 * 1024) {
+            $('.playback_bar').attr('src', src);
+            $('.playback_bar').prop('volume', 0.1);
+        }
+        else {
             alert("오디오 파일의 크기는 10MB를 초과할 수 없습니다.");
+            $('.playback_bar').attr('src', '');
             return;
         }
-
-        $('.playback_bar').attr('src', src);
-        $('.playback_bar').prop('volume', 0.1);
+    } else {
+        $('.playback_bar').attr('src', '');
     }
 }
