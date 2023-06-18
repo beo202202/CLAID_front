@@ -161,7 +161,8 @@ async function loadArticles() {
         newCardPlay.append(articleImage);
 
         const articleSong = $("<audio>").addClass("card_file").attr({
-            "controls": "",
+            controls: true,
+            preload: true,
             "id": "card_file",
             "name": "media",
             "src": `${backend_base_url}${article.song}`

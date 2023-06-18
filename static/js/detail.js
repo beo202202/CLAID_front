@@ -114,7 +114,8 @@ function putArticle() {
 
     const audioSrc = song.find('audio').attr('src')
     const audioPreview = $("<audio>").addClass("playback_bar").attr({
-        controls: "",
+        controls: true,
+        preload: true,
         id: "playback_bar",
         name: "media",
         src: `${audioSrc}`
