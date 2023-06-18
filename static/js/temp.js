@@ -7,23 +7,23 @@ if (!localStorage.getItem('access_token')) {
     // 현재 페이지의 URL에서 쿼리 매개변수 추출
     let urlParams = new URLSearchParams(window.location.search);
     let code = urlParams.get('code');
-
     let state = urlParams.get("state");
     let hashParams = new URLSearchParams(window.location.hash.substr(1));
     let google_token = hashParams.get("access_token");
 
     // code가 있다면 JWT(access, refresh) 가져오기
     if (code) {
-        if (state) {
-            alert("네이버 로그인");
-            getNaverJWT(code, state);
-        } else {
-            alert("카카오 로그인");
-            getKakaoJWT(code);
-        }
+      if (state) {
+        alert("네이버 로그인");
+        getNaverJWT(code, state);
+      } else {
+        alert("카카오 로그인");
+        getKakaoJWT(code);
+      }
+    // 구글 토큰이 있다면 JWT(access, refresh) 가져오기
     } else if (google_token) {
         alert("구글 로그인");
-        getGoogleJWT(google_token);
+        getGoogleJWT(google_token, hashParams);
     }
 }
 
@@ -51,6 +51,7 @@ async function setJWT(response) {
     );
     localStorage.setItem("payload", jsonPayload);
     // window.history.back();
+
     window.location.replace(`../index.html`);
 }
 

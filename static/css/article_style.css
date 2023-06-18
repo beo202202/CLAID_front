@@ -59,6 +59,7 @@ body {
     width: 1000px;
     height: 90px;
 }
+
 .main_div {
     display: flex;
 }
@@ -100,6 +101,7 @@ body {
     border: none;
     font-weight: 500;
 }
+
 .sign_a button:hover {
     font-size: 20px;
     color: rgb(83, 10, 219);
@@ -187,9 +189,6 @@ body {
     /*이미지 버튼 만들어서 hover시 나타나게*/
 }
 
-.card_title {
-    text-align: center;
-}
 
 .article_list {
     display: flex;
@@ -210,30 +209,42 @@ body {
     background-color: rgb(210, 174, 243);
 
 }
+
 .card {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.card_body {
+    margin-bottom: 10px;
+}
+
+.card_title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card_play {
     position: relative;
 }
 
 .card_img_top {
-    width: 250px;
-    height: 250px;
-    position: absolute;
-    top: 800%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
 }
 
 .card_file {
-    text-align: center;
+    width: 100%;
 }
 
-.card_file {
-    margin-top: 310px;
-}
 
 /*article_create*/
-#postbtn{
+#postbtn {
     margin-top: 20px;
     width: 100px;
     height: 30px;
@@ -243,7 +254,7 @@ body {
     border: solid 1px rgb(83, 10, 219);
 }
 
-#postbtn:hover{
+#postbtn:hover {
     background-color: white;
     color: rgb(83, 10, 219);
     border: solid 1px rgb(83, 10, 219);
