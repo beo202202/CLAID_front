@@ -45,7 +45,9 @@ async function getArticleDetail() {
  * 작성자 : 공민영
  * 내용 : 디테일뷰 가져오기
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 수정자 : 이준영
+ * 업데이트 내용 : 한글 알람으로 변경
+ * 업데이트 일자 : 2023.06.18
  */
 async function getArticle(articleId) {
     const response = await fetch(`${backend_base_url}/article/${articleId}/`,
@@ -54,94 +56,142 @@ async function getArticle(articleId) {
         response_json = await response.json();
         return response_json;
     } else {
-        alert(response.statusText);
+        alert("잘못된 요청입니다.");
     }
 }
 
 
 /**
- * 작성자 : 공민영
- * 내용 : 게시글 수정 폼으로 변경
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 작성자: 공민영
+ * 내용: 게시글 수정 폼으로 변경
+ * 최초 작성일: 2023.06.15
+ * 수정자: 이준영
+ * 수정 내용: 수정 기능이 작동되지 않고 세부적인 것을 create를 따르도록
+ * 업데이트 일자: 2023.06.18
  */
 function putArticle() {
-    const titleElement = document.getElementById("detail_title");
-    const contentElement = document.getElementById("detail_content");
-    const imageElement = document.getElementById("detail_image");
-    const songElement = document.getElementById("detail_song");
+    const elements = {
+        title: $("#detail_title"),
+        content: $("#detail_content"),
+        image: $("#detail_image"),
+        song: $("#detail_song")
+    };
 
+    const { title, content, image, song } = elements;
 
-    const title = titleElement.textContent;
-    const content = contentElement.textContent;
-    const image = imageElement.textContent;
-    const song = songElement.textContent;
+    title.html(
+        `<br>
+        <input type="text" id="edit_title" maxlength="20" placeholder="title(20자 이내)" value="${title.text()}">`
+    );
 
-    titleElement.innerHTML =
-        `<label for="edit_title"></label><br>
-    <input type="text" id="edit_title" maxlength="20" placeholder="title(20자 이내)" value="${title}">`;
+    content.html(
+        `<br>
+        <textarea id="edit_content">${content.text()}</textarea>`
+    );
 
-    contentElement.innerHTML =
-        `<label for="edit_content"></label><br>
-    <textarea id="edit_content">${content}</textarea>`;
+    const imagePreview = $("<img>").addClass("preview_image");
+    const imageInput = $("<input>").attr({
+        type: "file",
+        class: "detail_one_file",
+        name: "article_image",
+        id: "article_image",
+        accept: "image/*"
+    }).on("change", showPreviewImage);
 
-    // 이미지와 음악 파일 업로드를 위한 input 요소 추가
-    imageElement.innerHTML =
-        `<label for="edit_image"></label><br>
-     <input type="file" id="edit_image" value="${image ? image.name : ''}">`;
+    const imageSrc = image.find('img').attr('src');
+    if (imageSrc) {
+        imageInput.css({
+            'background-image': `url('${imageSrc}')`,
+            'background-size': 'cover',
+            'background-position': 'center',
+            'background-repeat': 'no-repeat'
+        });
+    } else {
+        imageInput.css('background-image', 'none');
+    }
 
-    songElement.innerHTML =
-        `<label for="edit_song">song</label>
-    <input type="file" id="edit_song" value="${song ? song.name : ''}">`;
-    /**
-     * 작성자 : 공민영
-     * 내용 : edit_button 클릭 시 save_button으로 변경
-     * 최초 작성일 : 2023.06.15
-     * 업데이트 일자 : 2023.06.15
-     */
-    const editButton = document.getElementById("edit_button");
-    const saveButton = document.getElementById("save_button");
-    editButton.style.display = "none";
-    saveButton.style.display = "block";
+    image.html("").append(imagePreview, imageInput);
+
+    const audioSrc = song.find('audio').attr('src')
+    const audioPreview = $("<audio>").addClass("playback_bar").attr({
+        controls: true,
+        preload: true,
+        id: "playback_bar",
+        name: "media",
+        src: `${audioSrc}`
+    });
+
+    const audioInput = $("<input>").attr({
+        type: "file",
+        name: "song",
+        id: "song",
+        accept: "audio/mp3, audio/wav, audio/ogg"
+    }).on("change", showPreviewAudio);
+
+    const audioDescript = $("<div>").attr("style", "color: gray; font-size: 15px;").text("mp3 wav ogg 파일만 업로드 가능합니다")
+
+    if (audioSrc) {
+        audioPreview.attr("src", `${audioSrc}`).prop('volume', 0.1);
+    }
+
+    song.html("").append(audioPreview, audioInput, audioDescript);
+
+    $("#edit_button").hide();
+    $("#save_button").show();
 }
 
 /**
- * 작성자 : 공민영
- * 내용 : 수정 후 저장 버튼 클릭 시 호출
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 작성자: 공민영
+ * 내용: 수정 후 저장 버튼 클릭 시 호출
+ * 최초 작성일: 2023.06.15
+ * 수정자: 이준영
+ * 업데이트 내용: 업데이트 되게 수정, PUT > PATCH, Fetch > JQuery Ajax Request
+ * 업데이트 일자: 2023.06.18
  */
-async function saveEditedArticle(articleId) {
-    const editedTitle = document.getElementById("edit_title").value;
-    const editedContent = document.getElementById("edit_content").value;
-    const editedImage = document.getElementById("edit_image").files[0];
-    const editedSong = document.getElementById("edit_song").files[0];
+function saveEditedArticle(articleId) {
+    const editedTitle = $("#edit_title").val();
+    const editedContent = $("#edit_content").val();
+    const editedImage = $("#article_image").prop("files")[0];
+    const editedSong = $("#song").prop("files")[0];
 
     const formdata = new FormData();
-
     formdata.append("title", editedTitle);
     formdata.append("content", editedContent);
-    formdata.append("article_image", editedImage);
+    if (editedImage !== undefined) {
+        formdata.append("article_image", editedImage);
+    }
+    if (editedSong === undefined) {
+        alert("오디오는 필수입니다.");
+        return;
+    }
     formdata.append("song", editedSong);
 
-    let access_token = localStorage.getItem("access_token");
-
-    const response = await fetch(`${backend_base_url}/article/${articleId}/`, {
-        method: "PUT",
+    $.ajax({
+        type: "PATCH",
+        url: `${backend_base_url}/article/${articleId}/`,
         headers: {
-            "Authorization": `Bearer ${access_token}`
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
-        body: formdata
+        data: formdata,
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function (response) {
+            alert("수정이 완료되었습니다.");
+            saveEdited();
+            window.location.href = `${frontend_base_url}/article_detail.html?article_id=${articleId}`;
+        },
+        error: function (xhr, status, error) {
+            if (xhr.status === 401) {
+                alert("토큰 만료! 재로그인하세요!");
+                handleLogout();
+            } else if (xhr.status === 403) {
+                alert("본인 게시글만 수정 가능합니다.");
+            } else {
+                alert("잘못된 요청입니다.");
+            }
+        }
     });
-
-    if (response.status == 200) {
-        alert("수정이 완료되었습니다.");
-        saveEdited();
-        window.location.href = `${frontend_base_url}/article_detail.html?article_id=${articleId}`
-    } else {
-        alert(response.statusText);
-        location.reload();
-    }
 }
 
 /**
@@ -176,8 +226,11 @@ async function deleteArticle(articleId) {
         if (response.status == 204) {
             alert("삭제가 완료되었습니다.");
             window.location.replace('index.html');
+        } else if (response.status == 401) {
+            alert("토큰 만료! 재로그인하세요!");
+            handleLogout();
         } else {
-            alert(response.statusText);
+            alert("잘못된 요청입니다.");
         }
     }
 }
@@ -248,6 +301,79 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('logged_in_container').style.display = 'none';
     }
 });
+
+/**
+ * 작성자 : 공민영
+ * 내용 : 로그아웃
+ * 최초 작성일 : 2023.06.15
+ * 업데이트 일자 : 2023.06.15
+ */
+function handleLogout() {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("payload");
+    location.reload();
+}
+
+/**
+ * 작성자 : 이준영
+ * 내용 : 이미지 미리보기
+ * 최초 작성일 : 2023.06.17
+ * 수정 내용 : 이미지 선택 해제 시 미리보기 삭제
+ * 업데이트 일 : 2023. 06.17
+ */
+function showPreviewImage(event) {
+    if (event.target.files.length > 0) {
+        var file = event.target.files[0];
+        var fileSize = file.size / 1024; // 파일 크기를 KB 단위로 계산
+        if (fileSize <= 300) {
+            var src = URL.createObjectURL(file);
+            $('.detail_one_file').css({
+                'background-image': 'url(' + src + ')',
+                'background-size': 'cover',
+                'background-position': 'center',
+                'background-repeat': 'no-repeat'
+            });
+        } else {
+            alert('이미지 파일 크기는 300KB 이하여야 합니다.');
+            $('#article_image').val('');
+            $('.detail_one_file').css('background-image', 'none');
+        }
+    } else {
+        $('.detail_one_file').css({
+            'background-image': 'none',
+            'background-size': 'auto',
+            'background-position': 'unset',
+            'background-repeat': 'unset'
+        });
+    }
+}
+
+/**
+ * 작성자 : 이준영
+ * 내용 : 오디오 미리보기
+ * 최초 작성일 : 2023.06.17
+ * 수정 내용 : 오디오 선택 해제 시 미리보기 삭제
+ * 업데이트 일 : 2023. 06.17
+ */
+function showPreviewAudio(event) {
+    if (event.target.files.length > 0) {
+        var file = event.target.files[0];
+        var src = URL.createObjectURL(file);
+
+        if (file.size <= 10 * 1024 * 1024) {
+            $('.playback_bar').attr('src', src);
+            $('.playback_bar').prop('volume', 0.1);
+        }
+        else {
+            alert("오디오 파일의 크기는 10MB를 초과할 수 없습니다.");
+            $('.playback_bar').attr('src', '');
+            return;
+        }
+    } else {
+        $('.playback_bar').attr('src', '');
+    }
+}
 
 /**
  * 작성자 : 공민영

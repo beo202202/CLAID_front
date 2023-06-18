@@ -42,9 +42,13 @@ async function postArticle() {
             },
             body: formdata
         })
+        console.log(response);
         if (response.status == 201) {
             alert("작성완료!");
             window.location.replace('../index.html');
+        } else if (response.status == 401) {
+            alert("토큰이 만료! 재로그인하세요!");
+            handleLogout();
         } else {
             alert(response.statusText);
             location.reload();
