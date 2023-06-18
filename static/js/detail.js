@@ -45,7 +45,9 @@ async function getArticleDetail() {
  * 작성자 : 공민영
  * 내용 : 디테일뷰 가져오기
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 수정자 : 이준영
+ * 업데이트 내용 : 한글 알람으로 변경
+ * 업데이트 일자 : 2023.06.18
  */
 async function getArticle(articleId) {
     const response = await fetch(`${backend_base_url}/article/${articleId}/`,
@@ -54,7 +56,7 @@ async function getArticle(articleId) {
         response_json = await response.json();
         return response_json;
     } else {
-        alert(response.statusText);
+        alert("잘못된 요청입니다.");
     }
 }
 
@@ -138,42 +140,57 @@ function putArticle() {
 }
 
 /**
- * 작성자 : 공민영
- * 내용 : 수정 후 저장 버튼 클릭 시 호출
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 작성자: 공민영
+ * 내용: 수정 후 저장 버튼 클릭 시 호출
+ * 최초 작성일: 2023.06.15
+ * 수정자: 이준영
+ * 업데이트 내용: 업데이트 되게 수정, PUT > PATCH, Fetch > JQuery Ajax Request
+ * 업데이트 일자: 2023.06.18
  */
-async function saveEditedArticle(articleId) {
-    const editedTitle = document.getElementById("edit_title").value;
-    const editedContent = document.getElementById("edit_content").value;
-    const editedImage = document.getElementById("edit_image").files[0];
-    const editedSong = document.getElementById("edit_song").files[0];
+function saveEditedArticle(articleId) {
+    const editedTitle = $("#edit_title").val();
+    const editedContent = $("#edit_content").val();
+    const editedImage = $("#article_image").prop("files")[0];
+    const editedSong = $("#song").prop("files")[0];
 
     const formdata = new FormData();
-
     formdata.append("title", editedTitle);
     formdata.append("content", editedContent);
-    formdata.append("article_image", editedImage);
+    if (editedImage !== undefined) {
+        formdata.append("article_image", editedImage);
+    }
+    if (editedSong === undefined) {
+        alert("오디오는 필수입니다.");
+        return;
+    }
     formdata.append("song", editedSong);
 
-    let access_token = localStorage.getItem("access_token");
-
-    const response = await fetch(`${backend_base_url}/article/${articleId}/`, {
-        method: "PUT",
+    $.ajax({
+        type: "PATCH",
+        url: `${backend_base_url}/article/${articleId}/`,
         headers: {
-            "Authorization": `Bearer ${access_token}`
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
-        body: formdata
+        data: formdata,
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function (response) {
+            alert("수정이 완료되었습니다.");
+            saveEdited();
+            window.location.href = `${frontend_base_url}/article_detail.html?article_id=${articleId}`;
+        },
+        error: function (xhr, status, error) {
+            if (xhr.status === 401) {
+                alert("토큰 만료! 재로그인하세요!");
+                handleLogout();
+            } else if (xhr.status === 403) {
+                alert("본인 게시글만 수정 가능합니다.");
+            } else {
+                alert("잘못된 요청입니다.");
+            }
+        }
     });
-
-    if (response.status == 200) {
-        alert("수정이 완료되었습니다.");
-        saveEdited();
-        window.location.href = `${frontend_base_url}/article_detail.html?article_id=${articleId}`
-    } else {
-        alert(response.statusText);
-        location.reload();
-    }
 }
 
 /**
@@ -208,8 +225,11 @@ async function deleteArticle(articleId) {
         if (response.status == 204) {
             alert("삭제가 완료되었습니다.");
             window.location.replace('index.html');
+        } else if (response.status == 401) {
+            alert("토큰 만료! 재로그인하세요!");
+            handleLogout();
         } else {
-            alert(response.statusText);
+            alert("잘못된 요청입니다.");
         }
     }
 }
@@ -352,4 +372,17 @@ function showPreviewAudio(event) {
     } else {
         $('.playback_bar').attr('src', '');
     }
+}
+
+/**
+ * 작성자 : 공민영
+ * 내용 : 로그아웃
+ * 최초 작성일 : 2023.06.15
+ * 업데이트 일자 : 2023.06.15
+ */
+function handleLogout() {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("payload");
+    location.reload();
 }
