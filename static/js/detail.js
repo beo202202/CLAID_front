@@ -65,7 +65,7 @@ async function getArticle(articleId) {
  * 최초 작성일: 2023.06.15
  * 수정자: 이준영
  * 수정 내용: 수정 기능이 작동되지 않고 세부적인 것을 create를 따르도록
- * 업데이트 일자: 2023.06.15
+ * 업데이트 일자: 2023.06.18
  */
 function putArticle() {
     const elements = {
