@@ -23,7 +23,7 @@ if (!localStorage.getItem('access_token')) {
     // 구글 토큰이 있다면 JWT(access, refresh) 가져오기
     } else if (google_token) {
         alert("구글 로그인");
-        getGoogleJWT(google_token, hashParams);
+        getGoogleJWT(google_token);
     }
 }
 
@@ -36,7 +36,7 @@ async function setJWT(response) {
      * 업데이트 일 : 2023.06.16
      */
     const response_json = response;
-    console.log(response);
+    console.log(response_json);
     localStorage.setItem("access_token", response_json.access_token);
     localStorage.setItem("refresh_token", response_json.refresh_token);
     const base64Url = response_json.access_token.split(".")[1];
@@ -73,5 +73,28 @@ async function getKakaoJWT(kakao_code) {
             alert("다시 로그인 해주세요.");
             window.location.href = '../login.html';
         });
+}
+
+
+async function getGoogleJWT(google_token) {
+  /*
+   * 작성자 : 김은수
+   * 내용 : google token을 보내서 access, refresh JWT Token을 받아오는 함수
+   * 최초 작성일 : 2023.06.16
+   */
+  console.log("getGoogleJWT 함수 실행");
+  const response = await fetch(`${backend_base_url}/user/google/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ access_token: google_token }),
+  });
+  response_json = await response.json();
+  console.log(response_json);
+  setJWT(response_json);
+  alert('jwt토큰 발행')
+  window.location.replace(`../index.html`);
+
 }
 
