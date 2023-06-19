@@ -15,3 +15,16 @@ function timeago(date) {
     if (seconds > 60) return Math.floor(seconds / 60) + "분 전";
     return "방금";
 }
+
+/**
+ * 작성자 : 공민영
+ * 내용 : 로그아웃
+ * 최초 작성일 : 2023.06.15
+ * 업데이트 일자 : 2023.06.15
+ */
+function handleLogout() {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("payload");
+    location.reload();
+}

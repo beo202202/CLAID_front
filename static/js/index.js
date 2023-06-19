@@ -42,19 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /**
  * 작성자 : 공민영
- * 내용 : 로그아웃
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
- */
-function handleLogout() {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    localStorage.removeItem("payload");
-    location.reload();
-}
-
-/**
- * 작성자 : 공민영
  * 내용 : 게시글 작성하기
  * 최초 작성일 : 2023.06.15
  * 업데이트 일자 : 2023.06.15
@@ -200,16 +187,3 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('logged_in_container').style.display = 'none';
     }
 });
-
-/**
- * 작성자 : 공민영
- * 내용 : 로그아웃
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
- */
-function handleLogout() {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    localStorage.removeItem("payload");
-    location.reload();
-}
