@@ -8,16 +8,18 @@ window.onload = () => {
  * 작성자 : 공민영
  * 내용 : 닉네임 가져와서 보여줌
  * 최초 작성일 : 2023.06.15
- * 최종 수정자 : 마동휘
+ * 수정자 : 이준영
+ * 수정내용 : 페이로드가 없을 때 오류 뿜뿜 수정
+ * showName() > showPayload()로 변경
+ * 업데이트 일자 : 2023.06.17
+ * 수정자 : 마동휘
  * 수정내용 : 페이로드 변수수정(닉네임을 못받아와서 출력이 안됬음)
- * payload -> payload_parse로 변경
  * 업데이트 일자 : 2023.06.19
  */
 async function showPayload() {
     const payload = localStorage.getItem("payload");
     if (payload) {
         const payload_parse = JSON.parse(payload);
-        console.log(payload_parse);
 
         $("#intro").text(payload_parse.nickname);
     }
