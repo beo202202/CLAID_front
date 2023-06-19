@@ -128,16 +128,17 @@ function articleDetail(articleId) {
  * 작성자: 공민영
  * 내용: 인덱스 페이지에서 게시글 불러오기
  * 최초 작성일: 2023.06.15
- * 최종 수정자: 이준영
- * 수정 내용 : 오디오 불러오기, 오디오 재생 기능 구현
- * 업데이트 일자: 2023.06.18
+ * 최종 수정자: 이준영 > 공민영
+ * 수정 내용 : (이준영) 오디오 불러오기, 오디오 재생 기능 구현
+ * 수정 내용 : (공민영) html의 #article_list 삭제 후 db에 저장되어있는 게시글만 보이기
+ * 업데이트 일자: 2023.06.19
  */
 async function loadArticles() {
     const articles = await getArticles();
     console.log(articles);
 
     const articleList = $("#article_list");
-
+    $('#article_list').empty()
     articles.forEach(article => {
         const newCol = $("<div>").addClass("col").attr("onclick", `articleDetail(${article.id})`);
         const newCard = $("<div>").addClass("card").attr("id", article.id);

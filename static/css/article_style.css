@@ -123,13 +123,14 @@ body {
 /*수정삭제버튼*/
 .detail_button {
     display: flex;
-    margin-left: 70%;
+    margin-left: 10px;
+    opacity: 1;
 }
 
 .detail_button button {
     background-color: rgb(210, 174, 243);
-    color: white;
-    border: solid 1px rgb(83, 10, 219);
+    color: rgb(83, 10, 219);
+    border: solid 1px rgb(210, 174, 243);
     margin: 5px;
 }
 
@@ -279,6 +280,8 @@ body {
 .detail_one_file {
     width: 250px;
     height: 250px;
+    margin-top: 20px;
+    margin-left: 30px;
     background-color: rgb(210, 174, 243);
 }
 
@@ -306,8 +309,48 @@ body {
     flex-wrap: wrap;
 }
 
+.detail_time {
+    display: flex;
+    padding-left: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+    background-color: rgb(83, 10, 219);
+    opacity: 0.5;
+}
+
+.create_time {
+    display: flex;
+    align-items: center;
+}
+
+#detail_created_at {
+    font-weight: 900;
+}
+
+.update_time {
+    display: flex;
+    margin-left: 15px;
+    align-items: center;
+}
+
+#detail_updated_at {
+    font-weight: 900;
+}
+
+.nickname {
+    display: flex;
+    margin-left: 15px;
+    align-items: center;
+}
+
+#nickname {
+    font-weight: 900;
+}
+
 .img_size {
     margin-top: 20px;
+    margin-left: 30px;
 }
 
 .detail_img {

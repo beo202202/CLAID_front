@@ -166,13 +166,17 @@ h1 {
 
 .sign_ {
     position: fixed;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     width: 440px;
-    height: 450px;
+    height: 600px;
     border: solid 4px black;
+}
+
+.signup_a {
+    margin-bottom: 50px;
 }
 
 /*로그인*/
@@ -181,7 +185,8 @@ h1 {
 }
 
 .kakao-login-img {
-    width: 80%;
+    margin-top: 10px;
+    width: 60%;
 }
 
 .sign_input {

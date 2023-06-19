@@ -65,8 +65,9 @@ async function getArticle(articleId) {
  * 작성자: 공민영
  * 내용: 게시글 수정 폼으로 변경
  * 최초 작성일: 2023.06.15
- * 수정자: 이준영
- * 수정 내용: 수정 기능이 작동되지 않고 세부적인 것을 create를 따르도록
+ * 수정자: 이준영 > 공민영
+ * 수정 내용: (이준영)수정 기능이 작동되지 않고 세부적인 것을 create를 따르도록
+ *  수정 내용: (공민영)수정 버튼 눌렀을 때 삭제버튼이 취소버튼으로 변경
  * 업데이트 일자: 2023.06.18
  */
 function putArticle() {
@@ -134,10 +135,19 @@ function putArticle() {
         audioPreview.attr("src", `${audioSrc}`).prop('volume', 0.1);
     }
 
-    song.html("").append(audioPreview, audioInput, audioDescript);
+    // const songName = song.find('audio').data('src');
+    // const songNameElement = $("<div>").text(`Song Name: ${songName}`);
+
+    song.html("").append(songNameElement, audioPreview, audioInput, audioDescript);
 
     $("#edit_button").hide();
     $("#save_button").show();
+    $("#delete_button").hide();
+    $("#cancel_button").show();
+}
+
+function cancelEditedArticle() {
+    location.reload();
 }
 
 /**
