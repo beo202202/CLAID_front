@@ -37,8 +37,6 @@ async function saveMail() {
     const err = response_json.message;
     console.log(err);
 
-
-
     /*비밀번호 확인*/
     if (password != password_check) {
         alert("비밀번호가 맞지않습니다");
@@ -51,7 +49,6 @@ async function saveMail() {
         } else {
             alert(err);
         }
-
     }
 }
 
