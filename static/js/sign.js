@@ -133,7 +133,7 @@ async function showPayload() {
  */
 function checkAccessToken() {
     var access_token = localStorage.getItem('access_token');
-    if (access_token) {
+    if (access_token || access_token === undefined) {
         // document.getElementById('login_container').style.display = 'none';
         window.location.replace(`../index.html`);
     } else {
@@ -176,10 +176,11 @@ async function loginWithGoogle() {
         method: "GET",
     });
     const google_id = await response.json();
-    const redirect_uri = `${frontend_base_url}/temp_google.html`;
+    const redirect_uri = `${frontend_base_url}/temp.html`;
     const scope =
         "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
     const param = `scope=${scope}&include_granted_scopes=true&response_type=token&state=pass-through value&prompt=consent&client_id=${google_id}&redirect_uri=${redirect_uri}`;
+    console.log(redirect_uri)
     window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?${param}`;
   } else {
         alert("이미 로그인 중입니다!");
