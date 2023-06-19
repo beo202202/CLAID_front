@@ -133,9 +133,12 @@ async function showPayload() {
  */
 function checkAccessToken() {
     var access_token = localStorage.getItem('access_token');
-    if (access_token || access_token === undefined) {
+    if (access_token) {
         // document.getElementById('login_container').style.display = 'none';
         window.location.replace(`../index.html`);
+    } else if (access_token === undefined){
+        alert("엑세스 토큰 undefined")
+        window.location.replace(`../login.html`)
     } else {
         document.getElementById('logged_in_container').style.display = 'none';
     }
