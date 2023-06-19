@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.log("비로그인 중");
     document.getElementById("token-result0").innerHTML = "비로그인 상태";
-    
   }
 });
 
@@ -36,10 +35,8 @@ async function googleloginBtn() {
   const response = await fetch(`${backend_base_url}/user/google/`, {
     method: "GET",
   });
-  console.log(response)
   const google_id = await response.json();
   const redirect_uri = `${frontend_base_url}/temp.html`;
-  console.log(redirect_uri)
   const scope =
     "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
   const param = `scope=${scope}&include_granted_scopes=true&response_type=token&state=pass-through value&prompt=consent&client_id=${google_id}&redirect_uri=${redirect_uri}`;
@@ -52,29 +49,29 @@ async function googleloginBtn() {
      * 내용 : 로컬 스토리지에 저장하는 코드 temp.js에 같은 내용이 있어서 주석처리.
      * 최초 작성일 : 2023.06.16
      */
-// function setLocalStorage(response) {
-//   if (response.status === 200) {
-//     localStorage.setItem("access_token", response_json.access);
-//     localStorage.setItem("refresh_token", response_json.refresh);
-//     const base64Url = response_json.access.split(".")[1];
-//     const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-//     const jsonPayload = decodeURIComponent(
-//       atob(base64)
-//         .split("")
-//         .map(function (c) {
-//           return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-//         })
-//         .join("")
-//     );
-//     localStorage.setItem("payload", jsonPayload);
+function setLocalStorage(response) {
+  if (response.status === 200) {
+    localStorage.setItem("access_token", response_json.access);
+    localStorage.setItem("refresh_token", response_json.refresh);
+    const base64Url = response_json.access.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+    localStorage.setItem("payload", jsonPayload);
 
-//     console.log('로컬 스토리지 저장')
-//     window.location.reload();
-//   } else {
-//     alert(response_json["error"]);
-//     window.history.back();
-//   }
-// }
+    console.log('로컬 스토리지 저장')
+    window.location.reload();
+  } else {
+    alert(response_json["error"]);
+    window.history.back();
+  }
+}
 
 async function GoogleLogout() {
   /**

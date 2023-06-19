@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="static/js/base.js"></script>
+  <script src="static/js/profile.js"></script>
+  <title>프로필 페이지</title>
+  <link rel="stylesheet" type="text/css" href="static/css/profile.css">
+</head>
+<body>
+  <h1>프로필 페이지</h1>
+
+  <div class="profile-container">
+    <div class="profile-image">
+      <img src="{{ user.profile_image.url }}" alt="프로필 이미지" id="user-profile-image">
+    </div>
+    <div class="profile-info">
+      <div class="profile-nickname" id="user-nickname">닉네임: </div>
+    </div>
+  </div>
+
+  <div class="bookmark-section">
+    <div class="bookmark-title">북마크한 게시물</div>
+    <ul class="bookmark-list">
+      <li class="bookmark-item">
+        <a class="bookmark-link" href="링크1">북마크 게시물 1</a>
+      </li>
+      <li class="bookmark-item">
+        <a class="bookmark-link" href="링크2">북마크 게시물 2</a>
+      </li>
+      <li class="bookmark-item">
+        <a class="bookmark-link" href="링크3">북마크 게시물 3</a>
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>
