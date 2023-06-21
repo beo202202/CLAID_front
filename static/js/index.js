@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('login_container').style.display = 'none';
     } else {
         document.getElementById('logged_in_container').style.display = 'none';
+        document.getElementById('logged_out').style.display = 'none';
     }
 });
 
@@ -117,9 +118,8 @@ function articleDetail(articleId) {
  * 작성자: 공민영
  * 내용: 인덱스 페이지에서 게시글 불러오기
  * 최초 작성일: 2023.06.15
- * 최종 수정자: 이준영 > 공민영
+ * 최종 수정자: 이준영
  * 수정 내용 : (이준영) 오디오 불러오기, 오디오 재생 기능 구현
- * 수정 내용 : (공민영) html의 #article_list 삭제 후 db에 저장되어있는 게시글만 보이기
  * 업데이트 일자: 2023.06.19
  */
 async function loadArticles() {
@@ -127,7 +127,7 @@ async function loadArticles() {
     console.log(articles);
 
     const articleList = $("#article_list");
-    $('#article_list').empty()
+
     articles.forEach(article => {
         const newCol = $("<div>").addClass("col").attr("onclick", `articleDetail(${article.id})`);
         const newCard = $("<div>").addClass("card").attr("id", article.id);
@@ -138,6 +138,9 @@ async function loadArticles() {
 
         const newCardTitle = $("<h4>").addClass("card_title").text(article.title);
         newCardBody.append(newCardTitle);
+
+        const newCardHits = $("<h4>").addClass("card_hits").text("조회수: " + article.hits);
+        newCardBody.append(newCardHits);
 
         const newCardPlay = $("<div>").addClass("card_play");
         newCard.append(newCardPlay);
@@ -173,18 +176,3 @@ function showPreview(event) {
         preview.style.display = "block";
     }
 }
-
-/**
- * 작성자 : 공민영
- * 내용 : 로그인 로그아웃 시 버튼 바꾸기
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
- */
-document.addEventListener('DOMContentLoaded', function () {
-    var access_token = localStorage.getItem('access_token');
-    if (access_token) {
-        document.getElementById('login_container').style.display = 'none';
-    } else {
-        document.getElementById('logged_in_container').style.display = 'none';
-    }
-});

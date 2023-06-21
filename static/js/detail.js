@@ -33,6 +33,7 @@ async function getArticleDetail() {
     $("#playback_bar").attr("src", backend_base_url + response.song);
     $(".playback_bar").prop("volume", 0.1);
     $("#nickname").text(response.user.nickname);
+    $("#hits").text(response.user.hits);
     $("#detail_created_at").text(timeago(response.created_at));
     $("#detail_updated_at").text(timeago(response.updated_at));
 
@@ -135,10 +136,7 @@ function putArticle() {
         audioPreview.attr("src", `${audioSrc}`).prop('volume', 0.1);
     }
 
-    // const songName = song.find('audio').data('src');
-    // const songNameElement = $("<div>").text(`Song Name: ${songName}`);
-
-    song.html("").append(songNameElement, audioPreview, audioInput, audioDescript);
+    song.html("").append(audioPreview, audioInput, audioDescript);
 
     $("#edit_button").hide();
     $("#save_button").show();
@@ -312,21 +310,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('login_container').style.display = 'none';
     } else {
         document.getElementById('logged_in_container').style.display = 'none';
+        document.getElementById('logged_out').style.display = 'none';
     }
 });
-
-/**
- * 작성자 : 공민영
- * 내용 : 로그아웃
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
- */
-function handleLogout() {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    localStorage.removeItem("payload");
-    location.reload();
-}
 
 /**
  * 작성자 : 이준영

@@ -20,7 +20,7 @@
     <div class="main_div">
         <!--로고-->
         <div>
-            <a href="/index.html"><img id="main_logo" src="https://i.postimg.cc/k4nYpWGM/image_1.png" alt="로고"></a>
+            <a href="/mr.html"><img id="main_logo" src="https://i.postimg.cc/k4nYpWGM/image_1.png" alt="로고"></a>
         </div>
         <div class="main_">
             <div class="main_nav">
@@ -41,11 +41,21 @@
                 <div class="nav_">
                     <div class="nav_sign" id="logged_in_container">
                         <div class="href_a">
+
                             <div class="sign_a" id="article_admin">
-                                <a href="article_create.html">게시글 작성</a>
+                                <a href="mr.html">음원분리</a>
                             </div>
-                            <div class="sign_a">
-                                <button type="button" onclick="handleLogout()">logout</button>
+
+                            <div class="sign_a" id="article_admin">
+                                <a href="notice.html">방법공유</a>
+                            </div>
+
+                            <div class="sign_a" id="article_admin">
+                                <a href="ai_article.html">ai노래자랑</a>
+                            </div>
+
+                            <div class="sign_a" id="article_admin">
+                                <a href="index.html">게시판</a>
                             </div>
                         </div>
                     </div>
@@ -59,16 +69,18 @@
             </div>
 
             <div class="intro">
-                <div>반가워요!</div>
-                <a href="mypage.html">
+                <div class="nav_sign" id="logged_out">
+                    <div class="sign_out">
+                        <button type="button" onclick="handleLogout()">logout</button>
+                    </div>
+                </div>
+                <a href="profile.html">
                     <div id="intro"></div>
-
                 </a>
             </div>
         </div>
 
     </div>
-
     <form class="form">
 
         <div class="detail_list">
