@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 상세보기</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <!-- CKEditor -->
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script> -->
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/ckeditor/lang/ko.js"></script>
+
+    <script src="static/js/base.js"></script>
+    <script src="static/js/notice.js"></script>
+    <link href="static/css/article_style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="main_div">
+        <!--로고-->
+        <div>
+            <a href="/mr.html"><img id="main_logo" src="https://i.postimg.cc/k4nYpWGM/image_1.png" alt="로고"></a>
+        </div>
+        <div class="main_">
+            <div class="main_nav">
+                <!--로그인 전 버튼들-->
+                <div class="nav_">
+                    <div class="nav_sign" id="login_container">
+                        <div class="href_a">
+                            <div class="sign_a">
+                                <a href="signup.html">회원가입</a>
+                            </div>
+                            <div class="sign_a">
+                                <a href="login.html">로그인</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--로그인 후 버튼들-->
+                <div class="nav_">
+                    <div class="nav_sign" id="logged_in_container">
+                        <div class="href_a">
+
+                            <div class="sign_a" id="article_admin">
+                                <a href="mr.html">음원분리</a>
+                            </div>
+
+                            <div class="sign_a" id="article_admin">
+                                <a href="notice.html">방법공유</a>
+                            </div>
+
+                            <div class="sign_a" id="article_admin">
+                                <a href="ai_article.html">ai노래자랑</a>
+                            </div>
+
+                            <div class="sign_a" id="article_admin">
+                                <a href="index.html">게시판</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="search_div">
+                <input class="search" type="search" placeholder="search">
+                <button class="search_btn" type="submit">search</button>
+            </div>
+
+            <div class="intro">
+                <div class="nav_sign" id="logged_out">
+                    <div class="sign_out">
+                        <button type="button" onclick="handleLogout()">logout</button>
+                    </div>
+                </div>
+                <a href="profile.html">
+                    <div id="intro"></div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <form class="form">
+        <!-- 제목 -->
+        <div class="detail_article">
+            <label for="title">제목&nbsp;</label><br>
+            <input type="text" maxlength="30" class="notice_detail_title" name="title" id="title" placeholder="title(30자 이내)">
+        </div>
+
+        <hr style="border: 1px solid lightgrey; margin-top: 20px; margin-bottom: 20px;" width="70%">
+
+        <!-- 작성자 : 공민영, 왕규원
+        내용 : CKEditor 사용하기
+        최초 작성일 : 2023.06.20
+        업데이트 일 : 2023.06.20 -->
+        <div class="ck_content" id="content">
+            <script>
+                CKEDITOR.replace('content');
+            </script>
+        </div>
+
+        <hr style="border: 1px solid lightgrey; margin-top: 20px; margin-bottom: 20px;" width="70%">
+
+        <!-- 이미지파일 -->
+        <div class="notice_image">
+            <label for="article_image">이미지파일&nbsp;</label>
+            <input type="file" name="article_image" id="notice_article_image" accept="image/*"
+                onchange="showPreviewImage(event)">
+        </div>
+
+        <div>
+            <button id="notice_postbtn" type="button" onclick="postArticle()">작성완료</button>
+        </div>
+    </form>
+
+
+</body>
+
+</html>
