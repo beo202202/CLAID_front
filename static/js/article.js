@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('login_container').style.display = 'none';
     } else {
         document.getElementById('logged_in_container').style.display = 'none';
+        document.getElementById('logged_out').style.display = 'none';
     }
 });
 

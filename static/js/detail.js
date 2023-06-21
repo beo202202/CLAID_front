@@ -33,6 +33,7 @@ async function getArticleDetail() {
     $("#playback_bar").attr("src", backend_base_url + response.song);
     $(".playback_bar").prop("volume", 0.1);
     $("#nickname").text(response.user.nickname);
+    $("#hits").text(response.user.hits);
     $("#detail_created_at").text(timeago(response.created_at));
     $("#detail_updated_at").text(timeago(response.updated_at));
 
@@ -65,8 +66,9 @@ async function getArticle(articleId) {
  * 작성자: 공민영
  * 내용: 게시글 수정 폼으로 변경
  * 최초 작성일: 2023.06.15
- * 수정자: 이준영
- * 수정 내용: 수정 기능이 작동되지 않고 세부적인 것을 create를 따르도록
+ * 수정자: 이준영 > 공민영
+ * 수정 내용: (이준영)수정 기능이 작동되지 않고 세부적인 것을 create를 따르도록
+ *  수정 내용: (공민영)수정 버튼 눌렀을 때 삭제버튼이 취소버튼으로 변경
  * 업데이트 일자: 2023.06.18
  */
 function putArticle() {
@@ -138,6 +140,12 @@ function putArticle() {
 
     $("#edit_button").hide();
     $("#save_button").show();
+    $("#delete_button").hide();
+    $("#cancel_button").show();
+}
+
+function cancelEditedArticle() {
+    location.reload();
 }
 
 /**
@@ -302,21 +310,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('login_container').style.display = 'none';
     } else {
         document.getElementById('logged_in_container').style.display = 'none';
+        document.getElementById('logged_out').style.display = 'none';
     }
 });
-
-/**
- * 작성자 : 공민영
- * 내용 : 로그아웃
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
- */
-function handleLogout() {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    localStorage.removeItem("payload");
-    location.reload();
-}
 
 /**
  * 작성자 : 이준영

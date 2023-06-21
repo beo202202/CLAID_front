@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 상세보기</title>
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <script src="static/js/base.js"></script>
+    <script src="static/js/ai_artcle_detail.js"></script>
+    <link href="static/css/article_style.css" rel="stylesheet" />
+</head>
+
+
+<body>
+    <div class="form">
+        <div class="main_div">
+            <!--로고-->
+            <div>
+                <a href="/mr.html"><img id="main_logo" src="https://i.postimg.cc/k4nYpWGM/image_1.png" alt="로고"></a>
+            </div>
+            <div class="main_">
+                <div class="main_nav">
+                    <!--로그인 전 버튼들-->
+                    <div class="nav_">
+                        <div class="nav_sign" id="login_container">
+                            <div class="href_a">
+                                <div class="sign_a">
+                                    <a href="signup.html">회원가입</a>
+                                </div>
+                                <div class="sign_a">
+                                    <a href="login.html">로그인</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--로그인 후 버튼들-->
+                    <div class="nav_">
+                        <div class="nav_sign" id="logged_in_container">
+                            <div class="href_a">
+
+                                <div class="sign_a" id="article_admin">
+                                    <a href="mr.html">음원분리</a>
+                                </div>
+
+                                <div class="sign_a" id="article_admin">
+                                    <a href="notice.html">방법공유</a>
+                                </div>
+
+                                <div class="sign_a" id="article_admin">
+                                    <a href="ai_article.html">ai노래자랑</a>
+                                </div>
+
+                                <div class="sign_a" id="article_admin">
+                                    <a href="index.html">게시판</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="search_div">
+                    <input class="search" type="search" placeholder="search">
+                    <button class="search_btn" type="submit">search</button>
+                </div>
+
+                <div class="intro">
+                    <div class="nav_sign" id="logged_out">
+                        <div class="sign_out">
+                            <button type="button" onclick="handleLogout()">logout</button>
+                        </div>
+                    </div>
+                    <a href="profile.html">
+                        <div id="intro"></div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ai_detail_list">
+            <div class="ai_detail_time">
+                <!-- 원곡정보 -->
+                <div>
+                    <div id="detail_song_info">원곡정보</div>
+                </div>
+                <div class="ai_create_time">
+                    <div>작성시간 </div>
+                    <div id="detail_created_at"></div>
+                </div>
+
+                <div class="ai_update_time">
+                    <div>수정시간 </div>
+                    <div id="detail_updated_at"></div>
+                </div>
+            </div>
+            <div class="ai_detail_nick">
+                <div class="nickname">
+                    <div>작성자:&nbsp</div>
+                    <div id="nickname"></div>
+                </div>
+
+                <div class="detail_button">
+                    <div>
+                        <button id="edit_button" type="button" onclick="putArticle()" style="display:none">수정</button>
+                    </div>
+                    <div>
+                        <button id="save_button" type="button"
+                            onclick="saveEditedArticle(getArticleIdFromUrl())">저장</button>
+                    </div>
+                    <div>
+                        <button id="delete_button" type="button" onclick="deleteArticle(getArticleIdFromUrl())"
+                            style="display:none">삭제</button>
+                    </div>
+                    <div>
+                        <button id="cancel_button" type="button" style="display:none"
+                            onclick="cancelEditedArticle()">취소</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="img_title">
+                <!-- 이미지파일 -->
+                <div class="img_title" id="detail_image">
+                </div>
+
+                <!-- 목소리 -->
+                <div class="img_title_cont" id="img_title_cont">
+                    <div class="detail_article" id="detail_voice">커버</div>
+                </div>
+
+                <!-- 음악바 -->
+                <div class="detail_article" id="detail_song">
+                    <div>
+                        <audio controls class="ai_playback_bar" id="ai_playback_bar" name="media" src="#" />
+                    </div>
+                </div>
+            </div>
+            <hr style="border: solid 1px lightgray; margin-bottom: 40px;" />
+        </div>
+    </div>
+    </form>
+</body>
+
+</html>
