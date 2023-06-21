@@ -62,7 +62,12 @@ body {
     height: 90px;
 }
 
+/* 명칭 바뀌어야함 */
 .main_div {
+    display: flex;
+}
+
+.nav-section {
     display: flex;
 }
 
