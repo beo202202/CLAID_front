@@ -27,6 +27,22 @@ async function showPayload() {
 
 /**
  * 작성자 : 공민영
+ * 내용 : 로그인 로그아웃 시 버튼 바꾸기
+ * 최초 작성일 : 2023.06.15
+ * 업데이트 일자 : 2023.06.15
+ */
+document.addEventListener('DOMContentLoaded', function () {
+    var access_token = localStorage.getItem('access_token');
+    if (access_token) {
+        document.getElementById('login_container').style.display = 'none';
+    } else {
+        document.getElementById('logged_in_container').style.display = 'none';
+        document.getElementById('logged_out').style.display = 'none';
+    }
+});
+
+/**
+ * 작성자 : 공민영
  * 내용 : 게시글 작성하기
  * 최초 작성일 : 2023.06.15
  * 업데이트 일자 : 2023.06.15
@@ -103,8 +119,8 @@ function articleDetail(articleId) {
  * 내용: 인덱스 페이지에서 게시글 불러오기
  * 최초 작성일: 2023.06.15
  * 최종 수정자: 이준영
- * 수정 내용 : 오디오 불러오기, 오디오 재생 기능 구현
- * 업데이트 일자: 2023.06.18
+ * 수정 내용 : (이준영) 오디오 불러오기, 오디오 재생 기능 구현
+ * 업데이트 일자: 2023.06.19
  */
 async function loadArticles() {
     const articles = await getArticles();
@@ -113,7 +129,10 @@ async function loadArticles() {
     const articleList = $("#article_list");
 
     articles.forEach(article => {
-        const newCol = $("<div>").addClass("col").attr("onclick", `articleDetail(${article.id})`);
+        const newCol = $("<div>").
+        
+        
+        Class("col").attr("onclick", `articleDetail(${article.id})`);
         const newCard = $("<div>").addClass("card").attr("id", article.id);
         newCol.append(newCard);
 
@@ -122,6 +141,9 @@ async function loadArticles() {
 
         const newCardTitle = $("<h4>").addClass("card_title").text(article.title);
         newCardBody.append(newCardTitle);
+
+        const newCardHits = $("<h4>").addClass("card_hits").text("조회수: " + article.hits);
+        newCardBody.append(newCardHits);
 
         const newCardPlay = $("<div>").addClass("card_play");
         newCard.append(newCardPlay);

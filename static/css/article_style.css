@@ -1,340 +1,800 @@
 body {
-    margin: 0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f7f7f72c;
 }
 
 /*헤더부분임*/
 /*nav*/
 .search_div {
-    display: flex;
-    height: 40px;
-    margin-top: 10px;
+  display: flex;
+  height: 40px;
+  margin-top: 10px;
 }
 
 .search_btn {
-    background-color: white;
-    color: rgb(83, 10, 219);
-    border: solid 3px;
+  background-color: white;
+  color: rgb(83, 10, 219);
+  border: solid 3px;
 }
 
 .search {
-    color: rgb(83, 10, 219);
-    border: solid 1px;
+  color: rgb(83, 10, 219);
+  border: solid 1px;
 }
 
 .search_btn:hover {
-    background-color: rgb(83, 10, 219);
-    border: solid rgb(83, 10, 219);
-    color: white;
+  background-color: rgb(83, 10, 219);
+  border: solid rgb(83, 10, 219);
+  color: white;
 }
 
-
-
 #intro {
-    font-size: 20px;
-    color: black;
-    font-weight: 600;
-    margin-left: 50px;
-    margin-right: 50px;
+  font-size: 20px;
+  width: 100px;
+  background-color: rgb(245, 240, 255);
+  color: black;
+  font-weight: 600;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .intro a {
-    text-decoration-line: none;
+  text-decoration-line: none;
 }
 
 #intro:hover {
-    color: rgb(83, 10, 219);
+  color: rgb(83, 10, 219);
 }
 
-
-
-
 .main_ {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    border: solid 3px black;
-    margin: 45px;
-    margin-left: 50px;
-    width: 1000px;
-    height: 90px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border: solid 3px black;
+  margin: 45px;
+  margin-left: 50px;
+  width: 1000px;
+  height: 90px;
 }
 
 .main_div {
-    display: flex;
+  display: flex;
 }
 
 .nav_ {
-    margin-top: 25px;
-    margin-left: 20px;
+  margin-top: 25px;
+  margin-left: 20px;
 }
 
 .main_nav {
-    width: 700px;
-    height: 100px;
+  width: 700px;
+  height: 100px;
 }
 
 #main_logo {
-    width: 400px;
+  width: 400px;
 }
 
 .href_a {
-    display: flex;
+  display: flex;
 }
 
 .sign_a {
-    margin-top: 10px;
-    margin-left: 20px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.sign_out {
+  margin-bottom: 5px;
 }
 
 .sign_a a {
-    font-size: 20px;
-    color: black;
-    font-weight: 500;
-    text-decoration-line: none;
+  font-size: 20px;
+  color: black;
+  font-weight: 500;
+  text-decoration-line: none;
 }
 
 .sign_a button {
-    font-size: 20px;
-    color: black;
-    background-color: rgb(255, 255, 255, 0);
-    border: none;
-    font-weight: 500;
+  font-size: 20px;
+  color: black;
+  background-color: rgb(255, 255, 255, 0);
+  border: none;
+  font-weight: 500;
+}
+
+.sign_out button {
+  font-size: 18px;
+  color: black;
+  background-color: rgb(255, 255, 255, 0);
+  border: none;
+  font-weight: 500;
 }
 
 .sign_a button:hover {
-    font-size: 20px;
-    color: rgb(83, 10, 219);
-    font-weight: 500;
+  font-size: 20px;
+  color: rgb(83, 10, 219);
+  font-weight: 500;
+}
+
+.sign_out button:hover {
+  font-size: 20px;
+  color: rgb(83, 10, 219);
+  font-weight: 500;
 }
 
 .sign_a a:hover {
-    font-size: 20px;
-    color: rgb(83, 10, 219);
-    font-weight: 500;
+  font-size: 20px;
+  color: rgb(83, 10, 219);
+  font-weight: 500;
 }
-
 
 /*logo*/
 #logo {
-    width: 300px;
+  width: 300px;
+}
+
+/*작성버튼*/
+
+.article_admin {
+  overflow: hidden;
+  margin: 10px;
+  margin-right: 30px;
+}
+
+#create_btn {
+  float: right;
+  margin-right: 100px;
+  text-decoration-line: none;
+  border: solid 1px black;
+  padding: 10px;
+  background-color: rgb(255, 255, 255, 0);
+  font-size: 15px;
+}
+
+#create_btn:hover {
+  color: white;
+  background-color: rgb(83, 10, 219);
+}
+
+/*모달창 오픈 작성버튼*/
+#open-modal {
+  float: right;
+  margin-right: 100px;
+  text-decoration-line: none;
+  border: solid 1px black;
+  padding: 10px;
+  background-color: rgb(255, 255, 255, 0);
+  font-size: 15px;
+}
+
+#open-modal:hover {
+  color: white;
+  background-color: rgb(83, 10, 219);
 }
 
 /*수정삭제버튼*/
 .detail_button {
-    display: flex;
-    margin-left: 70%;
+  display: flex;
+  margin-left: 10px;
+  opacity: 1;
 }
 
 .detail_button button {
-    background-color: rgb(210, 174, 243);
-    color: white;
-    border: solid 1px rgb(83, 10, 219);
-    margin: 5px;
+  background-color: rgb(210, 174, 243);
+  color: rgb(83, 10, 219);
+  border: solid 1px rgb(210, 174, 243);
+  margin: 5px;
 }
 
 #edit_button {
-    display: block;
+  display: block;
 }
 
 #save_button {
-    display: none;
+  display: none;
 }
 
 #delete_btn {
-    display: block;
+  display: block;
 }
 
 #edit_title {
-    margin-top: 1px;
-    width: 400px;
-    height: 30px;
+  margin-top: 1px;
+  width: 400px;
+  height: 30px;
 }
 
 #edit_content {
-    width: 400px;
-    height: 320px;
+  width: 400px;
+  height: 320px;
 }
 
 #edit_image {
-    margin-top: 50px;
-    width: 400px;
-    height: 400px;
-    background-color: rgb(210, 174, 243);
+  margin-top: 50px;
+  width: 400px;
+  height: 400px;
+  background-color: rgb(210, 174, 243);
 }
 
 #edit_song {
-    width: 800px;
-    margin-bottom: 20px;
+  width: 800px;
+  margin-bottom: 20px;
 }
 
 /*detail*/
 #detail_title {
-    color: rgb(83, 10, 219);
-    font-size: 20px;
+  color: rgb(83, 10, 219);
+  font-size: 20px;
 }
 
 #detail_content {
-    width: 400px;
-    height: 320px;
-    background-color: white;
-    padding: 10px;
-    overflow: auto;
+  width: 400px;
+  height: 320px;
+  background-color: white;
+  padding: 10px;
+  overflow: auto;
 }
-
 
 /*index*/
-.mytitle>button:hover {
-    border: 2px solid white;
-    /*이미지 버튼 만들어서 hover시 나타나게*/
+.mytitle > button:hover {
+  border: 2px solid white;
+  /*이미지 버튼 만들어서 hover시 나타나게*/
 }
 
-
 .article_list {
-    display: flex;
-    justify-content: center;
-    /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
+  flex-wrap: wrap;
 }
 
 .col {
-    width: 300px;
-    height: 400px;
-    margin: 20px;
-    background-color: rgb(245, 234, 255);
-    box-shadow: 0px 0px 3px 0px gray;
+  width: 300px;
+  height: 400px;
+  margin: 20px;
+  background-color: rgb(245, 234, 255);
+  box-shadow: 0px 0px 3px 0px gray;
 }
 
 .col:hover {
-    background-color: rgb(210, 174, 243);
-
+  background-color: rgb(210, 174, 243);
 }
 
 .card {
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    margin-bottom: 20px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 20px;
 }
 
 .card_body {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .card_title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
 }
 
 .card_play {
-    position: relative;
+  position: relative;
 }
 
 .card_img_top {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
 }
 
 .card_file {
-    width: 100%;
+  width: 100%;
 }
-
 
 /*article_create*/
 #postbtn {
-    margin-top: 20px;
-    width: 100px;
-    height: 30px;
-    font-size: 20px;
-    background-color: rgb(83, 10, 219);
-    color: white;
-    border: solid 1px rgb(83, 10, 219);
+  margin-top: 20px;
+  width: 100px;
+  height: 30px;
+  font-size: 20px;
+  background-color: rgb(83, 10, 219);
+  color: white;
+  border: solid 1px rgb(83, 10, 219);
 }
 
 #postbtn:hover {
-    background-color: white;
-    color: rgb(83, 10, 219);
-    border: solid 1px rgb(83, 10, 219);
+  background-color: white;
+  color: rgb(83, 10, 219);
+  border: solid 1px rgb(83, 10, 219);
 }
 
 .detail_list {
-    text-align: center;
-    /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
-    flex-wrap: wrap;
-    background-color: rgb(242, 227, 255);
-    width: 900px;
-    height: 700px;
-    margin-left: 20%;
-    box-shadow: 0px 0px 3px 0px gray;
-}
-
-
-.img_title {
-    display: flex;
+  text-align: center;
+  /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
+  flex-wrap: wrap;
+  background-color: rgb(242, 227, 255);
+  width: 1000px;
+  height: 700px;
+  margin-left: 20%;
+  box-shadow: 0px 0px 3px 0px gray;
 }
 
 .detail_one_file {
-    width: 250px;
-    height: 250px;
-    background-color: rgb(210, 174, 243);
+  width: 250px;
+  height: 250px;
+  margin-top: 20px;
+  background-color: rgb(210, 174, 243);
 }
 
 .detail_title {
-    width: 400px;
-    height: 30px;
+  width: 400px;
+  height: 30px;
 }
 
 .detail_content {
-    width: 400px;
-    height: 320px;
+  width: 400px;
+  height: 320px;
 }
 
 .playback_bar {
-    width: 800px;
-    margin-bottom: 20px;
+  width: 800px;
+  margin-bottom: 20px;
 }
 
 /*article_detail*/
 .detail_article {
-    display: flex;
-    margin: 20px;
-    justify-content: center;
-    /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
-    flex-wrap: wrap;
+  display: flex;
+  margin: 20px;
+  justify-content: center;
+  /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
+  flex-wrap: wrap;
+}
+
+.detail_time {
+  display: flex;
+  padding-left: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+  background-color: rgb(83, 10, 219);
+  opacity: 0.5;
+}
+
+.create_time {
+  display: flex;
+  align-items: center;
+}
+
+#detail_created_at {
+  font-weight: 900;
+}
+
+.update_time {
+  display: flex;
+  margin-left: 15px;
+  align-items: center;
+}
+
+#detail_updated_at {
+  font-weight: 900;
+}
+
+.nickname {
+  display: flex;
+  margin-left: 15px;
+  align-items: center;
+}
+
+.hits {
+  display: flex;
+  margin-left: 15px;
+  align-items: center;
+}
+
+#nickname {
+  font-weight: 900;
 }
 
 .img_size {
-    margin-top: 20px;
+  margin-top: 20px;
+  margin-left: 30px;
+  width: 400px;
+  height: 400px;
 }
 
 .detail_img {
-    margin-top: 20px;
-    width: 400px;
-    height: 400px;
+  margin-top: 20px;
+  width: 400px;
+  height: 400px;
 }
 
 #article_title {
-    text-align: center;
+  text-align: center;
 }
 
 #article_content {
-    text-align: center;
-    padding: 20px;
-    margin-left: 200px;
-    width: 370px;
-    height: 370px;
-}
-
-
-.img_size {
-    width: 400px;
-    height: 400px;
+  text-align: center;
+  padding: 20px;
+  margin-left: 200px;
+  width: 370px;
+  height: 370px;
 }
 
 #article_image {
-    width: 400px;
-    height: 400px;
+  width: 400px;
+  height: 400px;
+}
+
+/*ai*/
+#ai_article_list {
+  display: flex;
+  justify-content: center;
+  /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
+  flex-wrap: wrap;
+}
+
+.ai_card {
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.ai_card:hover {
+  background-color: rgb(252, 250, 177);
+}
+
+.card_song_info {
+  text-align: center;
+}
+
+.card_voice {
+  text-align: center;
+}
+
+/*ai_create*/
+.ai_detail_article {
+  margin: 20px;
+  justify-content: center;
+  text-align: center;
+  /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
+  flex-wrap: wrap;
+}
+
+#song_info {
+  width: 400px;
+  height: 30px;
+  color: rgb(83, 10, 219);
+  font-size: 20px;
+}
+
+#song_voice {
+  width: 400px;
+  height: 30px;
+  color: rgb(83, 10, 219);
+  font-size: 20px;
+}
+
+.ai_playback_bar {
+  justify-content: center;
+  margin-top: 20px;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+/*모달창*/
+#modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#close-modal {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 20px;
+  background-color: #ccc;
+  color: #fff;
+  float: right;
+  border-radius: 50%;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/*ai_detail*/
+.ai_detail_list {
+  text-align: center;
+  /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
+  flex-wrap: wrap;
+  width: 650px;
+  height: 700px;
+  margin-left: 30%;
+  box-shadow: 0px 0px 3px 0px gray;
+}
+
+.ai_detail_time {
+  padding-left: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: solid 3px rgb(83, 10, 219);
+  margin-left: 15px;
+  width: 90%;
+  opacity: 0.5;
+  overflow: hidden;
+}
+
+.ai_create_time {
+  float: right;
+  margin-left: 15px;
+}
+
+.ai_update_time {
+  float: right;
+}
+
+.ai_detail_nick {
+  float: right;
+  margin-top: 5px;
+  margin-right: 30px;
+}
+
+.ai_detail_hits {
+  float: right;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+.ai_hits {
+  display: flex;
+  float: left;
+}
+
+.img_title_cont {
+  float: left;
+}
+
+#detail_song_info {
+  color: rgb(83, 10, 219);
+  font-weight: 600;
+  font-size: 20px;
+  float: left;
+  margin-top: 15px;
+}
+
+#detail_song {
+  display: block;
+}
+
+#ai_playback_bar {
+  width: 500px;
+  margin-top: -10px;
+}
+
+.ai_img_size {
+  margin-top: 20px;
+  width: 300px;
+  height: 300px;
+  margin-left: 150px;
+}
+
+#detail_voice {
+  float: left;
+  margin-left: 100px;
+}
+
+/*방법공유탭 리스트*/
+ul,
+li {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+#main_wrapper {
+  width: 80%;
+  margin: 0 auto; /*가운데 정렬*/
+}
+
+.wrapper_title {
+  text-align: center;
+  font-size: 14pt;
+  height: 40px;
+  font-weight: 600;
+  vertical-align: middle;
+  line-height: 30px;
+}
+
+#ul_table {
+  margin-top: 10px;
+}
+
+#ul_table > li:first-child > ul > li {
+  background-color: #c9c9c9;
+  font-weight: bold;
+  text-align: center;
+}
+
+#ul_table > li > ul > li {
+  float: left;
+  font-size: 10pt;
+  border-bottom: 1px solid silver;
+  vertical-align: baseline;
+}
+
+#ul_table > li > ul > li:first-child {
+  width: 8%;
+} /*No 열 크기*/
+#ul_table > li > ul > li:first-child + li {
+  width: 51%;
+} /*제목 열 크기*/
+#ul_table > li > ul > li:first-child + li + li {
+  width: 19%;
+} /*작성일 열 크기*/
+#ul_table > li > ul > li:first-child + li + li + li {
+  width: 13%;
+} /*작성자 열 크기*/
+#ul_table > li > ul > li:first-child + li + li + li + li {
+  width: 9%;
+} /*조회수 열 크기*/
+
+.list_ul {
+  display: flex;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.list_ul > li:first-child {
+  width: 8%;
+  margin-left: -10px;
+} /*No 열 크기*/
+.list_ul > li:first-child + li {
+  width: 52.5%;
+} /*제목 열 크기*/
+.list_ul > li:first-child + li + li {
+  width: 20%;
+} /*작성일 열 크기*/
+.list_ul > li:first-child + li + li + li {
+  width: 12.5%;
+} /*작성자 열 크기*/
+.list_ul > li:first-child + li + li + li + li {
+  width: 8%;
+  justify-content: center;
+} /*조회수 열 크기*/
+
+/* #divPaging {
+    clear:both; 
+  margin:0 auto; 
+  width:220px; 
+  height:50px;
+}
+
+#divPaging > div {
+  float:left;
+  width: 30px;
+  margin:0 auto;
+  text-align:center;
+} */
+
+/*notice_create*/
+.notice_detail_title {
+  width: 800px;
+  height: 30px;
+}
+
+.notice_image {
+  text-align: center;
+}
+
+#notice_postbtn {
+  width: 100px;
+  height: 30px;
+  font-size: 20px;
+  background-color: rgb(83, 10, 219);
+  color: white;
+  border: solid 1px rgb(83, 10, 219);
+}
+
+#notice_postbtn {
+  margin-top: 30px;
+  margin-left: 45%;
+}
+
+/*notice_detail*/
+.notice_detail_list {
+  text-align: center;
+  display: block;
+  /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
+  flex-wrap: wrap;
+}
+
+.notice_detail_time {
+  padding-left: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: solid 3px rgb(83, 10, 219);
+  margin-left: 15px;
+  width: 90%;
+  overflow: hidden;
+}
+
+#notice_detail_title {
+  font-size: 30px;
+  text-align: center;
+}
+
+.notice_create_time {
+  display: inline;
+  float: right;
+  margin-left: 15px;
+}
+
+.notice_update_time {
+  float: right;
+}
+
+#notice_detail_content {
+  width: 90vw;
+  margin-left: 30px;
+  /* height: 500px; */
+  /* 스크롤 생성 */
+  /* overflow: auto; */
+}
+
+.notice_detail_nick {
+  float: right;
+  margin-top: 10px;
+  margin-right: 150px;
+}
+
+.notice_detail_hits {
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+/*notice_edit*/
+#edit_notice_title {
+  width: 800px;
+  height: 30px;
+}
+
+.notice_detail_one_file {
+  margin-top: 20px;
 }

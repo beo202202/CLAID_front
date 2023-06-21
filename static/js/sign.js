@@ -141,6 +141,7 @@ function checkAccessToken() {
         window.location.replace(`../index.html`);
     } else {
         document.getElementById('logged_in_container').style.display = 'none';
+        document.getElementById('logged_out').style.display = 'none';
     }
 };
 

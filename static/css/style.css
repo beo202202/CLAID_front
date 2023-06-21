@@ -1,10 +1,9 @@
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
-}
-
-body {
-    margin: 0;
-}
+    padding: 20px;
+    background-color: #f7f7f7;
+  }
 
 /*nav*/
 .search_div {
@@ -75,6 +74,7 @@ body {
 .nav_ {
     margin-top: 25px;
     margin-left: 20px;
+    background-color: black;
 }
 
 .main_nav {
@@ -134,14 +134,6 @@ h1 {
     text-align: center;
 }
 
-/*loginout*/
-#login_container {
-    display: block;
-}
-
-#logged_in_container {
-    display: block;
-}
 
 /*회원가입*/
 #send_mail {
@@ -171,13 +163,17 @@ h1 {
 
 .sign_ {
     position: fixed;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     width: 440px;
-    height: 450px;
+    height: 600px;
     border: solid 4px black;
+}
+
+.signup_a {
+    margin-bottom: 50px;
 }
 
 /*로그인*/
@@ -186,7 +182,8 @@ h1 {
 }
 
 .kakao-login-img {
-    width: 80%;
+    margin-top: 10px;
+    width: 60%;
 }
 
 .sign_input {

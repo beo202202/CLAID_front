@@ -13,7 +13,7 @@
 
 <body>
     <div class="logo">
-        <a href="/index.html"><img id="logo" src="https://i.postimg.cc/k4nYpWGM/image-1.png" alt="로고"></a>
+        <a href="/mr.html"><img id="logo" src="https://i.postimg.cc/k4nYpWGM/image-1.png" alt="로고"></a>
     </div>
     <div class="sign_">
         <h1>회원가입</h1>
@@ -30,18 +30,29 @@
                         <input type="password" name="password" id="password" placeholder="password">
                     </div>
                     <div>
-                        <input type="password" name="password_check" id="password_check" onkeypress="EnterSignup()" placeholder="password_check">
+                        <input type="password" name="password_check" id="password_check" onkeypress="EnterSignup()"
+                            placeholder="password_check">
                     </div>
                 </div>
                 <div class="sign_btn">
                     <button type="button" id="save_mail" onclick="saveMail()">인증메일보내기</button>
                 </div>
             </div>
-            <a href="login.html">로그인</a>
+            <div>
+                <a href="login.html">로그인</a>
+            </div>
+            <div>
+                <a id="kakao-login-btn" href="javascript:loginWithKakao()">
+                    <img src="../static/img/kakao_login_large_wide.png" class="kakao-login-img" alt="카카오 로그인 버튼" />
+                </a>
+                <a id="kakao-login-btn" href="javascript:loginWithGoogle()">
+                    <img src="../static/img/btn_google_signin_dark_normal_web@2x.png" class="kakao-login-img"
+                        alt="구글 로그인 버튼" />
+                </a>
+            </div>
     </div>
 
     </form>
 </body>
 
 </html>
-
