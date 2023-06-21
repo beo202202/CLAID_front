@@ -77,18 +77,6 @@ async function showPayload() {
     }
 }
 
-/**
- * 작성자 : 공민영
- * 내용 : 로그아웃
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
- */
-function handleLogout() {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    localStorage.removeItem("payload");
-    location.reload();
-}
 
 /**
  * 작성자 : 이준영
