@@ -1,10 +1,9 @@
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
-}
-
-body {
-    margin: 0;
-}
+    padding: 20px;
+    background-color: #f7f7f7;
+  }
 
 /*nav*/
 .search_div {
@@ -70,6 +69,7 @@ body {
 .nav_ {
     margin-top: 25px;
     margin-left: 20px;
+    background-color: black;
 }
 
 .main_nav {
@@ -129,14 +129,6 @@ h1 {
     text-align: center;
 }
 
-/*loginout*/
-#login_container {
-    display: block;
-}
-
-#logged_in_container {
-    display: block;
-}
 
 /*회원가입*/
 #send_mail {
