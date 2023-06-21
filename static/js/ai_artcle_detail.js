@@ -403,21 +403,3 @@ function handleLogout() {
   location.reload();
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const articleImages = document.querySelectorAll("#detail_image");
-
-  articleImages.forEach((image) => {
-    image.addEventListener("click", function () {
-      console.log("눌림");
-      const audio = this.parentElement.querySelector("audio");
-
-      if (audio.paused) {
-        audio.play();
-        image.classList.add("playing");
-      } else {
-        audio.pause();
-        image.classList.remove("playing");
-      }
-    });
-  });
-});

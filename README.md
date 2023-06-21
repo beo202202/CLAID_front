@@ -3,13 +3,16 @@
 - 이미지 첨부시 미리보기 v
 - index.html에 재생바 만들기 v
 - 로그인안해도 상세페이지에서 이미지 보이게하기 v
-
--ai article detail css + 댓글
 -ai article 노래바 안되는거 v
--방법공유 게시판 10개씩만 보이고 넘어가게 + 조회수 + 공지사항 같은거 최상단 고정
--방법공유 게시판 detail(notice detail) v
+-이미지 누르면 음악 재생 / 멈춤(hover) v
+-ai article detail css + 댓글
 -ckeditor로 작성 / 수정(전에 썼던 게시글 그대로 가져오기) 가능하게하기 v
--이미지 누르면 음악 재생 / 멈춤(hover)
+-방법공유 게시판 detail(notice detail) v
+
+-방법공유 게시판 10개씩만 보이고 넘어가게 + 조회수 + 공지사항 같은거 최상단 고정
+
+
+
 
 #profile.js에 
   const profile_image = document.getElementById("image_profile"); id와

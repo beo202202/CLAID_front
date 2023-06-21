@@ -121,6 +121,7 @@ function articleDetail(articleId) {
 /**
  * 작성자: 공민영
  * 내용: 노래자랑 페이지에서 게시글 불러오기
+ * 수정내용 : 이미지에 마우스 호버 시 나올 재생버튼 이미지 불러오기
  * 최초 작성일: 2023.06.20
  * 업데이트 일자: 2023.06.20
  */
@@ -159,12 +160,32 @@ async function loadArticles() {
     newCardBody.append(newCardHits);
 
     const articleImage = $("<img>").addClass("card_img_top");
+    const articleImageOverlay = $("<img>").addClass("card_img_overlay").attr("src", "../static/img/play.PNG");
     if (article.article_image) {
       articleImage.attr("src", `${backend_base_url}${article.article_image}/`);
+      articleImage.after(articleImageOverlay);
     } else {
       articleImage.attr("src", "../static/img/default.PNG");
+      articleImage.after(articleImageOverlay);
     }
     newCardPlay.append(articleImage);
+    newCardPlay.append(articleImageOverlay);
+
+  /**
+   * 작성자: 공민영
+   * 내용: 이미지 클릭해서 오디오 재생/멈춤 하기
+   * 최초 작성일: 2023.06.21
+   * 업데이트 일자: 2023.06.21
+   */
+    newCardPlay.on('click', () => {
+      const articleSong = newCardPlay.find('audio')[0];
+      
+      if (articleSong.paused) {
+        articleSong.play();
+      } else {
+        articleSong.pause();
+      }
+    });
 
     const articleSong = $("<audio>")
       .addClass("card_file")
@@ -178,87 +199,10 @@ async function loadArticles() {
       .prop("volume", 0.1);
 
     newCardPlay.append(articleSong);
+    
     articleList.append(newCol);
   });
 }
-
-/**
- * 작성자: 공민영
- * 내용: 이미지 클릭해서 오디오 제어
- * 최초 작성일: 2023.06.21
- * 업데이트 일자: 2023.06.21
- */
-// document.addEventListener('DOMContentLoaded', function() {
-//     // const articleImages = document.querySelectorAll('.card_img_top');
-//     const articleImages = document.getElementsByClassName("card_img_top");
-
-//     articleImages.forEach(image => {
-//       image.addEventListener('click', () => {
-//         // const audio = image.nextElementSibling;
-//         const audio = document.getElementById("ai_playback_bar");
-//         if (audio.paused) {
-//           audio.play();
-//           image.classList.add('playing');
-//         } else {
-//           audio.pause();
-//           image.classList.remove('playing');
-//         }
-//       });
-//     });
-//   });
-//   document.addEventListener('DOMContentLoaded', function() {
-//     const articleImages = document.getElementsByClassName("card_img_top");
-
-//     Array.from(articleImages).forEach(image => {
-//         image.addEventListener('click', () => {
-//             console.log('눌림')
-//             const audio = image.parentElement.nextElementSibling;
-
-//             if (audio.paused) {
-//                 audio.play();
-//                 image.classList.add('playing');
-//             } else {
-//                 audio.pause();
-//                 image.classList.remove('playing');
-//             }
-//         });
-//     });
-// });
-// document.addEventListener('DOMContentLoaded', function () {
-//     const articleImages = document.querySelectorAll('.ai_article_list .preview_image');
-
-//     articleImages.forEach(image => {
-//       image.addEventListener('click', function () {
-//         const audio = this.parentElement.querySelector('.ai_playback_bar')[0];
-
-//         if (audio.paused) {
-//           audio.play();
-//           image.classList.add('playing');
-//         } else {
-//           audio.pause();
-//           image.classList.remove('playing');
-//         }
-//       });
-//     });
-//   });
-document.addEventListener("DOMContentLoaded", function () {
-  const articleImages = document.querySelectorAll(".card_img_top");
-
-  articleImages.forEach((image) => {
-    image.addEventListener("click", function () {
-      console.log("눌림");
-      const audio = this.parentElement.querySelector("audio");
-
-      if (audio.paused) {
-        audio.play();
-        image.classList.add("playing");
-      } else {
-        audio.pause();
-        image.classList.remove("playing");
-      }
-    });
-  });
-});
 
 /**
  * 작성자 : 이준영
@@ -343,3 +287,5 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.overflow = "auto"; // 스크롤바 보이기
   });
 });
+
+

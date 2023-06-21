@@ -287,12 +287,26 @@ body {
 }
 
 .card_img_top {
-  width: 100%;
-  height: auto;
+  position: relative;
+  width: 300px;
+  height: 300px;
   border-radius: 4px;
 }
 
+.card_img_overlay {
+  position: absolute;
+  width: 300px;
+  top: 0px;
+  left: 0;
+  opacity: 0;
+}
+
+.card_img_overlay:hover {
+  opacity: 1;
+}
+
 .card_file {
+  margin-top: 10px;
   width: 100%;
 }
 
@@ -447,8 +461,8 @@ body {
   margin-left: 20px;
 }
 
-.ai_card:hover {
-  background-color: rgb(252, 250, 177);
+.card_body:hover {
+  color: rgb(255, 0, 106);
 }
 
 .card_song_info {
@@ -797,4 +811,73 @@ li {
 
 .notice_detail_one_file {
   margin-top: 20px;
+}
+
+/*pagination*/
+.container {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(45deg, #410358, #4700bc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  color: #383838;
+  padding: 10px 40px;
+  border-radius: 6px;
+}
+
+.pagi_ul {
+  margin: 20px 30px;
+}
+
+.pagi_ul li {
+  display: inline-block;
+  margin: 0 10px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 45px;
+  cursor: pointer;
+  background-position: 0 -45px;
+  transition: background-position 0.5s;
+}
+
+.pagi_ul li.active {
+  color: #fff;
+  background-image: linear-gradient(#ff4568, #ff0000);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+
+.prev_btn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 500;
+  color: #383838;
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.next_btn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 500;
+  color: #383838;
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
