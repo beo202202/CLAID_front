@@ -292,21 +292,6 @@ async function showPayload() {
 
 /**
  * 작성자 : 공민영
- * 내용 : 로그인 로그아웃 시 버튼 바꾸기
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
- */
-document.addEventListener('DOMContentLoaded', function () {
-    var access_token = localStorage.getItem('access_token');
-    if (access_token) {
-        document.getElementById('login_container').style.display = 'none';
-    } else {
-        document.getElementById('logged_in_container').style.display = 'none';
-    }
-});
-
-/**
- * 작성자 : 공민영
  * 내용 : 로그아웃
  * 최초 작성일 : 2023.06.15
  * 업데이트 일자 : 2023.06.15
