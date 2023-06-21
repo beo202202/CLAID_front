@@ -129,7 +129,10 @@ async function loadArticles() {
     const articleList = $("#article_list");
 
     articles.forEach(article => {
-        const newCol = $("<div>").addClass("col").attr("onclick", `articleDetail(${article.id})`);
+        const newCol = $("<div>").
+        
+        
+        Class("col").attr("onclick", `articleDetail(${article.id})`);
         const newCard = $("<div>").addClass("card").attr("id", article.id);
         newCol.append(newCard);
 

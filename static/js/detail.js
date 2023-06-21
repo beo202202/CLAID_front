@@ -235,23 +235,24 @@ async function saveEdited() {
  * 업데이트 일자 : 2023.06.15
  */
 async function deleteArticle(articleId) {
-  let access_token = localStorage.getItem("access_token");
+    let access_token = localStorage.getItem("access_token");
 
-  if (confirm("삭제하시겠습니까?")) {
-    const response = await fetch(`${backend_base_url}/article/${articleId}/`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    });
-    if (response.status == 204) {
-      alert("삭제가 완료되었습니다.");
-      window.location.replace("index.html");
-    } else if (response.status == 401) {
-      alert("토큰 만료! 재로그인하세요!");
-      handleLogout();
-    } else {
-      alert("잘못된 요청입니다.");
+    if (confirm("삭제하시겠습니까?")) {
+        const response = await fetch(`${backend_base_url}/article/${articleId}/`, {
+            method: 'DELETE',
+            headers: {
+                "Authorization": 'Bearer ' + localStorage.getItem("access_token")
+            },
+        });
+        if (response.status == 204) {
+            alert("삭제가 완료되었습니다.");
+            window.location.replace('index.html');
+        } else if (response.status == 401) {
+            alert("토큰 만료! 재로그인하세요!");
+            handleLogout();
+        } else {
+            alert("잘못된 요청입니다.");
+        }
     }
   }
 }
