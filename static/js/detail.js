@@ -220,7 +220,7 @@ async function deleteArticle(articleId) {
         const response = await fetch(`${backend_base_url}/article/${articleId}/`, {
             method: 'DELETE',
             headers: {
-                "Authorization": `Bearer ${access_token}`
+                "Authorization": 'Bearer ' + localStorage.getItem("access_token")
             },
         });
         if (response.status == 204) {
