@@ -8,7 +8,7 @@
     <title>게시글 상세보기</title>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    
+
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
@@ -83,7 +83,6 @@
                     </a>
                 </div>
             </div>
-
         </div>
 
         <div class="ai_detail_list">
@@ -102,30 +101,39 @@
                     <div id="detail_updated_at"></div>
                 </div>
             </div>
-            <div class="ai_detail_nick">
-                <div class="nickname">
-                    <div>작성자:&nbsp</div>
-                    <div id="nickname"></div>
-                </div>
 
-                <div class="detail_button">
-                    <div>
-                        <button id="edit_button" type="button" onclick="putArticle()" style="display:none">수정</button>
+            <div class="ai_detail_line">
+                <div class="ai_detail_nick">
+                    <div class="nickname">
+                        <div>작성자:&nbsp</div>
+                        <div id="nickname"></div>
                     </div>
-                    <div>
-                        <button id="save_button" type="button"
-                            onclick="saveEditedArticle(getArticleIdFromUrl())">저장</button>
-                    </div>
-                    <div>
-                        <button id="delete_button" type="button" onclick="deleteArticle(getArticleIdFromUrl())"
-                            style="display:none">삭제</button>
-                    </div>
-                    <div>
-                        <button id="cancel_button" type="button" style="display:none"
-                            onclick="cancelEditedArticle()">취소</button>
+                </div>
+                <div class="ai_detail_hits">
+                    <div class="ai_hits">
+                        <div>조회수:&nbsp</div>
+                        <div id="ai_hits"></div>
                     </div>
                 </div>
             </div>
+            <div class="detail_button">
+                <div>
+                    <button id="edit_button" type="button" onclick="putArticle()" style="display:none">수정</button>
+                </div>
+                <div>
+                    <button id="save_button" type="button"
+                        onclick="saveEditedArticle(getArticleIdFromUrl())">저장</button>
+                </div>
+                <div>
+                    <button id="delete_button" type="button" onclick="deleteArticle(getArticleIdFromUrl())"
+                        style="display:none">삭제</button>
+                </div>
+                <div>
+                    <button id="cancel_button" type="button" style="display:none"
+                        onclick="cancelEditedArticle()">취소</button>
+                </div>
+            </div>
+
 
             <div class="img_title">
                 <!-- 이미지파일 -->
