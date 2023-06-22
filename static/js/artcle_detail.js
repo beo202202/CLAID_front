@@ -19,10 +19,10 @@ async function getArticleDetail() {
 
   $("#detail_song_info").text(response.song_info);
   $("#detail_voice").text(response.voice);
-  $("#ai_playback_bar").attr("src", backend_base_url + response.song);
-  $(".ai_playback_bar").prop("volume", 0.1);
+  $("#playback_bar").attr("src", backend_base_url + response.song);
+  $(".playback_bar").prop("volume", 0.1);
   $("#nickname").text(response.user.nickname);
-  $("#ai_hits").text(response.hits);
+  $("#hits").text(response.hits);
   $("#detail_created_at").text(timeago(response.created_at));
   $("#detail_updated_at").text(timeago(response.updated_at));
 
@@ -34,7 +34,7 @@ async function getArticleDetail() {
         ? `${backend_base_url}${response.article_image}`
         : "../static/img/default.PNG"
     )
-    .addClass("ai_img_size");
+    .addClass("img_size");
   articleImage.empty().append(newImage);
 }
 
@@ -48,7 +48,7 @@ async function getArticleDetail() {
  */
 async function getArticle(articleId) {
   const response = await fetch(
-    `${backend_base_url}/article/vocal/${articleId}/`
+    `${backend_base_url}/article/${articleId}/`
   );
   if (response.status == 200) {
     response_json = await response.json();
@@ -125,11 +125,11 @@ function putArticle() {
 
   const audioSrc = song.find("audio").attr("src");
   const audioPreview = $("<audio>")
-    .addClass("ai_playback_bar")
+    .addClass("playback_bar")
     .attr({
       controls: true,
       preload: true,
-      id: "ai_playback_bar",
+      id: "playback_bar",
       name: "media",
       src: `${audioSrc}`,
     });
@@ -191,7 +191,7 @@ function saveEditedArticle(articleId) {
 
   $.ajax({
     type: "PATCH",
-    url: `${backend_base_url}/article/vocal/${articleId}/`,
+    url: `${backend_base_url}/article/${articleId}/`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("access_token")}`,
     },
@@ -202,7 +202,7 @@ function saveEditedArticle(articleId) {
     success: function (response) {
       alert("수정이 완료되었습니다.");
       saveEdited();
-      window.location.href = `${frontend_base_url}/ai_article_detail.html?article_id=${articleId}`;
+      window.location.href = `${frontend_base_url}/article_detail.html?article_id=${articleId}`;
     },
     error: function (xhr, status, error) {
       if (xhr.status === 401) {
@@ -241,7 +241,7 @@ async function deleteArticle(articleId) {
 
   if (confirm("삭제하시겠습니까?")) {
     const response = await fetch(
-      `${backend_base_url}/article/vocal/${articleId}/`,
+      `${backend_base_url}/article/${articleId}/`,
       {
         method: "DELETE",
         headers: {
@@ -341,15 +341,15 @@ function showPreviewAudio(event) {
     var src = URL.createObjectURL(file);
 
     if (file.size <= 10 * 1024 * 1024) {
-      $(".ai_playback_bar").attr("src", src);
-      $(".ai_playback_bar").prop("volume", 0.1);
+      $(".playback_bar").attr("src", src);
+      $(".playback_bar").prop("volume", 0.1);
     } else {
       alert("오디오 파일의 크기는 10MB를 초과할 수 없습니다.");
-      $(".ai_playback_bar").attr("src", "");
+      $(".playback_bar").attr("src", "");
       return;
     }
   } else {
-    $(".ai_playback_bar").attr("src", "");
+    $(".playback_bar").attr("src", "");
   }
 }
 
