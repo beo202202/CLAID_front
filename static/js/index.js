@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //  * 업데이트 일자 : 2023.06.15
 //  */
 async function postArticle() {
-  console.log("게시글 작성 눌림");
   const song_info = document.getElementById("song_info").value;
   const voice = document.getElementById("song_voice").value;
   const article_image = document.getElementById("article_image").files[0];
