@@ -5,134 +5,12 @@ body {
     background-color: #f7f7f7;
   }
 
-/*nav*/
-.search_div {
-    display: flex;
-    height: 40px;
-    margin-top: 10px;
-}
 
-.search_btn {
-    background-color: white;
-    color: rgb(83, 10, 219);
-    border: solid 3px;
-}
-
-.search {
-    color: rgb(83, 10, 219);
-    border: solid 1px;
-}
-
-.search_btn:hover {
-    background-color: rgb(83, 10, 219);
-    border: solid rgb(83, 10, 219);
-    color: white;
-}
-
-
-
-#intro {
-    font-size: 20px;
-    color: black;
-    font-weight: 600;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-
-.intro a {
-    text-decoration-line: none;
-}
-
-#intro:hover {
-    color: rgb(83, 10, 219);
-}
-
-
-
-
-.main_ {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    border: solid 3px black;
-    margin: 45px;
-    margin-left: 50px;
-    width: 1000px;
-    height: 90px;
-}
-
-/* 명칭 바뀌어야함 */
-.main_div {
-    display: flex;
-}
-
-.nav-section {
-    display: flex;
-}
-
-.nav_ {
-    margin-top: 25px;
-    margin-left: 20px;
-}
-
-.main_nav {
-    width: 700px;
-    height: 100px;
-}
-
-#main_logo {
-    width: 400px;
-}
-
-.href_a {
-    display: flex;
-}
-
-.sign_a {
-    margin-top: 10px;
-    margin-left: 20px;
-}
-
-.sign_a a {
-    font-size: 20px;
-    color: black;
-    font-weight: 500;
-    text-decoration-line: none;
-}
-
-.sign_a button {
-    font-size: 20px;
-    color: black;
-    background-color: rgb(255, 255, 255, 0);
-    border: none;
-    font-weight: 500;
-}
-
-.sign_a button:hover {
-    font-size: 20px;
-    color: rgb(83, 10, 219);
-    font-weight: 500;
-}
-
-.sign_a a:hover {
-    font-size: 20px;
-    color: rgb(83, 10, 219);
-    font-weight: 500;
-}
-
-
-h1 {
-    text-align: center;
-    margin-bottom: 50px;
-    color: rgb(83, 10, 219);
-    font-size: 50px;
-}
-
+/*logo*/
 .logo {
     text-align: center;
+    margin-top: 20px;
 }
-
 
 /*회원가입*/
 #send_mail {
@@ -169,6 +47,7 @@ h1 {
     width: 440px;
     height: 600px;
     border: solid 4px black;
+    background-color: white;
 }
 
 .signup_a {

@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 20px;
-  background-color: #f7f7f72c;
+  background-color: #f7f7f7;
 }
 
 /*헤더부분임*/
@@ -16,11 +16,11 @@ body {
 .search_btn {
   background-color: white;
   color: rgb(83, 10, 219);
-  border: solid 3px;
+  border: solid 1px;
 }
 
 .search {
-  color: rgb(83, 10, 219);
+  color: gray;
   border: solid 1px;
 }
 
@@ -38,6 +38,7 @@ body {
   font-weight: 600;
   margin-left: 50px;
   margin-right: 50px;
+  margin-bottom: 15px;
 }
 
 .intro a {
@@ -53,33 +54,51 @@ body {
   justify-content: center;
   text-align: center;
   align-items: center;
-  border: solid 3px black;
-  margin: 45px;
+  /* border: solid 3px black; */
+  border-bottom: solid 2px gray;
   margin-left: 50px;
-  width: 1000px;
-  height: 90px;
-}
-
-.main_div {
-  display: flex;
+  margin-right: 50px;
+  margin-bottom: 20px;
 }
 
 .nav_ {
-  margin-top: 25px;
-  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.nav_in {
+  margin-top: 10px;
+  float: right;
+  overflow: hidden;
 }
 
 .main_nav {
   width: 700px;
-  height: 100px;
+  height: 50px;
+}
+
+.main_in {
+float: right;
+margin-right: 100px;
 }
 
 #main_logo {
   width: 400px;
+  margin-left: 50px;
+  margin-top: 20px;
 }
 
 .href_a {
   display: flex;
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+}
+
+.href_in {
+  display: flex;
+  width: 200px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .sign_a {
@@ -385,6 +404,7 @@ body {
   padding: 10px;
   margin-bottom: 20px;
   margin-left: 20px;
+  background-color: white;
 }
 
 .card_body:hover {
@@ -618,6 +638,7 @@ li {
 .list_ul {
   display: flex;
   padding: 10px;
+  background-color: white;
   border: 1px solid #ccc;
 }
 
@@ -740,11 +761,19 @@ li {
 }
 
 /*pagination*/
-.container {
+/* .container {
   width: 100%;
   height: 100vh;
   background: linear-gradient(45deg, #410358, #4700bc);
   display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.container {
+  width: 100%;
+  display: flex;
+  height: 100vh;
   align-items: center;
   justify-content: center;
 }
@@ -806,4 +835,10 @@ li {
   outline: none;
   border: none;
   cursor: pointer;
+}
+
+/*separator*/
+.upload-container {
+  margin-left: 50px;
+  margin-right: 50px;
 }
