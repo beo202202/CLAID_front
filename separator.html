@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 </head>
 
-<body>
+<body class="separator body">
     <section class="nav-section">
         <div class="main_div">
             <!--로고-->
@@ -87,18 +87,16 @@
         </div>
     </section>
 
-    <section class="main-section">
+    <main class="separator">
         <!-- 
             작성자 : 이준영
             내용 : 오디오 미리보기 + 추출 활성화
             최초 작성일 : 2023.06.21        
         -->
-        <div class="upload-container">
-            <div>
+        <section class="separator upload">
+            <airticle class="separator audio-input">
                 <input type="file" accept="audio/mp3" id="audio-file_input" required>
                 <div id="waveform"></div>
-                <button id="play-button" disabled><i class="bi bi-play-fill"></i></button>
-                <button id="pause-button" disabled><i class="bi bi-pause-fill"></i></button>
                 <script>
                     $(document).ready(function () {
                         const waveformContainer = $("#waveform")[0];
@@ -139,47 +137,64 @@
                                 wavesurfer.load(fileUrl);
                                 $('#uploadBtn').prop('disabled', false);
                                 $('#play-button').prop('disabled', false);
-                                $('#pause-button').prop('disabled', false);
+                                $('#pause-button').prop('disabled', true);
+                                $('#waveform-btn').show();
                             } else {
                                 alert("파일의 크기는 15MB를 초과할 수 없습니다.");
                                 audiofileInput.val("");
                                 $('#uploadBtn').prop('disabled', true);
                                 $('#play-button').prop('disabled', true);
                                 $('#pause-button').prop('disabled', true);
+                                $('#waveform-btn').hide();
                             }
                         });
 
                         playButton.on("click", () => {
                             wavesurfer.play();
+                            $('#play-button').prop('disabled', true);
+                            $('#pause-button').prop('disabled', false);
                         });
 
                         pauseButton.on("click", () => {
                             wavesurfer.pause();
+                            $('#pause-button').prop('disabled', true);
+                            $('#play-button').prop('disabled', false);
                         });
                     });
                 </script>
+            </airticle>
+            <article class="separator description">
+                <div style="color: gray; font-size: 15px;">mp3 파일만 업로드 가능합니다
+                </div>
+            </article>
+            <article class="separator btn">
+                <div id="waveform-btn" style="display:none;">
+                    <button id="play-button" disabled><i class="bi bi-play-fill"></i></button>
+                    <button id="pause-button" disabled><i class="bi bi-pause-fill"></i></button>
+                    <button id="uploadBtn" onclick="separator()" disabled>추출</button>
+                </div>
+            </article>
+        </section>
+        <section class="separator output">
+            <div class="spinner" id="loadingSpinner" style="display: none;">
             </div>
-            <div style="color: gray; font-size: 15px;">mp3 파일만 업로드 가능합니다
+            <div class="output-container">
+                <div class="vocals-container" style="display: none;">
+                    <span>vocals</span>
+                    <audio controls id="vocals-audio" style="display: none;"></audio>
+                </div>
             </div>
-            <button id="uploadBtn" onclick="separator()" disabled>추출</button>
-        </div>
-        <div class="separator-container">
-            <div id="loadingSpinner" style="display: none;">
-                로딩 중...
+            <div class="output-container">
+                <div class="accompaniment-container" style="display: none;">
+                    <span>accompaniment</span>
+                    <audio controls id="accompaniment-audio" style="display: none;"></audio>
+                </div>
             </div>
-            <div class="vocals-container" style="display: none;">
-                <span>vocals</span>
-                <audio controls id="vocals-audio" style="display: none;"></audio>
-            </div>
-            <div class="accompaniment-container" style="display: none;">
-                <span>accompaniment</span>
-                <audio controls id="accompaniment-audio" style="display: none;"></audio>
-            </div>
-        </div>
-    </section>
-    <section class="footer-section">
+        </section>
 
-    </section>
+    </main>
+    <footer class="footer-section">
+    </footer>
 </body>
 
 </html>
