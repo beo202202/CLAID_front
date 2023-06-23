@@ -1,0 +1,40 @@
+/* header */
+.rectangle {
+    display: flex;
+    width: 400px;
+    height: 100px;
+    border: 5px solid black;
+    cursor: pointer;
+}
+
+.out-box {
+    width: 50%;
+    background-color: #f5f5f5;
+    padding: 7px;
+}
+
+.inner-box {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+    font-family: 'Arial', sans-serif;
+    padding: 17px;
+}
+
+.right-side {
+    width: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 45px;
+    font-family: 'Comic Sans MS', sans-serif
+}
+
+.highlight {
+    color: rgb(83, 10, 219);
+}

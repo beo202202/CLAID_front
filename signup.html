@@ -15,6 +15,7 @@
 
     <script src="static/js/sign.js"></script>
     <link href="static/css/style.css" rel="stylesheet" />
+    <link href="static/css/header.css" rel="stylesheet" />
 </head>
 
 
@@ -29,9 +30,21 @@
         // SDK 초기화 여부를 판단합니다.
         console.log(Kakao.isInitialized());
     </script>
-    
+
     <div class="logo">
-        <a href="/index.html"><img id="logo" src="https://i.postimg.cc/pT24Ghq6/logo.png" alt="로고"></a>
+        <brand-name>
+            <!--로고-->
+            <div class="rectangle" onclick="location.href='../index.html'">
+                <div class="out-box">
+                    <div class="inner-box">
+                        STUDIO
+                    </div>
+                </div>
+                <div class="right-side">
+                    CL<span class="highlight">AI</span>D
+                </div>
+            </div>
+        </brand-name>
     </div>
     <div class="sign_">
         <h1>회원가입</h1>

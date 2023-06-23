@@ -127,21 +127,18 @@ async function showPayload() {
 
 /**
  * 작성자 : 이준영
- * 내용 : 토큰 체크
+ * 내용 : 토큰 체크0
  * 최초 작성일 : 2023.06.17
  */
 function checkAccessToken() {
     var access_token = localStorage.getItem('access_token');
-    if (access_token === undefined){
+    if (access_token === undefined) {
         alert("엑세스 토큰 undefined")
-        handleLogout();        
+        handleLogout();
         window.location.replace(`../login.html`)
     } else if (access_token) {
         // document.getElementById('login_container').style.display = 'none';
         window.location.replace(`../index.html`);
-    } else {
-        document.getElementById('logged_in_container').style.display = 'none';
-        document.getElementById('logged_out').style.display = 'none';
     }
 };
 
@@ -168,26 +165,26 @@ function loginWithKakao() {
 }
 
 async function loginWithGoogle() {
-// 구글 로그인 ###############################################
-   /** 작성자 :김은수
-     * 내용 : 토큰 체크
-     * 최초 작성일 : 2023.06.17
-     **/
-  var access_token = localStorage.getItem("access_token");
+    // 구글 로그인 ###############################################
+    /** 작성자 :김은수
+      * 내용 : 토큰 체크
+      * 최초 작성일 : 2023.06.17
+      **/
+    var access_token = localStorage.getItem("access_token");
 
-  if (!access_token) {
-    const response = await fetch(`${backend_base_url}/user/google/`, {
-        method: "GET",
-    });
-    const google_id = await response.json();
-    const redirect_uri = `${frontend_base_url}/temp.html`;
-    const scope =
-        "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
-    const param = `scope=${scope}&include_granted_scopes=true&response_type=token&state=pass-through value&prompt=consent&client_id=${google_id}&redirect_uri=${redirect_uri}`;
-    console.log(redirect_uri)
-    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?${param}`;
-  } else {
+    if (!access_token) {
+        const response = await fetch(`${backend_base_url}/user/google/`, {
+            method: "GET",
+        });
+        const google_id = await response.json();
+        const redirect_uri = `${frontend_base_url}/temp.html`;
+        const scope =
+            "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
+        const param = `scope=${scope}&include_granted_scopes=true&response_type=token&state=pass-through value&prompt=consent&client_id=${google_id}&redirect_uri=${redirect_uri}`;
+        console.log(redirect_uri)
+        window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?${param}`;
+    } else {
         alert("이미 로그인 중입니다!");
         window.location.replace(`../index.html`);
-  }
+    }
 }

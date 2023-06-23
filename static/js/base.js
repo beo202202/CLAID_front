@@ -1,3 +1,8 @@
+$(window).on('load', function () {
+    loginChanger();
+});
+
+
 const frontend_base_url = "http://127.0.0.1:5500"
 const backend_base_url = "http://127.0.0.1:8000"
 
@@ -33,13 +38,16 @@ function handleLogout() {
  * 작성자 : 공민영
  * 내용 : 로그인 로그아웃 시 버튼 바꾸기
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 수정자 : 이준영
+ * 수정 내용 :유동 header로 인해 제이쿼리로 바꿈
+ * 업데이트 일자 : 2023.06.23
  */
-document.addEventListener('DOMContentLoaded', function () {
+function loginChanger() {
     var access_token = localStorage.getItem('access_token');
     if (access_token) {
-        document.getElementById('login_container').style.display = 'none';
+        $('#login_container').hide();
     } else {
-        document.getElementById('logged_in_container').style.display = 'none';
+        $('#logged_in_container').hide();
+        $('#logged_out').hide();
     }
-});
+};
