@@ -1,0 +1,44 @@
+
+.search_div {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .search_input {
+    flex: 1;
+    height: 40px;
+    padding: 0 10px;
+    font-size: 16px;
+    border: 1px solid gray;
+    border-radius: 4px;
+  }
+  
+
+  .search_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: rgb(83, 10, 219);
+    border: solid 1px;
+    text-align: center;
+    text-decoration: none; /* 밑줄 스타일 제거 */
+    font-size: 20px;
+    flex: 1; 
+    margin-right: 10px;
+    padding: 0 5px;
+  }
+  
+  .search {
+    color: gray;
+    border: solid 1px;
+    flex: 1;
+  }
+  
+  .search_btn:hover {
+    background-color: rgb(83, 10, 219);
+    border: solid rgb(83, 10, 219);
+    color: white;
+  }
+  
