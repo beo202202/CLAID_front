@@ -78,6 +78,7 @@ function getArticleIdFromUrl() {
  * 업데이트 일자: 2023.06.18
  */
 function putArticle() {
+  $(".comment_control_box").hide();
   const elements = {
     song_info: $("#detail_song_info"),
     voice: $("#detail_voice"),
@@ -560,7 +561,8 @@ function saveEditedComment(comment_id) {
       success: function (response) {
         alert("수정이 완료되었습니다.");
         saveCommentEdited();
-        window.location.href = `${frontend_base_url}/article_detail.html?article_id=${article_id}`;
+        getComments();
+        // window.location.href = `${frontend_base_url}/article_detail.html?article_id=${article_id}`;
       },
       error: function (xhr, status, error) {
         if (xhr.status === 401) {
@@ -608,8 +610,8 @@ function onDeleteComment(commentId) {
   fetch(requestUrl, { method: "DELETE" })
     .then((response) => {
       if (response.ok) {
-        // 댓글 삭제에 성공하면, 페이지 새로고침
-        location.reload();
+        // 댓글 삭제에 댓글가져오기
+        getComments();
       } else {
         // 댓글 삭제에 실패하면, 에러 메시지 출력
         throw new Error("댓글 삭제에 실패했습니다.");
