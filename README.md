@@ -3,13 +3,20 @@
 - 이미지 첨부시 미리보기 v
 - index.html에 재생바 만들기 v
 - 로그인안해도 상세페이지에서 이미지 보이게하기 v
+- ai article 노래바 안되는거 v
+- 이미지 누르면 음악 재생 / 멈춤(hover) v
+- ai article detail css + 댓글
+- ckeditor로 작성 / 수정(전에 썼던 게시글 그대로 가져오기) 가능하게하기 v
+- 방법공유 게시판 detail(notice detail) v
+- ai 노래자랑 게시판(리스트,상세보기) 방법공유 게시판(리스트,상세보기) 조회수 보이게 하기 v
+- nav바 회원가입 로그인 오른쪽으로 옮기기 v
+- 음원분리 html nav css맞추기 v
+- nav바 고정 풀기 v
+- 댓글 기능 도입
 
--ai article detail css + 댓글
--ai article 노래바 안되는거 v
--방법공유 게시판 10개씩만 보이고 넘어가게 + 조회수 + 공지사항 같은거 최상단 고정
--방법공유 게시판 detail(notice detail) v
--ckeditor로 작성 / 수정(전에 썼던 게시글 그대로 가져오기) 가능하게하기 v
--이미지 누르면 음악 재생 / 멈춤(hover)
+
+-방법공유 게시판 10개씩만 보이고 넘어가게  + 공지사항 같은거 최상단 고정
+
 
 #profile.js에 
   const profile_image = document.getElementById("image_profile"); id와

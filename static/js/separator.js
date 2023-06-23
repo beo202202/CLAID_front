@@ -16,6 +16,8 @@ async function separator() {
     try {
         $('#loadingSpinner').show();
         $('#uploadBtn').prop('disabled', true);
+        $('.vocals-container').hide();
+        $('.accompaniment-container').hide();
 
         const response = await fetch(`${backend_base_url}/separator/`, {
             method: 'POST',
@@ -24,8 +26,6 @@ async function separator() {
             },
             body: formData
         });
-        console.log("response");
-        console.log(response);
         if (response.ok) {
             const data = await response.json();
 
@@ -60,18 +60,6 @@ async function separator() {
         console.log(error);
     } finally {
         $('#loadingSpinner').hide();
-    }
-}
-
-/**
- * 작성자 : 이준영
- * 내용 : 다운로드
- * 최초 작성일 : 2023.06.21
- */
-function downloadFile(button) {
-    var downloadLink = $(button).attr('href');
-    if (downloadLink) {
-        window.location.href = downloadLink;
     }
 }
 

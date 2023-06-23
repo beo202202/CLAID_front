@@ -27,30 +27,17 @@
         <div class="main_div">
             <!--로고-->
             <div>
-                <a href="/mr.html"><img id="main_logo" src="https://i.postimg.cc/k4nYpWGM/image_1.png" alt="로고"></a>
+                <a href="/index.html"><img id="main_logo" src="https://i.postimg.cc/pT24Ghq6/logo.png" alt="로고"></a>
             </div>
             <div class="main_">
                 <div class="main_nav">
-                    <!--로그인 전 버튼들-->
-                    <div class="nav_">
-                        <div class="nav_sign" id="login_container">
-                            <div class="href_a">
-                                <div class="sign_a">
-                                    <a href="signup.html">회원가입</a>
-                                </div>
-                                <div class="sign_a">
-                                    <a href="login.html">로그인</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!--로그인 후 버튼들-->
                     <div class="nav_">
                         <div class="nav_sign" id="logged_in_container">
                             <div class="href_a">
 
                                 <div class="sign_a" id="article_admin">
-                                    <a href="mr.html">음원분리</a>
+                                    <a href="separator.html">음원분리</a>
                                 </div>
 
                                 <div class="sign_a" id="article_admin">
@@ -58,11 +45,7 @@
                                 </div>
 
                                 <div class="sign_a" id="article_admin">
-                                    <a href="ai_article.html">ai노래자랑</a>
-                                </div>
-
-                                <div class="sign_a" id="article_admin">
-                                    <a href="index.html">게시판</a>
+                                    <a href="index.html">ai노래자랑</a>
                                 </div>
                             </div>
                         </div>
@@ -75,18 +58,34 @@
                     <button class="search_btn" type="submit">search</button>
                 </div>
 
-                <div class="intro">
-                    <div class="nav_sign" id="logged_out">
-                        <div class="sign_out">
-                            <button type="button" onclick="handleLogout()">logout</button>
+                <div class="main_in">
+                    <!--로그인 전 버튼들-->
+                    <div class="nav_in">
+                        <div class="nav_sign" id="login_container">
+                            <div class="href_in">
+                                <div class="sign_a">
+                                    <a href="signup.html">회원가입</a>
+                                </div>
+                                <div class="sign_a">
+                                    <a href="login.html">로그인</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <a href="profile.html">
-                        <div id="intro"></div>
-                    </a>
+
+                    <!--로그인 후 보이는 로그아웃-->
+                    <div class="intro">
+                        <div class="nav_sign" id="logged_out">
+                            <div class="sign_out">
+                                <button type="button" onclick="handleLogout()">logout</button>
+                            </div>
+                        </div>
+                        <a href="profile.html">
+                            <div id="intro"></div>
+                        </a>
+                    </div>
                 </div>
             </div>
-
         </div>
 
         <div class="notice_detail_list">

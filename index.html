@@ -22,30 +22,17 @@
         <div class="main_div">
             <!--로고-->
             <div>
-                <a href="/mr.html"><img id="main_logo" src="https://i.postimg.cc/k4nYpWGM/image_1.png" alt="로고"></a>
+                <a href="/index.html"><img id="main_logo" src="https://i.postimg.cc/pT24Ghq6/logo.png" alt="로고"></a>
             </div>
             <div class="main_">
                 <div class="main_nav">
-                    <!--로그인 전 버튼들-->
-                    <div class="nav_">
-                        <div class="nav_sign" id="login_container">
-                            <div class="href_a">
-                                <div class="sign_a">
-                                    <a href="signup.html">회원가입</a>
-                                </div>
-                                <div class="sign_a">
-                                    <a href="login.html">로그인</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!--로그인 후 버튼들-->
                     <div class="nav_">
                         <div class="nav_sign" id="logged_in_container">
                             <div class="href_a">
 
                                 <div class="sign_a" id="article_admin">
-                                    <a href="mr.html">음원분리</a>
+                                    <a href="separator.html">음원분리</a>
                                 </div>
 
                                 <div class="sign_a" id="article_admin">
@@ -53,11 +40,7 @@
                                 </div>
 
                                 <div class="sign_a" id="article_admin">
-                                    <a href="ai_article.html">ai노래자랑</a>
-                                </div>
-
-                                <div class="sign_a" id="article_admin">
-                                    <a href="index.html">게시판</a>
+                                    <a href="index.html" style="font-weight: 600; color: blueviolet;">ai노래자랑</a>
                                 </div>
                             </div>
                         </div>
@@ -70,27 +53,87 @@
                     <button class="search_btn" type="submit">search</button>
                 </div>
 
-                <div class="intro">
-                    <div class="nav_sign" id="logged_out">
-                        <div class="sign_out">
-                            <button type="button" onclick="handleLogout()">logout</button>
+                <div class="main_in">
+                    <!--로그인 전 버튼들-->
+                    <div class="nav_in">
+                        <div class="nav_sign" id="login_container">
+                            <div class="href_in">
+                                <div class="sign_a">
+                                    <a href="signup.html">회원가입</a>
+                                </div>
+                                <div class="sign_a">
+                                    <a href="login.html">로그인</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <a href="profile.html">
-                        <div id="intro"></div>
-                    </a>
+
+                    <!--로그인 후 보이는 로그아웃-->
+                    <div class="intro">
+                        <div class="nav_sign" id="logged_out">
+                            <div class="sign_out">
+                                <button type="button" onclick="handleLogout()">logout</button>
+                            </div>
+                        </div>
+                        <a href="profile.html">
+                            <div id="intro"></div>
+                        </a>
+                    </div>
                 </div>
             </div>
-
         </div>
 
         <div class="article_admin">
-            <a href="article_create.html" id="create_btn">게시글 작성</a>
+            <button id="open-modal">ai 게시글 작성</button>
         </div>
 
         <div class="article_list" id="article_list">
             <!-- 반복적으로 나올것 -->
         </div>
+
+
+
+        <div id="modal">
+            <div class="modal-content">
+                <button id="close-modal">X</button>
+                <!-- 원곡정보 -->
+                <div class="detail_article">
+                    <label for="song_info">원곡정보</label><br>
+                    <input type="text" maxlength="20" class="detail_song_info" name="song_info" id="song_info"
+                        placeholder="원곡정보 (제목-가수)">
+                </div>
+
+                <!-- 목소리 -->
+                <div class="detail_article">
+                    <label for="song_voice">커버</label><br>
+                    <input type="text" maxlength="20" class="detail_voice" name="song_voice" id="song_voice"
+                        placeholder="이름">
+                </div>
+
+                <!-- 이미지파일 -->
+                <div class="detail_article preview_image">
+                    <label for="article_image"></label><br>
+                    <input type="file" class="detail_one_file" name="article_image" id="article_image" accept="image/*"
+                        onchange="showPreviewImage(event)">
+                </div>
+
+                <!-- 음악파일 -->
+                <div class="detail_article">
+                    <!-- 음악 재생 바 -->
+                    <div>
+                        <audio controls class="playback_bar" id="playback_bar" />
+                    </div>
+                    <div>
+                        <label for="song">song</label>
+                        <input type="file" name="song" id="song" accept="audio/mp3, audio/wav, audio/ogg"
+                            onchange="showPreviewAudio(event)">
+                    </div>
+                    <div style="color: gray; font-size: 15px;">mp3 wav ogg 파일만 업로드 가능합니다</div>
+                </div>
+                <button id="postbtn" type="button" onclick="postArticle()">작성완료</button>
+            </div>
+        </div>
+
     </form>
 </body>
 
