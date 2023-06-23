@@ -11,11 +11,12 @@ body {
   }
   
   .profile-container {
+      margin:auto;
       display: flex;
       background: linear-gradient(
       to right, 
       white -20%, 
-      rgb(83, 10, 219) 100%, 
+      rgb(168, 135, 229) 100%, 
       white 50%, 
       white 100%
     );
@@ -44,6 +45,7 @@ body {
   
   .profile-info {
     flex: 1;
+    color: rgb(83, 10, 219);
   }
   
   .profile-nickname {
@@ -53,6 +55,8 @@ body {
   }
   
   .bookmark-section {
+    margin: auto;
+    width: 50%;
     margin-top: 20px;
     background-color: #fff;
     padding: 20px;
