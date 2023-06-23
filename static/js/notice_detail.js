@@ -2,6 +2,7 @@ window.onload = () => {
   getArticleDetail();
   showPayload();
   setButtonVisibility();
+  getComments();
 };
 
 /**
@@ -71,6 +72,7 @@ function getArticleIdFromUrl() {
  * 업데이트 일자: 2023.06.18
  */
 function putArticle() {
+  $(".comment_control_box").hide();
   const elements = {
     title: $("#notice_detail_title"),
     content: $("#notice_detail_content"),
@@ -97,7 +99,7 @@ function putArticle() {
     type: "file",
     class: "notice_detail_one_file",
     name: "article_image",
-    id: "article_image",
+    id: "notice_article_image",
     accept: "image/*",
   });
   // }).on("change", showPreviewImage);
@@ -335,4 +337,224 @@ function handleLogout() {
   localStorage.removeItem("refresh_token");
   localStorage.removeItem("payload");
   location.reload();
+}
+
+/**
+ * 작성자 : 김은수
+ * 내용 : 댓글 가져오기
+ * 최초 작성일 : 2023.06.20
+ * 업데이트 일자 : 2023.06.20
+ */
+
+async function getComments() {
+  let article_id = getArticleIdFromUrl();
+  const comments = await fetch(
+    `${backend_base_url}/article/notice/${article_id}/commentcr`,
+    {
+      method: "GET",
+    }
+  );
+  const comments_json = await comments.json();
+  console.log("comments_json",comments_json);
+  let profile_image = localStorage.getItem("pro");
+  $("#notice_comments").empty();
+  comments_json.forEach((a) => {
+    let name = a["user"]["nickname"];
+    let content = a["content"];
+    let profile_image = a["user"]["profile_image"];
+    let default_image = "https://dummyimage.com/50x50/ced4da/6c757d.jpg";
+
+    let image = profile_image ? profile_image : default_image;
+    let comment_id = a["id"];
+
+    const commentAuthorId = a["user"]["id"];
+
+    const payload = localStorage.getItem("payload");
+
+    let buttons = "";
+    if (payload) {
+      const payload_parse = JSON.parse(payload);
+      let loggedInUserId = payload_parse.user_id;
+
+      if (loggedInUserId === commentAuthorId) {        
+        buttons = `<button class="notice_comment_edit_button_${comment_id}" onclick=noticeCommentPut(${comment_id})>수정</button>
+        <button class="notice_comment_delete_button_${comment_id}" onclick=onDeleteNoticeComment(${comment_id})>삭제</button>
+        <button class="notice_comment_save_button_${comment_id}" style="display:none" onclick=saveEditedNoticeComment(${comment_id})>저장</button>
+        <button class="notice_comment_cancel_button_${comment_id}" style="display:none" onclick=cancelEditedNoticeComment(${comment_id})>취소</button>`;
+      }
+    }
+
+    let temp = `<div class="d-flex">
+                    <div class="flex-shrink-0"><img class="rounded-circle" src=${image}
+                            alt=${default_image} /></div>
+                    <div class="ms-3">
+                        <div class="fw-bold">${name}</div>
+                        ${buttons}
+                        <p id=notice_comment_${comment_id}>${content}</p>
+                    </div>
+                </div>`;
+
+    let good = a["good"];
+
+    $("#notice_comments").append(temp);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const button = document.getElementById("notice_comment_submit");
+  button.addEventListener("click", postNoticeComment);
+});
+
+/**
+ * 작성자 : 김은수, 공민영, 왕규원
+ * 내용 : 댓글 작성하기
+ * 최초 작성일 : 2023.06.21
+ */
+async function postNoticeComment() {
+  const content = document.getElementById("notice_comment_post").value;
+  const formdata = new FormData();
+  formdata.append("content", content);
+
+  let article_id = getArticleIdFromUrl();
+  console.log(article_id);
+  if (content == "") {
+    alert("빈 댓글을 작성할 수 없음");
+  } else if (article_id !== null) {
+    const response = await fetch(
+      `${backend_base_url}/article/notice/${article_id}/commentcr/`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+        body: formdata,
+      }
+    );
+    console.log(response);
+  } else {
+    alert("유효하지 않은 게시물");
+  }
+  getComments();
+}
+
+/**
+ * 작성자: 김은수, 공민영
+ * 내용: 댓글 수정 폼으로 변경
+ * 최초 작성일: 2023.06.23
+ */
+async function noticeCommentPut(comment_id) {
+  console.log("눌림");
+  // let article_id = getArticleIdFromUrl();
+
+  const noticeComment = $(`#notice_comment_${comment_id}`);
+  noticeComment.html(`
+      <input type="text" id="notice_edit_comment_${comment_id}" maxlength="200" value="${noticeComment.text()}">`);
+
+  $(`.notice_comment_edit_button_${comment_id}`).hide();
+  $(`.notice_comment_save_button_${comment_id}`).show();
+  $(`.notice_comment_delete_button_${comment_id}`).hide();
+  $(`.notice_comment_cancel_button_${comment_id}`).show();
+}
+
+/**
+ * 작성자 : 공민영
+ * 내용 : save_button 클릭 시 edit_button으로 변경
+ * 최초 작성일 : 2023.06.15
+ * 업데이트 일자 : 2023.06.15
+ */
+async function saveNoticeCommentEdited(comment_id) {
+  const editCommentButton = document.getElementsByClassName(`notice_comment_edit_button_${comment_id}`);
+  const saveCommentButton = document.getElementsByClassName(`notice_comment_save_button_${comment_id}`);
+  editCommentButton.style.display = "block";
+  saveCommentButton.style.display = "none";
+}
+
+/**
+ * 작성자: 김은수, 공민영
+ * 내용: 댓글 수정 후 저장
+ * 최초 작성일: 2023.06.23
+ */
+function saveEditedNoticeComment(comment_id) {
+  const editedNoticeComment = $(`#notice_edit_comment_${comment_id}`).val();
+  article_id = getArticleIdFromUrl()
+  const formdata = new FormData();
+  formdata.append("content", editedNoticeComment);
+
+  if (editedNoticeComment === undefined) {
+    alert("내용은 필수입니다.");
+    return;
+  }
+
+  $.ajax({
+      type: "PATCH",
+      url: `${backend_base_url}/article/notice/${article_id}/commentud/${comment_id}/`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      },
+      data: formdata,
+      processData: false,
+      contentType: false,
+      dataType: "json",
+      success: function (response) {
+        alert("수정이 완료되었습니다.");
+        saveNoticeCommentEdited();
+        getComments();
+        // window.location.href = `${frontend_base_url}/article_detail.html?article_id=${article_id}`;
+      },
+      error: function (xhr, status, error) {
+        if (xhr.status === 401) {
+          alert("토큰 만료! 재로그인하세요!");
+          handleLogout();
+        } else if (xhr.status === 403) {
+          alert("본인 댓글만 수정 가능합니다.");
+        } else {
+          alert("잘못된 요청입니다.");
+        }
+      },
+    });
+  }
+
+  function cancelEditedNoticeComment() {
+    location.reload();
+  }
+
+function onEditComment(articleId, commentId, newContent) {
+  const requestUrl = `${backend_base_url}/article/notice/${articleId}/commentud/${commentId}/`;
+  const requestBody = { content: newContent };
+  fetch(requestUrl, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(requestBody),
+  })
+    .then((response) => {
+      if (response.ok) {
+        // 댓글 수정에 성공하면, 페이지 새로고침
+        location.reload();
+      } else {
+        // 댓글 수정에 실패하면, 에러 메시지 출력
+        throw new Error("댓글 수정에 실패했습니다.");
+      }
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+}
+
+// 댓글 삭제 버튼 클릭 이벤트 핸들러
+function onDeleteNoticeComment(commentId) {
+  article_id = getArticleIdFromUrl()
+  const requestUrl = `${backend_base_url}/article/notice/${article_id}/commentud/${commentId}/`;
+  fetch(requestUrl, { method: "DELETE" })
+    .then((response) => {
+      if (response.ok) {
+        // 댓글 삭제에 댓글가져오기
+        getComments();
+      } else {
+        // 댓글 삭제에 실패하면, 에러 메시지 출력
+        throw new Error("댓글 삭제에 실패했습니다.");
+      }
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
 }
