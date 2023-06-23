@@ -1,4 +1,4 @@
-$(window).on('load', function () {
+$(document).on("headerLoaded", function () {
     loginChanger();
 });
 

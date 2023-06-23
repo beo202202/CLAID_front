@@ -5,6 +5,7 @@ $(document).ready(function () {
         async: false,
         success: function (data) {
             $("header").html(data);
+            $(document).trigger("headerLoaded");
         }
     });
 });
