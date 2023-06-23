@@ -77,8 +77,8 @@ body {
 }
 
 .main_in {
-float: right;
-margin-right: 100px;
+  float: right;
+  margin-right: 100px;
 }
 
 #main_logo {
@@ -259,10 +259,11 @@ margin-right: 100px;
 }
 
 /*index*/
-.mytitle > button:hover {
+.mytitle>button:hover {
   border: 2px solid white;
   /*이미지 버튼 만들어서 hover시 나타나게*/
 }
+
 /* 
 .col {
   width: 300px;
@@ -590,7 +591,8 @@ li {
 
 #main_wrapper {
   width: 80%;
-  margin: 0 auto; /*가운데 정렬*/
+  margin: 0 auto;
+  /*가운데 정렬*/
 }
 
 .wrapper_title {
@@ -606,34 +608,44 @@ li {
   margin-top: 10px;
 }
 
-#ul_table > li:first-child > ul > li {
+#ul_table>li:first-child>ul>li {
   background-color: #c9c9c9;
   font-weight: bold;
   text-align: center;
 }
 
-#ul_table > li > ul > li {
+#ul_table>li>ul>li {
   float: left;
   font-size: 10pt;
   border-bottom: 1px solid silver;
   vertical-align: baseline;
 }
 
-#ul_table > li > ul > li:first-child {
+#ul_table>li>ul>li:first-child {
   width: 8%;
-} /*No 열 크기*/
-#ul_table > li > ul > li:first-child + li {
+}
+
+/*No 열 크기*/
+#ul_table>li>ul>li:first-child+li {
   width: 51%;
-} /*제목 열 크기*/
-#ul_table > li > ul > li:first-child + li + li {
+}
+
+/*제목 열 크기*/
+#ul_table>li>ul>li:first-child+li+li {
   width: 19%;
-} /*작성일 열 크기*/
-#ul_table > li > ul > li:first-child + li + li + li {
+}
+
+/*작성일 열 크기*/
+#ul_table>li>ul>li:first-child+li+li+li {
   width: 13%;
-} /*작성자 열 크기*/
-#ul_table > li > ul > li:first-child + li + li + li + li {
+}
+
+/*작성자 열 크기*/
+#ul_table>li>ul>li:first-child+li+li+li+li {
   width: 9%;
-} /*조회수 열 크기*/
+}
+
+/*조회수 열 크기*/
 
 .list_ul {
   display: flex;
@@ -642,23 +654,33 @@ li {
   border: 1px solid #ccc;
 }
 
-.list_ul > li:first-child {
+.list_ul>li:first-child {
   width: 8%;
   margin-left: -10px;
-} /*No 열 크기*/
-.list_ul > li:first-child + li {
+}
+
+/*No 열 크기*/
+.list_ul>li:first-child+li {
   width: 52.5%;
-} /*제목 열 크기*/
-.list_ul > li:first-child + li + li {
+}
+
+/*제목 열 크기*/
+.list_ul>li:first-child+li+li {
   width: 20%;
-} /*작성일 열 크기*/
-.list_ul > li:first-child + li + li + li {
+}
+
+/*작성일 열 크기*/
+.list_ul>li:first-child+li+li+li {
   width: 12.5%;
-} /*작성자 열 크기*/
-.list_ul > li:first-child + li + li + li + li {
+}
+
+/*작성자 열 크기*/
+.list_ul>li:first-child+li+li+li+li {
   width: 8%;
   justify-content: center;
-} /*조회수 열 크기*/
+}
+
+/*조회수 열 크기*/
 
 /* #divPaging {
     clear:both; 
@@ -750,6 +772,7 @@ li {
   margin-top: 10px;
   margin-right: 10px;
 }
+
 /*notice_edit*/
 #edit_notice_title {
   width: 800px;
@@ -837,8 +860,67 @@ li {
   cursor: pointer;
 }
 
-/*separator*/
-.upload-container {
-  margin-left: 50px;
-  margin-right: 50px;
+/* separator */
+
+.nav-section {
+  display: flex;
+}
+
+.separator main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.separator main section {
+  width: 80%;
+  max-width: 80%;
+}
+
+.separator main .description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.separator main .btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.separator .spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: rgb(83, 10, 219);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.separator .output {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10%;
 }
