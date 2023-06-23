@@ -6,15 +6,18 @@
   <script src="static/js/profile.js"></script>
   <title>프로필 페이지</title>
   <link rel="stylesheet" type="text/css" href="static/css/profile.css">
+  <link href="static/css/article_style.css" rel="stylesheet" />
 </head>
 <body>
-  <h1>프로필 페이지</h1>
+  <div>
+    <a href="index.html"><img id="main_logo" src="https://i.postimg.cc/k4nYpWGM/image_1.png" alt="로고"></a>
+  </div>
   <div class="profile-container">
     <div class="profile-image">
       <img src="{{ user.profile_image.url }}" alt="프로필 이미지" id="image_profile">
     </div>
     <div class="profile-info">
-      <div class="profile-nickname" id="user-nickname">닉네임: </div>
+      <div class="profile-nickname" id="user-nickname"></div>
     </div>
   </div>
 
