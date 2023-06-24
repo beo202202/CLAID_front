@@ -14,10 +14,7 @@ async function saveMail() {
     const password = document.getElementById("password").value;
     const password_check = document.getElementById("password_check").value;
 
-
     const error = document.getElementById("error");
-
-    console.log(nickname, email, password);
 
     const response = await fetch('http://127.0.0.1:8000/user/signup/', {
         headers: {
@@ -30,12 +27,10 @@ async function saveMail() {
             "password": password,
         })
     })
-    console.log(response);
 
     // 에러메시지
     const response_json = await response.json();
     const err = response_json.message;
-    console.log(err);
 
     /*비밀번호 확인*/
     if (password != password_check) {
@@ -59,10 +54,8 @@ async function saveMail() {
  * 업데이트 일자 : 2023.06.15
  */
 async function handleLogin() {
-    console.log("handleLogin()");
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    console.log(email, password)
 
     const response = await fetch('http://127.0.0.1:8000/user/login/', {
         headers: {
@@ -74,12 +67,9 @@ async function handleLogin() {
             "password": password
         })
     })
-    console.log(response)
     if (response.status == 200) {
         //response를 json화해서 access,refresh 가져옴
         const response_json = await response.json();
-        console.log(response_json);
-
 
         localStorage.setItem("access_token", response_json.access);
         localStorage.setItem("refresh_token", response_json.refresh);
@@ -94,7 +84,6 @@ async function handleLogin() {
         localStorage.setItem("payload", jsonPayload);
         const payload = localStorage.getItem("payload");
         const is_active = JSON.parse(payload).is_active;
-        console.log("is_active", is_active);
         if (is_active) {
             alert("환영합니다.");
             window.location.replace('index.html');
@@ -181,7 +170,6 @@ async function loginWithGoogle() {
         const scope =
             "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
         const param = `scope=${scope}&include_granted_scopes=true&response_type=token&state=pass-through value&prompt=consent&client_id=${google_id}&redirect_uri=${redirect_uri}`;
-        console.log(redirect_uri)
         window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?${param}`;
     } else {
         alert("이미 로그인 중입니다!");

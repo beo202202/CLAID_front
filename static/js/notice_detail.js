@@ -355,7 +355,6 @@ async function getComments() {
     }
   );
   const comments_json = await comments.json();
-  console.log("comments_json",comments_json);
   let profile_image = localStorage.getItem("pro");
   $("#notice_comments").empty();
   comments_json.forEach((a) => {
@@ -376,7 +375,7 @@ async function getComments() {
       const payload_parse = JSON.parse(payload);
       let loggedInUserId = payload_parse.user_id;
 
-      if (loggedInUserId === commentAuthorId) {        
+      if (loggedInUserId === commentAuthorId) {
         buttons = `<button class="notice_comment_edit_button_${comment_id}" onclick=noticeCommentPut(${comment_id})>수정</button>
         <button class="notice_comment_delete_button_${comment_id}" onclick=onDeleteNoticeComment(${comment_id})>삭제</button>
         <button class="notice_comment_save_button_${comment_id}" style="display:none" onclick=saveEditedNoticeComment(${comment_id})>저장</button>
@@ -416,7 +415,7 @@ async function postNoticeComment() {
   formdata.append("content", content);
 
   let article_id = getArticleIdFromUrl();
-  console.log(article_id);
+
   if (content == "") {
     alert("빈 댓글을 작성할 수 없음");
   } else if (article_id !== null) {
@@ -430,7 +429,6 @@ async function postNoticeComment() {
         body: formdata,
       }
     );
-    console.log(response);
   } else {
     alert("유효하지 않은 게시물");
   }
@@ -443,7 +441,6 @@ async function postNoticeComment() {
  * 최초 작성일: 2023.06.23
  */
 async function noticeCommentPut(comment_id) {
-  console.log("눌림");
   // let article_id = getArticleIdFromUrl();
 
   const noticeComment = $(`#notice_comment_${comment_id}`);
@@ -486,37 +483,37 @@ function saveEditedNoticeComment(comment_id) {
   }
 
   $.ajax({
-      type: "PATCH",
-      url: `${backend_base_url}/article/notice/${article_id}/commentud/${comment_id}/`,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-      },
-      data: formdata,
-      processData: false,
-      contentType: false,
-      dataType: "json",
-      success: function (response) {
-        alert("수정이 완료되었습니다.");
-        saveNoticeCommentEdited();
-        getComments();
-        // window.location.href = `${frontend_base_url}/article_detail.html?article_id=${article_id}`;
-      },
-      error: function (xhr, status, error) {
-        if (xhr.status === 401) {
-          alert("토큰 만료! 재로그인하세요!");
-          handleLogout();
-        } else if (xhr.status === 403) {
-          alert("본인 댓글만 수정 가능합니다.");
-        } else {
-          alert("잘못된 요청입니다.");
-        }
-      },
-    });
-  }
+    type: "PATCH",
+    url: `${backend_base_url}/article/notice/${article_id}/commentud/${comment_id}/`,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
+    data: formdata,
+    processData: false,
+    contentType: false,
+    dataType: "json",
+    success: function (response) {
+      alert("수정이 완료되었습니다.");
+      saveNoticeCommentEdited();
+      getComments();
+      // window.location.href = `${frontend_base_url}/article_detail.html?article_id=${article_id}`;
+    },
+    error: function (xhr, status, error) {
+      if (xhr.status === 401) {
+        alert("토큰 만료! 재로그인하세요!");
+        handleLogout();
+      } else if (xhr.status === 403) {
+        alert("본인 댓글만 수정 가능합니다.");
+      } else {
+        alert("잘못된 요청입니다.");
+      }
+    },
+  });
+}
 
-  function cancelEditedNoticeComment() {
-    location.reload();
-  }
+function cancelEditedNoticeComment() {
+  location.reload();
+}
 
 function onEditComment(articleId, commentId, newContent) {
   const requestUrl = `${backend_base_url}/article/notice/${articleId}/commentud/${commentId}/`;

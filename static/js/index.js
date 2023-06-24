@@ -59,7 +59,7 @@ async function postArticle() {
       },
       body: formdata,
     });
-    console.log(response);
+
     if (response.status == 201) {
       alert("작성완료!");
       window.location.replace("../index.html");
@@ -97,7 +97,6 @@ async function getArticles() {
  * 업데이트 일자 : 2023.06.15
  */
 function articleDetail(articleId) {
-  console.log(articleId);
   window.location.href = `${frontend_base_url}/article_detail.html?article_id=${articleId}`;
 }
 
@@ -110,7 +109,6 @@ function articleDetail(articleId) {
  */
 async function loadArticles() {
   const articles = await getArticles();
-  console.log(articles);
 
   const articleList = $("#article_list");
 

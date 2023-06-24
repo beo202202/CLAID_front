@@ -88,7 +88,6 @@ function putArticle() {
 
   const { song_info, voice, image, song } = elements;
 
-  console.log(song_info);
   song_info.html(
     `<br>
         <input type="text" id="edit_song_info" maxlength="20" placeholder="song_info(20자 이내)" value="${song_info.text()}">`
@@ -417,7 +416,7 @@ async function getComments() {
     }
   );
   const comments_json = await comments.json();
-  console.log(comments_json);
+
   let profile_image = localStorage.getItem("pro");
   $("#comments").empty();
   comments_json.forEach((a) => {
@@ -438,7 +437,7 @@ async function getComments() {
       const payload_parse = JSON.parse(payload);
       let loggedInUserId = payload_parse.user_id;
 
-      if (loggedInUserId === commentAuthorId) {        
+      if (loggedInUserId === commentAuthorId) {
         buttons = `<button class="comment_edit_button_${comment_id}" onclick=commentPut(${comment_id})>수정</button>
         <button class="comment_delete_button_${comment_id}" onclick=onDeleteComment(${comment_id})>삭제</button>
         <button class="comment_save_button_${comment_id}" style="display:none" onclick=saveEditedComment(${comment_id})>저장</button>
@@ -478,7 +477,7 @@ async function postComment() {
   formdata.append("content", content);
 
   let article_id = getArticleIdFromUrl();
-  console.log(article_id);
+
   if (content == "") {
     alert("빈 댓글을 작성할 수 없음");
   } else if (article_id !== null) {
@@ -492,7 +491,7 @@ async function postComment() {
         body: formdata,
       }
     );
-    console.log(response);
+
   } else {
     alert("유효하지 않은 게시물");
   }
@@ -505,11 +504,10 @@ async function postComment() {
  * 최초 작성일: 2023.06.23
  */
 async function commentPut(comment_id) {
-  console.log("눌림");
   // let article_id = getArticleIdFromUrl();
 
   const comment = $(`#comment_${comment_id}`);
-  console.log(comment);
+
   comment.html(`
       <input type="text" id="edit_comment_${comment_id}" maxlength="200" value="${comment.text()}">`);
 
@@ -549,37 +547,37 @@ function saveEditedComment(comment_id) {
   }
 
   $.ajax({
-      type: "PATCH",
-      url: `${backend_base_url}/article/${article_id}/commentud/${comment_id}/`,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-      },
-      data: formdata,
-      processData: false,
-      contentType: false,
-      dataType: "json",
-      success: function (response) {
-        alert("수정이 완료되었습니다.");
-        saveCommentEdited();
-        getComments();
-        // window.location.href = `${frontend_base_url}/article_detail.html?article_id=${article_id}`;
-      },
-      error: function (xhr, status, error) {
-        if (xhr.status === 401) {
-          alert("토큰 만료! 재로그인하세요!");
-          handleLogout();
-        } else if (xhr.status === 403) {
-          alert("본인 댓글만 수정 가능합니다.");
-        } else {
-          alert("잘못된 요청입니다.");
-        }
-      },
-    });
-  }
+    type: "PATCH",
+    url: `${backend_base_url}/article/${article_id}/commentud/${comment_id}/`,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
+    data: formdata,
+    processData: false,
+    contentType: false,
+    dataType: "json",
+    success: function (response) {
+      alert("수정이 완료되었습니다.");
+      saveCommentEdited();
+      getComments();
+      // window.location.href = `${frontend_base_url}/article_detail.html?article_id=${article_id}`;
+    },
+    error: function (xhr, status, error) {
+      if (xhr.status === 401) {
+        alert("토큰 만료! 재로그인하세요!");
+        handleLogout();
+      } else if (xhr.status === 403) {
+        alert("본인 댓글만 수정 가능합니다.");
+      } else {
+        alert("잘못된 요청입니다.");
+      }
+    },
+  });
+}
 
-  function cancelEditedComment() {
-    location.reload();
-  }
+function cancelEditedComment() {
+  location.reload();
+}
 
 function onEditComment(articleId, commentId, newContent) {
   const requestUrl = `${backend_base_url}/article/${articleId}/commentud/${commentId}/`;
