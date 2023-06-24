@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLAID</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src='../static/js/base.js' async></script>
+
+    <script src="static/js/sign.js"></script>
+    <link href="static/css/style.css" rel="stylesheet" />
+    <link href="static/css/header.css" rel="stylesheet" />
+</head>
+
+
+<body>
+    <!-- kakao js -->
+    <script src=" https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js"
+        integrity="sha384-x+WG2i7pOR+oWb6O5GV5f1KN2Ko6N7PTGPS7UlasYWNxZMKQA63Cj/B2lbUmUfuC"
+        crossorigin="anonymous"></script>
+    <script>
+        Kakao.init('13071058148f34624ffc0412a6af5381'); // 사용하려는 앱의 JavaScript 키 입력
+
+        // SDK 초기화 여부를 판단합니다.
+        console.log(Kakao.isInitialized());
+    </script>
+
+    <div class="logo">
+        <brand-name>
+            <!--로고-->
+            <div class="rectangle" onclick="location.href='../index.html'">
+                <div class="out-box">
+                    <div class="inner-box">
+                        STUDIO
+                    </div>
+                </div>
+                <div class="right-side">
+                    CL<span class="highlight">AI</span>D
+                </div>
+            </div>
+        </brand-name>
+    </div>
+    <div class="sign_">
+        <h1>로그인</h1>
+
+        <form>
+            <div class="login_">
+                <div class="sign_input">
+                    <div>
+                        <input type="email" name="email" id="email" placeholder="email">
+                    </div>
+                    <div>
+                        <input type="password" name="password" id="password" placeholder="password"
+                            onkeypress="EnterLogin()">
+                    </div>
+                </div>
+                <div class="sign_btn">
+                    <button type="button" id="login_btn" onclick="handleLogin()">login</button>
+                </div>
+                <div class="signup_a">
+                    <a href="signup.html">회원가입</a>
+                </div>
+
+                <hr style="border: solid 1px lightgray; margin-top: 50px; margin-bottom: 40px;" />
+
+                <div class="sns_login">
+                    <a id="kakao-login-btn" href="javascript:loginWithKakao()">
+                        <img src="../static/img/kakao_login_large_wide.png" class="kakao-login-img" alt="카카오 로그인 버튼" />
+                    </a>
+                    <a id="kakao-login-btn" href="javascript:loginWithGoogle()">
+                        <img src="../static/img/btn_google_signin_dark_normal_web@2x.png" class="kakao-login-img"
+                            alt="구글 로그인 버튼" />
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

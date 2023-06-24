@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f7f7f7;
+}
+
+/*logo*/
+.logo {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/*회원가입*/
+#send_mail {
+    text-align: center;
+    width: 249px;
+    font-size: 15px;
+    background-color: green;
+
+    color: white;
+    font-weight: 400;
+}
+
+.sign_btn {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.sign_btn button {
+    text-align: center;
+    width: 249px;
+    font-size: 20px;
+    background-color: rgb(83, 10, 219);
+    border-color: rgb(83, 10, 219);
+    color: white;
+    font-weight: 400;
+}
+
+.sign_ {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 440px;
+    height: 600px;
+    border: solid 4px black;
+    background-color: white;
+}
+
+.signup_a {
+    margin-bottom: 50px;
+}
+
+/*로그인*/
+.login_ {
+    text-align: center;
+}
+
+.kakao-login-img {
+    margin-top: 10px;
+    width: 60%;
+}
+
+.sign_input {
+    /*div 가운데 정렬*/
+    text-align: center;
+}
+
+.sign_input div {
+    margin: 30px;
+}
+
+.sign_input input {
+    font-size: 120%;
+    text-align: center;
+    border-color: rgb(83, 10, 219);
+}
