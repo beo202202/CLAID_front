@@ -14,15 +14,15 @@ if (!localStorage.getItem('access_token')) {
   // code가 있다면 JWT(access, refresh) 가져오기
   if (code) {
     if (state) {
-      alert("네이버 로그인");
+      // alert("네이버 로그인");
       getNaverJWT(code, state);
     } else {
-      alert("카카오 로그인");
+      // alert("카카오 로그인");
       getKakaoJWT(code);
     }
     // 구글 토큰이 있다면 JWT(access, refresh) 가져오기
   } else if (google_token) {
-    alert("구글 로그인");
+    // alert("구글 로그인");
     getGoogleJWT(google_token);
   }
 }
@@ -87,7 +87,7 @@ async function getGoogleJWT(google_token) {
   });
   response_json = await response.json();
   setJWT(response_json);
-  alert('jwt토큰 발행')
+  // alert('jwt토큰 발행')
   window.location.replace(`../index.html`);
 
 }
