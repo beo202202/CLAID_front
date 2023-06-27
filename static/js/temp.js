@@ -1,10 +1,11 @@
+/**
+ * 작성자 : 이준영
+ * 내용 : JWT Token이 없고 kakao_code를 받아왔다면 JWT Token 발급 받기
+ * 최초 작성일 : 2023.06.14
+ * 수정자 : 이준영
+ * 수정 내용 : else 추가
+ */
 if (!localStorage.getItem('access_token')) {
-  /**
-   * 작성자 : 이준영
-   * 내용 : JWT Token이 없고 kakao_code를 받아왔다면 JWT Token 발급 받기
-   * 최초 작성일 : 2023.06.14
-   */
-  // 현재 페이지의 URL에서 쿼리 매개변수 추출
   let urlParams = new URLSearchParams(window.location.search);
   let code = urlParams.get('code');
   let state = urlParams.get("state");
@@ -25,6 +26,8 @@ if (!localStorage.getItem('access_token')) {
     // alert("구글 로그인");
     getGoogleJWT(google_token);
   }
+} else {
+  window.location.replace(`../index.html`);
 }
 
 async function setJWT(response) {
@@ -49,6 +52,7 @@ async function setJWT(response) {
       .join("")
   );
   localStorage.setItem("payload", jsonPayload);
+  checkAccessToken();
   // window.history.back();
 
   window.location.replace(`../index.html`);
@@ -60,7 +64,7 @@ async function getKakaoJWT(kakao_code) {
    * 내용 : kakao_code를 보내서 access, refresh JWT Token을 받아오는 함수
    * 최초 작성일 : 2023.06.14
    */
-  fetch(`${backend_base_url}/user/kakao/login/callback/?code=${kakao_code}`)
+  await fetch(`${backend_base_url}/user/kakao/login/callback/?code=${kakao_code}`)
     .then(response => response.json())
     .then(data => {
       setJWT(data);
@@ -92,3 +96,18 @@ async function getGoogleJWT(google_token) {
 
 }
 
+/*
+* 작성자 : 이준영
+* 내용 : access_token이 underfined 일때 오류 해결하기
+* 최초 작성일 : 2023.06.28
+*/
+async function checkAccessToken() {
+  let access_token = await localStorage.getItem('access_token');
+  if (access_token == null || '' || undefined) {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("payload");
+    alert("잘못된 로그인입니다.")
+    window.location.replace(`../index.html`);
+  }
+}
