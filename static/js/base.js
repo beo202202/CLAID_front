@@ -1,6 +1,5 @@
 $(document).on("headerLoaded", function () {
     loginChanger();
-    showPayload()
 });
 
 
@@ -48,33 +47,13 @@ function handleLogout() {
 function loginChanger() {
     var access_token = localStorage.getItem('access_token');
     if (access_token) {
-        $('#login_container').hide();
+        // alert('login-state');
+        $('#login-btn').hide();
+        $('#logout-btn').show();
+        $('#profile-btn').show();
     } else {
-        $('#logged_in_container').hide();
-        $('#logged_out').hide();
+        $('#logout-btn').hide();
+        $('#profile-btn').hide();
+        $('#login-btn').show();
     }
 };
-
-/**
- * 작성자 : 공민영
- * 내용 : 닉네임 가져와서 보여줌
- * 최초 작성일 : 2023.06.15
- * 수정자 : 이준영
- * 수정내용 : 페이로드가 없을 때 오류 뿜뿜 수정
- * showName() > showPayload()로 변경
- * 업데이트 일자 : 2023.06.17
- * 수정자 : 마동휘
- * 수정내용 : 페이로드 변수수정(닉네임을 못받아와서 출력이 안됬음)
- * 업데이트 일자 : 2023.06.19
- * 수정자 : 이준영
- * 수정내용 : base.js로 통합 및 header 로딩 후 실행되도록 변경
- * 업데이트 일자 : 2023.06.29
- */
-async function showPayload() {
-    const payload = localStorage.getItem("payload");
-    if (payload) {
-        const payload_parse = JSON.parse(payload);
-
-        $("#intro").text(payload_parse.nickname);
-    }
-}
