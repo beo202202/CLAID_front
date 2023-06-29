@@ -1,35 +1,41 @@
-const searchInput = document.getElementById('search-input');
-const searchBtn = document.getElementById('search-btn');
-const searchResults = document.getElementById('search-results');
+$(document).ready(function() {
+  // 검색 버튼 클릭 이벤트 처리
+  $("#search-btn").click(function() {
+    var query = $("#search-input").val();
+    searchArticles(query);
+  });
 
-searchBtn.addEventListener('click', () => {
-    const query = searchInput.value.trim();
-    if (query !== '') {
-        searchArticles(query);
-    }
-});
+  // 검색 요청 함수
+  function searchArticles(query) {
+    $.ajax({
+      url: "http://localhost:8000/article/search/",
+      type: "GET",
+      data: { q: query },
+      success: function(data) {
+        displaySearchResults(data);
+      },
+      error: function() {
+        $("#search-results").empty().append("<p>검색 결과를 가져오지 못했습니다.</p>");
+      }
+    });
+  }
 
-function searchArticles(query) {
-    fetch(`/api/articles/?q=${query}`)
-        .then(response => response.json())
-        .then(data => {
-            // 검색 결과를 처리하는 코드 작성
-            displayResults(data);
-        })
-        .catch(error => console.error(error));
-}
-
-function displayResults(results) {
-    searchResults.innerHTML = '';
+  // 검색 결과 표시 함수
+  function displaySearchResults(results) {
+    var resultsContainer = $("#search-results");
+    resultsContainer.empty();
 
     if (results.length === 0) {
-        searchResults.innerHTML = '<p>검색 결과가 없습니다.</p>';
-        return;
+      resultsContainer.append("<p>검색 결과가 없습니다.</p>");
+    } else {
+      results.forEach(function(result) {
+        var resultItem = $("<div class='search-result'>");
+        var articleURL = "article_detail.html?article_id=" + result.id;
+        var titleLink = $("<a>").text(result.song_info).attr("href", articleURL);
+        resultItem.append("<h3>").append(titleLink);
+        resultItem.append("<p>" + result.user.nickname + "</p>");
+        resultsContainer.append(resultItem);
+      });
     }
-
-    results.forEach(result => {
-        const articleDiv = document.createElement('div');
-        articleDiv.innerHTML = `<h3>${result.title}</h3><p>${result.content}</p>`;
-        searchResults.appendChild(articleDiv);
-    });
-}
+  }
+})
