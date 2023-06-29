@@ -59,7 +59,7 @@ async function postArticle() {
       },
       body: formdata,
     });
-    console.log(response);
+
     if (response.status == 201) {
       alert("작성완료!");
       window.location.replace("../index.html");
@@ -77,10 +77,12 @@ async function postArticle() {
  * 작성자 : 공민영
  * 내용 : 게시글 가져오기
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 수정자 : 이준영
+ * 수정 내용 : 하드 코딩 되어 있는 url을 backend_base_url로 수정
+ * 업데이트 일자 : 2023.06.28
  */
 async function getArticles() {
-  const response = await fetch("http://127.0.0.1:8000/article/");
+  const response = await fetch(`${backend_base_url}/article/`);
 
   if (response.status == 200) {
     const response_json = await response.json();
@@ -97,7 +99,6 @@ async function getArticles() {
  * 업데이트 일자 : 2023.06.15
  */
 function articleDetail(articleId) {
-  console.log(articleId);
   window.location.href = `${frontend_base_url}/article_detail.html?article_id=${articleId}`;
 }
 
@@ -110,7 +111,6 @@ function articleDetail(articleId) {
  */
 async function loadArticles() {
   const articles = await getArticles();
-  console.log(articles);
 
   const articleList = $("#article_list");
 
@@ -145,7 +145,7 @@ async function loadArticles() {
     const articleImage = $("<img>").addClass("card_img_top");
     const articleImageOverlay = $("<img>").addClass("card_img_overlay").attr("src", "../static/img/play.PNG");
     if (article.article_image) {
-      articleImage.attr("src", `${backend_base_url}${article.article_image}/`);
+      articleImage.attr("src", `${backend_base_url}${article.article_image}`);
       articleImage.after(articleImageOverlay);
     } else {
       articleImage.attr("src", "../static/img/default.PNG");

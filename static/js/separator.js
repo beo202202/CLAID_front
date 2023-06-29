@@ -38,26 +38,18 @@ async function separator() {
             $('.vocals-container').show();
             $('.accompaniment-container').show();
         } else if (response.status === 400) {
-            console.log('파일 업로드 실패');
-            console.log('Bad Request: 잘못된 요청입니다.');
-            alert('잘못된 요청입니다.');
+            alert('Bad Request, 잘못된 요청입니다.');
         } else if (response.status === 401) {
-            console.log('파일 업로드 실패');
-            console.log('Unauthorized: 인증되지 않은 요청입니다.');
             alert('토큰 만료! 재로그인해주세요!');
             handleLogout()
             window.location.href = '/login.html';
         } else if (response.status === 500) {
-            console.log('파일 업로드 실패');
-            console.log('Internal Server Error: 서버 내부 오류가 발생했습니다.');
             alert('서버 내부 오류가 발생했습니다. 관리자에게 문의해주세요.');
         } else {
-            console.log('파일 업로드 실패');
-            console.log('Unknown Error: 알 수 없는 오류가 발생했습니다.');
             alert('알 수 없는 오류가 발생했습니다. 관리자에게 문의해주세요.');
         }
     } catch (error) {
-        console.log(error);
+        alert(error);
     } finally {
         $('#loadingSpinner').hide();
     }

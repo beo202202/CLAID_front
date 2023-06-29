@@ -6,7 +6,9 @@ window.onload = () => {
  * 작성자 : 공민영
  * 내용 : 회원가입 버튼 클릭시 인증이메일 전송
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 수정자 : 이준영
+ * 수정 내용 : 하드 코딩 되어 있는 url을 backend_base_url로 수정
+ * 업데이트 일자 : 2023.06.28
  */
 async function saveMail() {
     const nickname = document.getElementById("nickname").value;
@@ -14,12 +16,9 @@ async function saveMail() {
     const password = document.getElementById("password").value;
     const password_check = document.getElementById("password_check").value;
 
-
     const error = document.getElementById("error");
 
-    console.log(nickname, email, password);
-
-    const response = await fetch('http://127.0.0.1:8000/user/signup/', {
+    const response = await fetch(`${backend_base_url}/user/signup/`, {
         headers: {
             'content-type': 'application/json',
         },
@@ -30,12 +29,10 @@ async function saveMail() {
             "password": password,
         })
     })
-    console.log(response);
 
     // 에러메시지
     const response_json = await response.json();
     const err = response_json.message;
-    console.log(err);
 
     /*비밀번호 확인*/
     if (password != password_check) {
@@ -56,15 +53,15 @@ async function saveMail() {
  * 작성자 : 공민영
  * 내용 : 로그인 버튼 함수
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 수정자 : 이준영
+ * 수정 내용 : 하드 코딩 되어 있는 url을 backend_base_url로 수정
+ * 업데이트 일자 : 2023.06.28
  */
 async function handleLogin() {
-    console.log("handleLogin()");
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    console.log(email, password)
-
-    const response = await fetch('http://127.0.0.1:8000/user/login/', {
+    console.log(backend_base_url);
+    const response = await fetch(`${backend_base_url}/user/login/`, {
         headers: {
             'content-type': 'application/json',
         },
@@ -74,12 +71,9 @@ async function handleLogin() {
             "password": password
         })
     })
-    console.log(response)
     if (response.status == 200) {
         //response를 json화해서 access,refresh 가져옴
         const response_json = await response.json();
-        console.log(response_json);
-
 
         localStorage.setItem("access_token", response_json.access);
         localStorage.setItem("refresh_token", response_json.refresh);
@@ -94,7 +88,6 @@ async function handleLogin() {
         localStorage.setItem("payload", jsonPayload);
         const payload = localStorage.getItem("payload");
         const is_active = JSON.parse(payload).is_active;
-        console.log("is_active", is_active);
         if (is_active) {
             alert("환영합니다.");
             window.location.replace('index.html');
@@ -181,7 +174,6 @@ async function loginWithGoogle() {
         const scope =
             "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
         const param = `scope=${scope}&include_granted_scopes=true&response_type=token&state=pass-through value&prompt=consent&client_id=${google_id}&redirect_uri=${redirect_uri}`;
-        console.log(redirect_uri)
         window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?${param}`;
     } else {
         alert("이미 로그인 중입니다!");

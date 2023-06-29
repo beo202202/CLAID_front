@@ -65,7 +65,6 @@ async function getArticles() {
 //  * 업데이트 일자 : 2023.06.15
 //  */
 async function postArticle() {
-  console.log("게시글 작성 눌림");
   const title = document.getElementById("title").value;
   // CKEditor 인스턴스를 가져옵니다.
   var content = CKEDITOR.instances.content.getData();
@@ -93,7 +92,6 @@ async function postArticle() {
       },
       body: formdata,
     });
-    console.log(response);
     if (response.status == 201) {
       alert("작성완료!");
       window.location.replace("../notice.html");
@@ -114,7 +112,6 @@ async function postArticle() {
  * 업데이트 일자 : 2023.06.15
  */
 function articleDetail(articleId) {
-  console.log(articleId);
   window.location.href = `${frontend_base_url}/notice_detail.html?article_id=${articleId}`;
 }
 
