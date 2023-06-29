@@ -15,6 +15,6 @@ async function loadProfile() {
   const nickname = document.getElementById("user-nickname");
   const profile_image = document.getElementById("image_profile");
 
-  nickname.innerText = `닉네임: ${payload_parse.nickname}`;
+  nickname.innerText = `${payload_parse.nickname}`;
   profile_image.src = payload_parse.profile_image;
 }

@@ -13,15 +13,24 @@ body {
   margin-top: 10px;
 }
 
-.search_btn {
+.search_btn1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   color: rgb(83, 10, 219);
   border: solid 1px;
+  text-align: center;
+  text-decoration: none; /* 밑줄 스타일 제거 */
+  font-size: 20px;
+  flex: 1; 
+  margin-right: 10px;
 }
 
 .search {
   color: gray;
   border: solid 1px;
+  flex: 1;
 }
 
 .search_btn:hover {
