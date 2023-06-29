@@ -6,84 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
     <link href="static/css/header.css" rel="stylesheet" />
 </head>
 
 <body>
     <header id="header">
-        <div>
-            <brand-name>
-                <!--로고-->
-                <div class="rectangle" onclick="location.href='../index.html'">
-                    <div class="out-box">
-                        <div class="inner-box">
-                            STUDIO
-                        </div>
-                    </div>
-                    <div class="right-side">
-                        CL<span class="highlight">AI</span>D
-                    </div>
-                </div>
-            </brand-name>
-        </div>
-        <div class="main_">
-            <div class="main_nav">
-                <!--로그인 후 버튼들-->
-                <div class="nav_">
-                    <div class="nav_sign" id="logged_in_container">
-                        <div class="href_a">
-
-                            <div class="sign_a" id="article_admin">
-                                <a href="separator.html">음원분리</a>
-                            </div>
-
-                            <div class="sign_a" id="article_admin">
-                                <a href="notice.html">방법공유</a>
-                            </div>
-
-                            <div class="sign_a" id="article_admin">
-                                <a href="index.html">ai노래자랑</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+        <nav class="navbar">
+            <div class="navbar__logo">
+                <a href="../index.html"><i class="fa-solid fa-gamepad"></i>
+                    CL<span>AI</span>D</a>
+            </div>
+            <div class="navbar__menu">
+                <li><a href="index.html"><i class="fa-solid fa-music"></i> 자랑</a></li>
+                <li><a href="notice.html"><i class="fa-solid fa-book"></i> FAQ</a></li>
+                <li><a href="separator.html"><i class="fa-brands fa-deezer"></i> 음원분리</a></li>
             </div>
 
-            <div class="search_div">
-                <input class="search" type="search" placeholder="search">
-                <button class="search_btn" type="submit">search</button>
-            </div>
+            <ul class="navbar__icons">
+                <li id="login-btn"><a href="login.html"><i class="fa-solid fa-right-to-bracket"></i> 로그인</a></li>
+                <li id="logout-btn" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> 로그아웃
+                </li>
+                <li id="profile-btn"><a href="profile.html"><i class="fa-solid fa-id-card"></i> 프로필</a></li>
+                <li><a href="search.html"><i class="fa-solid fa-magnifying-glass"></i> 검색</a></li>
+            </ul>
 
-            <div class="main_in">
-                <!--로그인 전 버튼들-->
-                <div class="nav_in">
-                    <div class="nav_sign" id="login_container">
-                        <div class="href_in">
-                            <div class="sign_a">
-                                <a href="signup.html">회원가입</a>
-                            </div>
-                            <div class="sign_a">
-                                <a href="login.html">로그인</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--로그인 후 보이는 로그아웃-->
-                <div class="intro">
-                    <div class="nav_sign" id="logged_out">
-                        <div class="sign_out">
-                            <button type="button" onclick="handleLogout()">logout</button>
-                        </div>
-                    </div>
-                    <a href="profile.html">
-                        <div id="intro"></div>
-                    </a>
-                </div>
-            </div>
-        </div>
+            <a href="#" class="navbar__toogleBtn">
+                <i class="fa fa-bars"></i>
+            </a>
+        </nav>
     </header>
 </body>
 

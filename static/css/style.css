@@ -1,17 +1,10 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
-    background-color: #f7f7f7;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    background-color: var(--background-color2);
 }
 
-/*logo*/
-.logo {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-top: 20px;
-}
 
 /*회원가입*/
 #send_mail {
@@ -51,8 +44,18 @@ body {
     background-color: white;
 }
 
-.signup_a {
+.signup_ a {
     margin-bottom: 50px;
+    color: black;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.signup_a a {
+    margin-bottom: 50px;
+    color: black;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 /*로그인*/
@@ -60,9 +63,21 @@ body {
     text-align: center;
 }
 
-.kakao-login-img {
+.google-login-img {
     margin-top: 10px;
-    width: 60%;
+    width: 82%;
+    height: 54px;
+}
+
+.LoginPage_kkoLogin button {
+    margin: 20px;
+    width: 80%;
+    height: 50px;
+    font-size: 1.2em;
+    background-color: var(--kakao-color);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
 
 .sign_input {
