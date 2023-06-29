@@ -1,46 +1,8 @@
 window.onload = () => {
   // 게시글 가져오기
   loadArticles();
-  showPayload();
   pagination();
 };
-
-/**
- * 작성자 : 공민영
- * 내용 : 닉네임 가져와서 보여줌
- * 최초 작성일 : 2023.06.15
- * 수정자 : 이준영
- * 수정내용 : 페이로드가 없을 때 오류 뿜뿜 수정
- * showName() > showPayload()로 변경
- * 업데이트 일자 : 2023.06.17
- * 수정자 : 마동휘
- * 수정내용 : 페이로드 변수수정(닉네임을 못받아와서 출력이 안됬음)
- * 업데이트 일자 : 2023.06.19
- */
-async function showPayload() {
-  const payload = localStorage.getItem("payload");
-  if (payload) {
-    const payload_parse = JSON.parse(payload);
-
-    $("#intro").text(payload_parse.nickname);
-  }
-}
-
-// /**
-//  * 작성자 : 공민영
-//  * 내용 : 로그인 로그아웃 시 버튼 바꾸기
-//  * 최초 작성일 : 2023.06.15
-//  * 업데이트 일자 : 2023.06.15
-//  */
-// document.addEventListener("DOMContentLoaded", function () {
-//   var access_token = localStorage.getItem("access_token");
-//   if (access_token) {
-//     document.getElementById("login_container").style.display = "none";
-//   } else {
-//     document.getElementById("logged_in_container").style.display = "none";
-//     document.getElementById("logged_out").style.display = "none";
-//   }
-// });
 
 /**
  * 작성자 : 공민영
@@ -126,45 +88,45 @@ async function loadArticles() {
   const articles = await getArticles();
   console.log(articles);
   // 비동기 작업이 완료된 후에 실행되는 콜백 함수
-  pagination(function(pagination) {
+  pagination(function (pagination) {
 
-  const articleList = $("#notice_list");
+    const articleList = $("#notice_list");
 
-  articles.forEach((article) => {
-    const newListCol = $("<div>")
-      .addClass("list_col")
-      .attr("onclick", `articleDetail(${article.id})`);
-    const newList = $("<div>").addClass("list").attr("id", article.id);
-    newListCol.append(newList);
+    articles.forEach((article) => {
+      const newListCol = $("<div>")
+        .addClass("list_col")
+        .attr("onclick", `articleDetail(${article.id})`);
+      const newList = $("<div>").addClass("list").attr("id", article.id);
+      newListCol.append(newList);
 
-    const newListLi = $("<li>").addClass("list_li");
-    newListCol.append(newListLi);
+      const newListLi = $("<li>").addClass("list_li");
+      newListCol.append(newListLi);
 
-    const newListUl = $("<ul>").addClass("list_ul");
-    newListLi.append(newListUl);
+      const newListUl = $("<ul>").addClass("list_ul");
+      newListLi.append(newListUl);
 
-    const newListId = $("<li>").addClass("list_id").text(article.id);
-    newListUl.append(newListId);
+      const newListId = $("<li>").addClass("list_id").text(article.id);
+      newListUl.append(newListId);
 
-    const newListTitle = $("<li>").addClass("list_title").text(article.title);
-    newListUl.append(newListTitle);
+      const newListTitle = $("<li>").addClass("list_title").text(article.title);
+      newListUl.append(newListTitle);
 
-    const newListUpdated = $("<li>")
-      .addClass("list_updated")
-      .text(timeago(article.updated_at));
-    newListUl.append(newListUpdated);
+      const newListUpdated = $("<li>")
+        .addClass("list_updated")
+        .text(timeago(article.updated_at));
+      newListUl.append(newListUpdated);
 
-    const newListNickname = $("<li>")
-      .addClass("list_nickname")
-      .text(article.user.nickname);
-    newListUl.append(newListNickname);
+      const newListNickname = $("<li>")
+        .addClass("list_nickname")
+        .text(article.user.nickname);
+      newListUl.append(newListNickname);
 
-    const newListHits = $("<li>").addClass("hits").text(article.hits);
-    newListUl.append(newListHits);
+      const newListHits = $("<li>").addClass("hits").text(article.hits);
+      newListUl.append(newListHits);
 
-    articleList.append(newListCol);
+      articleList.append(newListCol);
+    });
   });
-});
 }
 
 async function pagination(callback) {
@@ -243,28 +205,28 @@ async function pagination(callback) {
 
   //페이지네이션 그룹 표시 함수
   function displayPage(num) {
-      //페이지네이션 번호 감추기
+    //페이지네이션 번호 감추기
     for (nb of numberBtn) {
       nb.style.display = 'none';
     }
-    let totalpageCount = Math.ceil(pageCount/maxPageNum);
+    let totalpageCount = Math.ceil(pageCount / maxPageNum);
 
     let pageArr = [...numberBtn];
-    let start = num*maxPageNum;
-    let end = num+maxPageNum;
+    let start = num * maxPageNum;
+    let end = num + maxPageNum;
     let pageListArr = pageArr.slice(start, end);
 
-    for(let item of pageListArr) {
+    for (let item of pageListArr) {
       item.style.display = 'block';
     }
 
-    if(pageActiveIdx == 0) {
+    if (pageActiveIdx == 0) {
       prevPageBtn.style.display = 'none';
     } else {
       prevPageBtn.style.display = 'block';
     }
 
-    if(pageActiveIdx == totalpageCount - 1) {
+    if (pageActiveIdx == totalpageCount - 1) {
       nextPageBtn.style.display = 'none';
     } else {
       nextPageBtn.style.display = 'block';
@@ -273,15 +235,15 @@ async function pagination(callback) {
   }
   displayPage(0);
 
-  nextPageBtn.addEventListener('click',()=>{
-    let nextPageNum = pageActiveIdx*maxPageNum+maxPageNum;
+  nextPageBtn.addEventListener('click', () => {
+    let nextPageNum = pageActiveIdx * maxPageNum + maxPageNum;
     displayRow(nextPageNum)
     ++pageActiveIdx;
     displayPage(pageActiveIdx);
   })
 
-  prevPageBtn.addEventListener('click',()=>{
-    let nextPageNum = pageActiveIdx*maxPageNum-maxPageNum;
+  prevPageBtn.addEventListener('click', () => {
+    let nextPageNum = pageActiveIdx * maxPageNum - maxPageNum;
     displayRow(nextPageNum)
     --pageActiveIdx;
     displayPage(pageActiveIdx);

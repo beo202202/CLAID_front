@@ -3,10 +3,10 @@ $(document).on("headerLoaded", function () {
 });
 
 
-// const frontend_base_url = "http://127.0.0.1:5500"
-// const backend_base_url = "http://127.0.0.1:8000"
-const frontend_base_url = "https://claid.kr"
-const backend_base_url = "https://cdn.claid.kr"
+const frontend_base_url = "http://127.0.0.1:5500"
+const backend_base_url = "http://127.0.0.1:8000"
+// const frontend_base_url = "https://claid.kr"
+// const backend_base_url = "https://cdn.claid.kr"
 
 /**
  * 작성자 : 이준영
@@ -47,9 +47,13 @@ function handleLogout() {
 function loginChanger() {
     var access_token = localStorage.getItem('access_token');
     if (access_token) {
-        $('#login_container').hide();
+        // alert('login-state');
+        $('#login-btn').hide();
+        $('#logout-btn').show();
+        $('#profile-btn').show();
     } else {
-        $('#logged_in_container').hide();
-        $('#logged_out').hide();
+        $('#logout-btn').hide();
+        $('#profile-btn').hide();
+        $('#login-btn').show();
     }
 };

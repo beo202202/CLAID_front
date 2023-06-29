@@ -1,8 +1,8 @@
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 20px;
-  background-color: #f7f7f7;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  background-color: var(--background-color2);
 }
 
 /*헤더부분임*/
@@ -21,9 +21,9 @@ body {
   color: rgb(83, 10, 219);
   border: solid 1px;
   text-align: center;
-  text-decoration: none; /* 밑줄 스타일 제거 */
+  text-decoration: none;
   font-size: 20px;
-  flex: 1; 
+  flex: 1;
   margin-right: 10px;
 }
 
