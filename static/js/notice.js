@@ -2,6 +2,7 @@ window.onload = () => {
   // 게시글 가져오기
   loadArticles();
   showPayload();
+  pagination();
 };
 
 /**
@@ -25,21 +26,21 @@ async function showPayload() {
   }
 }
 
-/**
- * 작성자 : 공민영
- * 내용 : 로그인 로그아웃 시 버튼 바꾸기
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
- */
-document.addEventListener("DOMContentLoaded", function () {
-  var access_token = localStorage.getItem("access_token");
-  if (access_token) {
-    document.getElementById("login_container").style.display = "none";
-  } else {
-    document.getElementById("logged_in_container").style.display = "none";
-    document.getElementById("logged_out").style.display = "none";
-  }
-});
+// /**
+//  * 작성자 : 공민영
+//  * 내용 : 로그인 로그아웃 시 버튼 바꾸기
+//  * 최초 작성일 : 2023.06.15
+//  * 업데이트 일자 : 2023.06.15
+//  */
+// document.addEventListener("DOMContentLoaded", function () {
+//   var access_token = localStorage.getItem("access_token");
+//   if (access_token) {
+//     document.getElementById("login_container").style.display = "none";
+//   } else {
+//     document.getElementById("logged_in_container").style.display = "none";
+//     document.getElementById("logged_out").style.display = "none";
+//   }
+// });
 
 /**
  * 작성자 : 공민영
@@ -124,8 +125,11 @@ function articleDetail(articleId) {
  * 업데이트 일자: 2023.06.20
  */
 async function loadArticles() {
+
   const articles = await getArticles();
   console.log(articles);
+  // 비동기 작업이 완료된 후에 실행되는 콜백 함수
+  pagination(function(pagination) {
 
   const articleList = $("#notice_list");
 
@@ -163,4 +167,126 @@ async function loadArticles() {
 
     articleList.append(newListCol);
   });
+});
+}
+
+async function pagination(callback) {
+  const article = [/* 비동기 작업 결과 */]
+  // 작업이 완료되면, 콜백 함수를 호출하여 결과를 전달
+  callback(article)
+  const rowsPerPage = 10; //한 페이지에 담을 개수
+  // const rows = await getArticles();
+  const rows = document.querySelectorAll('#ul_table .list_col')
+  // const rows = document.querySelectorAll('list_col')
+  const rowsCount = rows.length;
+  console.log("rows", rows);
+  console.log("rowsCount", rowsCount);
+
+  const pageCount = Math.ceil(rowsCount / rowsPerPage);//page 숫자 만들기 위한 계산 변수
+  const numbers = document.querySelector('#numbers');
+  console.log("numbers", numbers);
+
+  const prevPageBtn = document.querySelector('.pagination .prev')
+  const nextPageBtn = document.querySelector('.pagination .next')
+  //현재 보고있는 페이지그룹 번호
+  let pageActiveIdx = 0;
+  //현재 보고있는 페이지네이션 번호
+  let currentRageNum = 0;
+  //페이지그룹 최대 개수
+  let maxPageNum = 3;
+
+
+  //페이지 갯수에 따라 numbers에 html 생성
+  for (let i = 1; i <= pageCount; i++) {
+    numbers.innerHTML += `<li><a href="">${i}</a></li>`;
+  };
+  const numberBtn = numbers.querySelectorAll('a');
+  console.log(numberBtn)
+
+  //페이지네이션 번호 감추기
+  for (nb of numberBtn) {
+    console.log("nb", nb)
+    nb.style.display = 'none';
+  }
+
+
+  //a(item)를 눌렀을때 할일
+  //몇번을 클릭했는지 알 수 있어야 함
+  numberBtn.forEach((item, index) => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      //숫자를 넘겨주면 그 숫자가 보이게끔
+      displayRow(index);
+    });
+  });
+
+  function displayRow(index) {
+    let start = index * rowsPerPage;
+    let end = start + rowsPerPage;
+    let rowsArray = [...rows];
+    console.log(rowsArray);
+
+    for (ra of rowsArray) {
+      console.log("ra", ra)
+      ra.style.display = 'none';
+    }
+
+    let newRows = rowsArray.slice(start, end);
+    for (nr of newRows) {
+      nr.style.display = "";
+    }
+
+    for (nb of numberBtn) {
+      nb.classList.remove('active');
+    }
+    numberBtn[index].classList.add('active');
+  }
+  displayRow(0);
+
+
+  //페이지네이션 그룹 표시 함수
+  function displayPage(num) {
+      //페이지네이션 번호 감추기
+    for (nb of numberBtn) {
+      nb.style.display = 'none';
+    }
+    let totalpageCount = Math.ceil(pageCount/maxPageNum);
+
+    let pageArr = [...numberBtn];
+    let start = num*maxPageNum;
+    let end = num+maxPageNum;
+    let pageListArr = pageArr.slice(start, end);
+
+    for(let item of pageListArr) {
+      item.style.display = 'block';
+    }
+
+    if(pageActiveIdx == 0) {
+      prevPageBtn.style.display = 'none';
+    } else {
+      prevPageBtn.style.display = 'block';
+    }
+
+    if(pageActiveIdx == totalpageCount - 1) {
+      nextPageBtn.style.display = 'none';
+    } else {
+      nextPageBtn.style.display = 'block';
+    }
+
+  }
+  displayPage(0);
+
+  nextPageBtn.addEventListener('click',()=>{
+    let nextPageNum = pageActiveIdx*maxPageNum+maxPageNum;
+    displayRow(nextPageNum)
+    ++pageActiveIdx;
+    displayPage(pageActiveIdx);
+  })
+
+  prevPageBtn.addEventListener('click',()=>{
+    let nextPageNum = pageActiveIdx*maxPageNum-maxPageNum;
+    displayRow(nextPageNum)
+    --pageActiveIdx;
+    displayPage(pageActiveIdx);
+  })
 }
