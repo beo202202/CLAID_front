@@ -394,7 +394,6 @@ async function getComments() {
     }
   );
   const comments_json = await comments.json();
-  console.log(comments_json)
   let profile_image = localStorage.getItem("pro");
   $("#comments").empty();
   comments_json.forEach((a) => {
@@ -406,7 +405,6 @@ async function getComments() {
     let image = profile_image ? profile_image : default_image;
     let comment_id = a["id"];
     let good = a["good"].length;
-    console.log(good.length)
     const commentAuthorId = a["user"]["id"];
 
     const payload = localStorage.getItem("payload");
