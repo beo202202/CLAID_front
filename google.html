@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>구글 로그인</title>
-    <script type="text/javascript" src='../static/js/base.js' async></script>
-    <script type="text/javascript" src='../static/js/google.js' async></script>
+    <script src='static/js/base.js'></script>
+    <script src='static/js/google.js'></script>
 </head>
+
 <body>
-    
+
     <button onclick="googleloginBtn()">google login</button>
 
     <button class="api-btn" onclick="GoogelUserInfo()">구글아이디 103252496382687018415
@@ -20,16 +22,17 @@
     <div id="unlink">
         <button class="api-btn" onclick="GoogleUnLink()">연결끊기</button>
     </div>
-        <p id="token-result0">gogogo</p>
-        <div>
-            login_type : <input type="text" id="login_type" />
-        </div>
-        <div>
-            access토큰 : <input type="text" id="token-result1" />
-        </div>
-        <div>
-            refresh토큰 : <input type="text" id="token-result2" />
-        </div>
+    <p id="token-result0">gogogo</p>
+    <div>
+        login_type : <input type="text" id="login_type" />
+    </div>
+    <div>
+        access토큰 : <input type="text" id="token-result1" />
+    </div>
+    <div>
+        refresh토큰 : <input type="text" id="token-result2" />
+    </div>
 
 </body>
+
 </html>

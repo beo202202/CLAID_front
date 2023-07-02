@@ -6,7 +6,9 @@ window.onload = () => {
  * 작성자 : 공민영
  * 내용 : 회원가입 버튼 클릭시 인증이메일 전송
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 수정자 : 이준영
+ * 수정 내용 : 하드 코딩 되어 있는 url을 backend_base_url로 수정
+ * 업데이트 일자 : 2023.06.28
  */
 async function saveMail() {
     const nickname = document.getElementById("nickname").value;
@@ -16,7 +18,7 @@ async function saveMail() {
 
     const error = document.getElementById("error");
 
-    const response = await fetch('http://127.0.0.1:8000/user/signup/', {
+    const response = await fetch(`${backend_base_url}/user/signup/`, {
         headers: {
             'content-type': 'application/json',
         },
@@ -51,13 +53,15 @@ async function saveMail() {
  * 작성자 : 공민영
  * 내용 : 로그인 버튼 함수
  * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
+ * 수정자 : 이준영
+ * 수정 내용 : 하드 코딩 되어 있는 url을 backend_base_url로 수정
+ * 업데이트 일자 : 2023.06.28
  */
 async function handleLogin() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-
-    const response = await fetch('http://127.0.0.1:8000/user/login/', {
+    console.log(backend_base_url);
+    const response = await fetch(`${backend_base_url}/user/login/`, {
         headers: {
             'content-type': 'application/json',
         },
@@ -90,27 +94,6 @@ async function handleLogin() {
         }
     } else {
         alert("인증이 완료되지않았거나 가입되지않은 이메일입니다.");
-    }
-}
-
-/**
- * 작성자 : 공민영
- * 내용 : 닉네임 가져와서 보여줌
- * 최초 작성일 : 2023.06.15
- * 수정자 : 이준영
- * 수정내용 : 페이로드가 없을 때 오류 뿜뿜 수정
- * showName() > showPayload()로 변경
- * 업데이트 일자 : 2023.06.17
- * 수정자 : 마동휘
- * 수정내용 : 페이로드 변수수정(닉네임을 못받아와서 출력이 안됬음)
- * 업데이트 일자 : 2023.06.19
- */
-async function showPayload() {
-    const payload = localStorage.getItem("payload");
-    if (payload) {
-        const payload_parse = JSON.parse(payload);
-
-        $("#intro").text(payload_parse.nickname);
     }
 }
 

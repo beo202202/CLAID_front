@@ -1,40 +1,142 @@
 /* header */
-.rectangle {
+:root {
+    --text-color: #f0f4f5;
+    --text-color2: #6527BE;
+    --background-color: #263343;
+    --background-color2: hsl(265, 66%, 85%);
+    /* --background-color2: #f0eada; */
+    --accent-color: #d49466;
+    --kakao-color: #FEE500;
+}
+
+body {
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    background-color: var(--background-color2);
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.navbar {
     display: flex;
-    width: 400px;
-    height: 100px;
-    border: 5px solid black;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-color);
+    padding: 8px 12px;
+    height: 35px;
+    user-select: none;
+}
+
+.navbar__logo {
+    font-family: 'Comic Sans MS', sans-serif;
+    font-size: 24px;
+    color: var(--text-color);
+}
+
+.navbar__logo i {
+    color: var(--accent-color);
+}
+
+.navbar__logo span {
+    color: var(--text-color2);
+}
+
+.navbar__menu {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.navbar__menu li {
+    padding: 8px 12px;
+}
+
+.navbar__menu li:hover {
+    background-color: var(--accent-color);
+    border-radius: 4px;
+}
+
+.navbar__menu li:hover i {
+    color: var(--background-color);
+}
+
+.navbar__menu li:hover a {
+    color: var(--background-color);
+    font-weight: bold;
+}
+
+.navbar__menu i {
+    color: var(--accent-color);
+}
+
+.navbar__icons {
+    list-style: none;
+    color: var(--text-color);
+    display: flex;
+    padding-left: 0;
+}
+
+.navbar__icons li:hover {
+    background-color: var(--accent-color);
+    border-radius: 4px;
     cursor: pointer;
 }
 
-.out-box {
-    width: 50%;
-    background-color: #f5f5f5;
-    padding: 7px;
+.navbar__icons li:hover i {
+    color: var(--background-color);
 }
 
-.inner-box {
-    background-color: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 45px;
-    font-family: 'Arial', sans-serif;
-    padding: 17px;
+.navbar__icons li {
+    padding: 8px 12px;
 }
 
-.right-side {
-    width: 50%;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 45px;
-    font-family: 'Comic Sans MS', sans-serif
+.navbar__icons i {
+    color: var(--accent-color);
 }
 
-.highlight {
-    color: rgb(83, 10, 219);
+.navbar__toogleBtn {
+    display: none;
+    position: absolute;
+    right: 14px;
+    font-size: 24px;
+    color: var(--accent-color);
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+    }
+
+    .navbar__menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar__menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar__icons {
+        display: none;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .navbar__toogleBtn {
+        display: block;
+    }
+
+    .navbar__menu.active,
+    .navbar__icons.active {
+        display: flex;
+    }
 }
