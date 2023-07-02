@@ -394,7 +394,6 @@ async function getComments() {
     }
   );
   const comments_json = await comments.json();
-
   let profile_image = localStorage.getItem("pro");
   $("#comments").empty();
   comments_json.forEach((a) => {
@@ -405,7 +404,7 @@ async function getComments() {
 
     let image = profile_image ? profile_image : default_image;
     let comment_id = a["id"];
-
+    let good = a["good"].length;
     const commentAuthorId = a["user"]["id"];
 
     const payload = localStorage.getItem("payload");
@@ -421,6 +420,20 @@ async function getComments() {
         <button class="comment_save_button_${comment_id}" style="display:none" onclick=saveEditedComment(${comment_id})>저장</button>
         <button class="comment_cancel_button_${comment_id}" style="display:none" onclick=cancelEditedComment(${comment_id})>취소</button>`;
       }
+
+      var loggedInUserIdInGood = false;
+      for (var i = 0; i < a['good'].length; i++) {
+        if (a['good'][i]['id'] === loggedInUserId) {
+          loggedInUserIdInGood = true;
+          break;
+        }
+      }
+
+      if (loggedInUserIdInGood) {
+        like_btns = `<img src='static/img/heart_b_s.png' onclick=commentLike(${comment_id}) class="comment_heart"></img>${good}`;
+      } else {
+        like_btns = `<img src='static/img/heart_s.png' onclick=commentLike(${comment_id}) class="comment_heart"></img>${good}`;
+      }
     }
 
     let temp = `<div class="d-flex">
@@ -431,9 +444,10 @@ async function getComments() {
                         ${buttons}
                         <p id=comment_${comment_id}>${content}</p>
                     </div>
+                    ${like_btns}
                 </div>`;
 
-    let good = a["good"];
+
 
     $("#comments").append(temp);
   });
@@ -596,4 +610,21 @@ function onDeleteComment(commentId) {
     .catch((error) => {
       alert(error.message);
     });
+}
+
+/**
+ * 작성자: 김은수
+ * 내용: 코멘트 좋아요 누르기 & 두번 누르면 취소
+ * 최초 작성일: 2023.06.27
+ */
+async function commentLike(comment_id) {
+    article_id = getArticleIdFromUrl()
+    response = await fetch (`${backend_base_url}/article/${article_id}/commentcr/${comment_id}/good/`,
+    {
+      method: 'POST',
+      headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          }
+    })
+    getComments();
 }
