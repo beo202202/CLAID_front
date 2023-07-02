@@ -3,6 +3,7 @@ window.onload = () => {
   showPayload();
   setButtonVisibility();
   getComments();
+  a();
 };
 
 /**
@@ -491,7 +492,6 @@ async function postComment() {
         body: formdata,
       }
     );
-
   } else {
     alert("유효하지 않은 게시물");
   }
@@ -524,8 +524,12 @@ async function commentPut(comment_id) {
  * 업데이트 일자 : 2023.06.15
  */
 async function saveCommentEdited(comment_id) {
-  const editCommentButton = document.getElementsByClassName(`comment_edit_button_${comment_id}`);
-  const saveCommentButton = document.getElementsByClassName(`comment_save_button_${comment_id}`);
+  const editCommentButton = document.getElementsByClassName(
+    `comment_edit_button_${comment_id}`
+  );
+  const saveCommentButton = document.getElementsByClassName(
+    `comment_save_button_${comment_id}`
+  );
   editCommentButton.style.display = "block";
   saveCommentButton.style.display = "none";
 }
@@ -537,7 +541,7 @@ async function saveCommentEdited(comment_id) {
  */
 function saveEditedComment(comment_id) {
   const editedComment = $(`#edit_comment_${comment_id}`).val();
-  article_id = getArticleIdFromUrl()
+  article_id = getArticleIdFromUrl();
   const formdata = new FormData();
   formdata.append("content", editedComment);
 
@@ -603,7 +607,7 @@ function onEditComment(articleId, commentId, newContent) {
 
 // 댓글 삭제 버튼 클릭 이벤트 핸들러
 function onDeleteComment(commentId) {
-  article_id = getArticleIdFromUrl()
+  article_id = getArticleIdFromUrl();
   const requestUrl = `${backend_base_url}/article/${article_id}/commentud/${commentId}/`;
   fetch(requestUrl, { method: "DELETE" })
     .then((response) => {
@@ -618,4 +622,45 @@ function onDeleteComment(commentId) {
     .catch((error) => {
       alert(error.message);
     });
+}
+
+/**
+ * 작성자 : 왕규원
+ * 내용 : 게시글 좋아요 버튼을 누르면 좋아요 증가
+ * 최초 작성일 : 2023.06.28
+ * 업데이트 일자 : 2023.06.28
+ */
+async function a() {
+  const response = await getArticle(getArticleIdFromUrl());
+
+  $("#goodCount").text(response.good.length);
+  // 좋아요 버튼 요소 가져오기
+  const goodButton = document.getElementById("goodButton");
+
+  // // 좋아요 수 요소 가져오기
+  const goodCount = document.getElementById("goodCount");
+
+  // 버튼 클릭 이벤트 핸들러
+  goodButton.addEventListener("click", () => {
+    let article_id = getArticleIdFromUrl();
+    // 좋아요 요청 보내기
+    fetch(`${backend_base_url}/article/${article_id}/good/`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          a();
+          console.log("좋아요 요청");
+        } else {
+          console.error("좋아요 요청 실패");
+        }
+      })
+
+      .catch((error) => {
+        console.error("네트워크 오류:", error);
+      });
+  });
 }

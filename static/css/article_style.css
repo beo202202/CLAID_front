@@ -91,7 +91,6 @@ body {
   display: flex;
   margin-left: 10px;
   margin-bottom: 10px;
-
 }
 
 .href_in {
@@ -259,7 +258,7 @@ body {
 }
 
 /*index*/
-.mytitle>button:hover {
+.mytitle > button:hover {
   border: 2px solid white;
 }
 
@@ -589,40 +588,40 @@ li {
   margin-top: 10px;
 }
 
-#ul_table>li:first-child>ul>li {
+#ul_table > li:first-child > ul > li {
   background-color: #c9c9c9;
   font-weight: bold;
   text-align: center;
 }
 
-#ul_table>li>ul>li {
+#ul_table > li > ul > li {
   float: left;
   font-size: 10pt;
   border-bottom: 1px solid silver;
   vertical-align: baseline;
 }
 
-#ul_table>li>ul>li:first-child {
+#ul_table > li > ul > li:first-child {
   width: 8%;
 }
 
 /*No 열 크기*/
-#ul_table>li>ul>li:first-child+li {
+#ul_table > li > ul > li:first-child + li {
   width: 51%;
 }
 
 /*제목 열 크기*/
-#ul_table>li>ul>li:first-child+li+li {
+#ul_table > li > ul > li:first-child + li + li {
   width: 19%;
 }
 
 /*작성일 열 크기*/
-#ul_table>li>ul>li:first-child+li+li+li {
+#ul_table > li > ul > li:first-child + li + li + li {
   width: 13%;
 }
 
 /*작성자 열 크기*/
-#ul_table>li>ul>li:first-child+li+li+li+li {
+#ul_table > li > ul > li:first-child + li + li + li + li {
   width: 9%;
 }
 
@@ -635,28 +634,28 @@ li {
   border: 1px solid #ccc;
 }
 
-.list_ul>li:first-child {
+.list_ul > li:first-child {
   width: 8%;
   margin-left: -10px;
 }
 
 /*No 열 크기*/
-.list_ul>li:first-child+li {
+.list_ul > li:first-child + li {
   width: 52.5%;
 }
 
 /*제목 열 크기*/
-.list_ul>li:first-child+li+li {
+.list_ul > li:first-child + li + li {
   width: 20%;
 }
 
 /*작성일 열 크기*/
-.list_ul>li:first-child+li+li+li {
+.list_ul > li:first-child + li + li + li {
   width: 12.5%;
 }
 
 /*작성자 열 크기*/
-.list_ul>li:first-child+li+li+li+li {
+.list_ul > li:first-child + li + li + li + li {
   width: 8%;
   justify-content: center;
 }
@@ -896,3 +895,88 @@ li {
   align-items: center;
   margin: 10%;
 }
+/* 
+.toggle {
+  position: relative;
+  height: 70px;
+  width: 70px;
+  background-color: grey;
+  transform: rotate(-45deg);
+  border-bottom-left-radius: 100px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+.toggle::before,
+.toggle::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50px;
+  background-color: grey;
+}
+.toggle::before {
+  top: -50%;
+  left: 0;
+}
+.toggle::after {
+  right: -50%;
+  top: 0;
+}
+.toggle,
+.toggle::before,
+.toggle:after {
+  transition: all 0.3s linear;
+  transition-delay: 0.15s;
+}
+.toggle.forward,
+.toggle.forward::before,
+.toggle.forward:after {
+  background-color: #eb608c;
+} */
+.circle {
+  position: absolute;
+  left: 7px;
+  top: -28px;
+  height: 55px;
+  width: 55px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+}
+/* 
+.toggle.forward .circle {
+  animation: front 0.3s linear forwards;
+}
+@keyframes front {
+  0% {
+    left: 7px;
+    top: -28px;
+  }
+  50% {
+    top: -1px;
+    left: 17px;
+  }
+  100% {
+    left: 42px;
+    top: 7px;
+  }
+}
+.toggle.reverse .circle {
+  animation: back 0.3s linear forwards;
+}
+@keyframes back {
+  0% {
+    left: 42px;
+    top: 7px;
+  }
+  50% {
+    top: -1px;
+    left: 17px;
+  }
+  100% {
+    left: 7px;
+    top: -28px;
+  }
+} */

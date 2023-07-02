@@ -12,7 +12,8 @@
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/ded5b36a26.js" crossorigin="anonymous"></script>
     <script src="static/js/base.js"></script>
     <script src="static/js/artcle_detail.js"></script>
     <link href="static/css/article_style.css" rel="stylesheet" />
@@ -95,8 +96,28 @@
                     <div>
                         <audio controls class="playback_bar" id="playback_bar" name="media" src="#" />
                     </div>
-                </div>                
+                </div>
             </div>
+            <div class=toggle id="goodButton">
+                <span class="circle"><i class="fa-regular fa-thumbs-up"></i></span>
+                <button id="goodButton"><i class="fa-regular fa-thumbs-up"></i></button>
+                <span id="goodCount">0</span>
+            </div>
+            <!-- <script>
+                const toggle = document.querySelector(".toggle");
+
+                toggle.addEventListener("click", () => {
+                    if (!toggle.classList.contains("forward")) {
+                        toggle.classList.add("forward");
+                        toggle.classList.remove("reverse");
+                    } else {
+                        toggle.classList.add("reverse");
+                        toggle.classList.remove("forward");
+                    }
+                });
+            </script> -->
+
+
             <hr style="border: solid 1px lightgray; margin-bottom: 40px;" />
             <div class="comment_control_box">
                 <section class="mb-5">
@@ -122,7 +143,8 @@
                                         <div class="fw-bold">Commenter Name</div>
                                         <button id="comment_edit_button">수정</button>
                                         <button id="comment_delete_button">삭제</button>
-                                        When I look at the universe and all the ways the universe wants to kill us, I find it hard
+                                        When I look at the universe and all the ways the universe wants to kill us, I
+                                        find it hard
                                         to
                                         reconcile that with statements of beneficence.
                                     </div>
@@ -133,7 +155,8 @@
                                             src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
                                     <div class="ms-3">
                                         <div class="fw-bold">Commenter Name</div>
-                                        When I look at the universe and all the ways the universe wants to kill us, I find it hard
+                                        When I look at the universe and all the ways the universe wants to kill us, I
+                                        find it hard
                                         to
                                         reconcile that with statements of beneficence.
                                     </div>
@@ -144,7 +167,8 @@
                                             src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
                                     <div class="ms-3">
                                         <div class="fw-bold">Commenter Name</div>
-                                        When I look at the universe and all the ways the universe wants to kill us, I find it hard
+                                        When I look at the universe and all the ways the universe wants to kill us, I
+                                        find it hard
                                         to
                                         reconcile that with statements of beneficence.
                                     </div>
