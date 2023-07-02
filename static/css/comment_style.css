@@ -5,6 +5,9 @@
 */
 .d-flex {
   display: flex !important;
+  position:relative;
+  top:10px;
+  bottom: 20px;
 }
 
 .mb-4 {
@@ -59,8 +62,17 @@
   height: 75px;
 }
 
+.comment_heart {
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+}
+
 #comment_post {
-    width: 500px;
+  width: 500px;
+  position: absolute;
+  top: 0;
+  right: 0
 }
 
 #notice_comment_post {
@@ -71,3 +83,4 @@
 #comments {
     margin-top: 50px;
 }
+
