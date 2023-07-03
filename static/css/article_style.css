@@ -935,6 +935,10 @@ li {
   margin: 10%;
 }
 
+.good_control_box{
+  display: flex;
+  justify-content: center;
+}
 .goodButtonCancle {
   display: none;
 }
