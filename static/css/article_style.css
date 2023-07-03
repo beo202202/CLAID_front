@@ -27,6 +27,7 @@ body {
   margin-right: 10px;
 }
 
+/*  */
 .search {
   color: gray;
   border: solid 1px;
@@ -100,7 +101,6 @@ body {
   display: flex;
   margin-left: 10px;
   margin-bottom: 10px;
-
 }
 
 .href_in {
@@ -422,6 +422,15 @@ body {
   text-align: center;
   /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
   flex-wrap: wrap;
+  flex-basis: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.detail_article.preview_image {
+  flex-basis: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 #song_info {
@@ -432,6 +441,7 @@ body {
 }
 
 #song_voice {
+
   width: 400px;
   height: 30px;
   color: rgb(83, 10, 219);
@@ -463,7 +473,8 @@ body {
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 40%;
+  max-width: 600px;
+  width: 90%;
 }
 
 .close {
@@ -500,7 +511,7 @@ body {
   /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
   flex-wrap: wrap;
   width: 650px;
-  height: 700px;
+  height: 750px;
   margin-left: 30%;
   box-shadow: 0px 0px 3px 0px gray;
 }
@@ -871,3 +882,68 @@ li {
   border: none;
   cursor: pointer;
 } */
+
+/* separator */
+
+.nav-section {
+  display: flex;
+}
+
+.separator main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.separator main section {
+  width: 80%;
+  max-width: 80%;
+}
+
+.separator main .description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.separator main .btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.separator .spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: rgb(83, 10, 219);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.separator .output {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10%;
+}

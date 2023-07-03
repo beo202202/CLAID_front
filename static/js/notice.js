@@ -21,6 +21,38 @@ async function getArticles() {
   }
 }
 
+/**
+ * 작성자 : 공민영
+ * 내용 : 토큰 유무 확인
+ * 최초 작성일 : 2023.06.30
+ */
+function isLoggenIn() {
+  const access_token = localStorage.getItem("access_token");
+  if (access_token) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * 작성자: 공민영
+ * 내용: href로 이동하던 게시글작성버튼을 button으로 수정 후 비로그인 사용자가 게시글 작성 버튼 눌렀을 경우 로그인 필요 문구 출력
+ * 최초 작성일: 2023.06.20
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  const createBtn = document.getElementById("create_btn");
+
+  createBtn.addEventListener("click", () => {
+    if (!isLoggenIn()) {
+      alert('게시글 작성을 위해서는 로그인이 필요합니다!');
+    } else {
+      window.location.href = `${frontend_base_url}/notice_create.html`;
+    }
+
+
+  });
+});
+
 //  * 작성자 : 공민영
 //  * 내용 : 게시글 작성하기
 //  * 최초 작성일 : 2023.06.15
@@ -86,7 +118,6 @@ function articleDetail(articleId) {
 async function loadArticles() {
 
   const articles = await getArticles();
-  console.log(articles);
   // 비동기 작업이 완료된 후에 실행되는 콜백 함수
   pagination(function (pagination) {
 
@@ -129,21 +160,26 @@ async function loadArticles() {
   });
 }
 
+/**
+ * 작성자: 공민영
+ * 내용: 방법공유 페이지 페이지네이션
+ * 최초 작성일: 2023.06.29
+ * 수정자: 공민영
+ * 업데이트 일자: 2023.06.20
+ * 수정내용: callback함수 없다는 에러 안뜨게 수정함
+ */
 async function pagination(callback) {
-  const article = [/* 비동기 작업 결과 */]
-  // 작업이 완료되면, 콜백 함수를 호출하여 결과를 전달
-  callback(article)
+  // 작업이 완료되면, 콜백 함수가 존재할 경우에만 해당 코드를 실행
+  if (callback) {
+    const articles = await callback();
   const rowsPerPage = 10; //한 페이지에 담을 개수
   // const rows = await getArticles();
   const rows = document.querySelectorAll('#ul_table .list_col')
   // const rows = document.querySelectorAll('list_col')
   const rowsCount = rows.length;
-  console.log("rows", rows);
-  console.log("rowsCount", rowsCount);
 
   const pageCount = Math.ceil(rowsCount / rowsPerPage);//page 숫자 만들기 위한 계산 변수
   const numbers = document.querySelector('#numbers');
-  console.log("numbers", numbers);
 
   const prevPageBtn = document.querySelector('.pagination .prev')
   const nextPageBtn = document.querySelector('.pagination .next')
@@ -160,11 +196,9 @@ async function pagination(callback) {
     numbers.innerHTML += `<li><a href="">${i}</a></li>`;
   };
   const numberBtn = numbers.querySelectorAll('a');
-  console.log(numberBtn)
 
   //페이지네이션 번호 감추기
   for (nb of numberBtn) {
-    console.log("nb", nb)
     nb.style.display = 'none';
   }
 
@@ -183,10 +217,8 @@ async function pagination(callback) {
     let start = index * rowsPerPage;
     let end = start + rowsPerPage;
     let rowsArray = [...rows];
-    console.log(rowsArray);
 
     for (ra of rowsArray) {
-      console.log("ra", ra)
       ra.style.display = 'none';
     }
 
@@ -202,8 +234,11 @@ async function pagination(callback) {
   }
   displayRow(0);
 
-
-  //페이지네이션 그룹 표시 함수
+/**
+ * 작성자: 공민영
+ * 내용: 페이지네이션 그룹 표시 함수
+ * 최초 작성일: 2023.06.29
+ */
   function displayPage(num) {
     //페이지네이션 번호 감추기
     for (nb of numberBtn) {
@@ -248,4 +283,5 @@ async function pagination(callback) {
     --pageActiveIdx;
     displayPage(pageActiveIdx);
   })
+}
 }

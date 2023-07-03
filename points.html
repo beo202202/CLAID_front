@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>point 관리자</title>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
+
+    <!-- Icon -->
+    <script src="https://kit.fontawesome.com/ded5b36a26.js" crossorigin="anonymous"></script>
+
+    <!-- JavaScript -->
+    <script src="static/js/base.js"></script>
+    <script src="static/js/points.js"></script>
+
+    <!-- CSS -->
+    <link href="static/css/profile.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="user_add_tract">
+        <h1>사용자에게 포인트 지급/차감</h1>
+        <div>
+            <div class="add_tract_input">
+                <div><label for="super_user_email">User Email</label><br><input type="text" id="super_user_email" placeholder="이메일"></div>
+                <div><label for="amount">포인트</label><br><input type="text" id="amount" placeholder="숫자만 입력"></div>
+                <div><label for="reason">이유</label><br><input type="text" id="reason" maxlength="10" placeholder="10자이내"></div>
+            </div>
+            <div class="add_tract_btn">
+                <button onclick="addPoint()">추가하기</button>
+                <button onclick="subtractPoint()">차감하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="user_check">
+        <div class="user_point_check">
+            <h1>사용자 포인트 조회</h1>
+            <div id="point_list"></div>
+        </div>
+
+        <div class="user_history_check">
+            <h1>사용자 포인트 히스토리 조회</h1>
+            <div id="point_history_list"></div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
