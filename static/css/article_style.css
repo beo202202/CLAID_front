@@ -782,6 +782,7 @@ li {
   margin: 10px;
   padding: 5px;
 }
+
 #numbers {
   display: flex;
   margin-left: 10px;
@@ -870,68 +871,3 @@ li {
   border: none;
   cursor: pointer;
 } */
-
-/* separator */
-
-.nav-section {
-  display: flex;
-}
-
-.separator main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 60vh;
-}
-
-.separator main section {
-  width: 80%;
-  max-width: 80%;
-}
-
-.separator main .description {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.separator main .btn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.separator .spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left-color: rgb(83, 10, 219);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-.separator .output {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 10%;
-}
