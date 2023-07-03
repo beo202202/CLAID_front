@@ -427,8 +427,8 @@ async function getComments() {
       }
 
       var loggedInUserIdInGood = false;
-      for (var i = 0; i < a["good"].length; i++) {
-        if (a["good"][i]["id"] === loggedInUserId) {
+      for (var i = 0; i < a['good'].length; i++) {
+        if (a['good'][i]['id'] === loggedInUserId) {
           loggedInUserIdInGood = true;
           break;
         }
@@ -518,12 +518,8 @@ async function commentPut(comment_id) {
  * 업데이트 일자 : 2023.06.15
  */
 async function saveCommentEdited(comment_id) {
-  const editCommentButton = document.getElementsByClassName(
-    `comment_edit_button_${comment_id}`
-  );
-  const saveCommentButton = document.getElementsByClassName(
-    `comment_save_button_${comment_id}`
-  );
+  const editCommentButton = document.getElementsByClassName(`comment_edit_button_${comment_id}`);
+  const saveCommentButton = document.getElementsByClassName(`comment_save_button_${comment_id}`);
   editCommentButton.style.display = "block";
   saveCommentButton.style.display = "none";
 }
@@ -628,7 +624,7 @@ async function commentLike(comment_id) {
   response = await fetch(
     `${backend_base_url}/article/${article_id}/commentcr/${comment_id}/good/`,
     {
-      method: "POST",
+      method: 'POST',
       headers: {
         Authorization: "Bearer " + localStorage.getItem("access_token"),
       },

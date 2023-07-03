@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
   background-color: var(--background-color2);
 }
@@ -26,7 +26,7 @@ body {
   flex: 1;
   margin-right: 10px;
 }
-
+/*  */
 .search {
   color: gray;
   border: solid 1px;
@@ -267,7 +267,7 @@ body {
 }
 
 /*index*/
-.mytitle > button:hover {
+.mytitle>button:hover {
   border: 2px solid white;
 }
 
@@ -597,40 +597,40 @@ li {
   margin-top: 10px;
 }
 
-#ul_table > li:first-child > ul > li {
+#ul_table>li:first-child>ul>li {
   background-color: #c9c9c9;
   font-weight: bold;
   text-align: center;
 }
 
-#ul_table > li > ul > li {
+#ul_table>li>ul>li {
   float: left;
   font-size: 10pt;
   border-bottom: 1px solid silver;
   vertical-align: baseline;
 }
 
-#ul_table > li > ul > li:first-child {
+#ul_table>li>ul>li:first-child {
   width: 8%;
 }
 
 /*No 열 크기*/
-#ul_table > li > ul > li:first-child + li {
+#ul_table>li>ul>li:first-child+li {
   width: 51%;
 }
 
 /*제목 열 크기*/
-#ul_table > li > ul > li:first-child + li + li {
+#ul_table>li>ul>li:first-child+li+li {
   width: 19%;
 }
 
 /*작성일 열 크기*/
-#ul_table > li > ul > li:first-child + li + li + li {
+#ul_table>li>ul>li:first-child+li+li+li {
   width: 13%;
 }
 
 /*작성자 열 크기*/
-#ul_table > li > ul > li:first-child + li + li + li + li {
+#ul_table>li>ul>li:first-child+li+li+li+li {
   width: 9%;
 }
 

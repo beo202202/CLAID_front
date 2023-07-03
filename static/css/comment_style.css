@@ -5,8 +5,8 @@
 */
 .d-flex {
   display: flex !important;
-  position: relative;
-  top: 10px;
+  position:relative;
+  top:10px;
   bottom: 20px;
 }
 
@@ -36,16 +36,16 @@
 }
 
 .form-control {
-  width: 600px;
-  height: 75px;
+   width: 600px;
+   height: 75px;
 }
 
 .comment_btn {
-  margin-top: 20px;
-  height: 50px;
-  margin-top: 20px;
-  margin-left: 10px;
-  height: 50px;
+   margin-top: 20px;
+   height: 50px;
+   margin-top: 20px;
+   margin-left: 10px;
+   height: 50px;
 }
 
 .comment_input {
