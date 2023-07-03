@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>분리 작업</title>
+    <title>Separate</title>
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
+    <link href="https://allfont.net/allfont.css?fonts=comic-sans-ms" rel="stylesheet" type="text/css" />
 
     <!-- Icon -->
     <script src="https://kit.fontawesome.com/ded5b36a26.js" crossorigin="anonymous"></script>
@@ -23,10 +24,18 @@
     <script src="static/js/header.js" defer></script>
     <script src="static/js/base.js"></script>
     <script src="static/js/separator.js"></script>
-    <script src="https://unpkg.com/wavesurfer.js@5.1.0/dist/wavesurfer.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js@5.2.0/dist/wavesurfer.js"></script>
 
     <!-- CSS -->
-    <link href="static/css/article_style.css" rel="stylesheet" />
+    <link href="static/css/style.css" rel="stylesheet" />
+    <script>
+        function downloadAudio(url) {
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = url.split('/').pop();
+            a.click();
+        }
+    </script>
 </head>
 
 <body class="separator body">
@@ -60,7 +69,7 @@
 
                         const wavesurfer = WaveSurfer.create({
                             container: waveformContainer,
-                            waveColor: 'rgb(83, 10, 219)',
+                            waveColor: '#6527BE',
                             progressColor: 'black',
                             responsive: true,
                             barHeight: 1,
@@ -125,30 +134,20 @@
                 <div id="waveform-btn" style="display:none;">
                     <button id="play-button" disabled><i class="bi bi-play-fill"></i></button>
                     <button id="pause-button" disabled><i class="bi bi-pause-fill"></i></button>
-                    <button id="uploadBtn" onclick="separator()" disabled>추출</button>
+                    <button id="uploadBtn" onclick="upload()" disabled>추출</button>
                 </div>
             </article>
         </section>
-        <section class="separator output">
-            <div class="spinner" id="loadingSpinner" style="display: none;">
-            </div>
-            <div class="output-container">
-                <div class="vocals-container" style="display: none;">
-                    <span>vocals</span>
-                    <audio controls id="vocals-audio" style="display: none;"></audio>
-                </div>
-            </div>
-            <div class="output-container">
-                <div class="accompaniment-container" style="display: none;">
-                    <span>accompaniment</span>
-                    <audio controls id="accompaniment-audio" style="display: none;"></audio>
-                </div>
-            </div>
+        <section class="separator result">
+            <article class="separator result-table">
+                <h1>변환된 파일 목록</h1>
+                <div id="file-table"></div>
+                <div id="page-buttons"></div>
+                <span id="timer"></span>
+            </article>
         </section>
-
     </main>
-    <footer class="footer">
-    </footer>
+
 </body>
 
 </html>
