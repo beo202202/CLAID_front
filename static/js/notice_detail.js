@@ -233,7 +233,7 @@ async function saveEdited() {
 async function deleteArticle(articleId) {
   let access_token = localStorage.getItem("access_token");
 
-  if (confirm("삭제하시겠습니까?")) {
+  if (confirm("삭제하시겠습니까? 24시간이 지나지 않은 게시글 삭제시 1000포인트 차감됩니다.")) {
     const response = await fetch(
       `${backend_base_url}/article/notice/${articleId}/`,
       {
