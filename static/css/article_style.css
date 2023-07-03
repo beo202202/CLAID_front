@@ -421,6 +421,15 @@ body {
   text-align: center;
   /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
   flex-wrap: wrap;
+  flex-basis: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.detail_article.preview_image {
+  flex-basis: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 #song_info {
@@ -431,6 +440,7 @@ body {
 }
 
 #song_voice {
+  
   width: 400px;
   height: 30px;
   color: rgb(83, 10, 219);
@@ -462,7 +472,8 @@ body {
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 40%;
+  max-width: 600px;
+  width: 90%;
 }
 
 .close {
