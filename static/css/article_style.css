@@ -26,7 +26,7 @@ body {
   flex: 1;
   margin-right: 10px;
 }
-
+/*  */
 .search {
   color: gray;
   border: solid 1px;
@@ -100,7 +100,6 @@ body {
   display: flex;
   margin-left: 10px;
   margin-bottom: 10px;
-
 }
 
 .href_in {
@@ -511,7 +510,7 @@ body {
   /*화면 너비를 넘어가는 요소들이 다음줄로 내려가게 함*/
   flex-wrap: wrap;
   width: 650px;
-  height: 700px;
+  height: 750px;
   margin-left: 30%;
   box-shadow: 0px 0px 3px 0px gray;
 }
@@ -945,4 +944,16 @@ li {
   justify-content: center;
   align-items: center;
   margin: 10%;
+}
+
+.good_control_box{
+  display: flex;
+  justify-content: center;
+}
+.goodButtonCancle {
+  display: none;
+}
+
+.goodButtonCancle.active {
+  display: flex;
 }
