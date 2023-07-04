@@ -190,7 +190,11 @@ async function loadPointHistoryList() {
         const newList = $("<div>").addClass("point_list").attr("id", pointHistory.id);
         newListCol.append(newList);
 
-        const newListEmail = $("<li>").addClass("list_email").text(pointHistory.user_email);
+        const newListEmail = $("<li>").addClass("list_email").text(pointHistory.user_email)
+        .click(function() {
+            const clickedEmail = $(this).text();
+            $("#super_user_email").val(clickedEmail);
+          });
         newList.append(newListEmail);
 
         const newListPointChange = $("<li>").addClass("list_points").text(pointHistory.point_change);
