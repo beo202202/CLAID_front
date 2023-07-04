@@ -43,7 +43,11 @@ async function loadPointList() {
         const newList = $("<div>").addClass("list").attr("id", point.id);
         newListCol.append(newList);
 
-        const newListEmail = $("<li>").addClass("email").text(point.user_email);
+        const newListEmail = $("<li>").addClass("email").text(point.user_email)
+        .click(function() {
+            const clickedEmail = $(this).text();
+            $("#super_user_email").val(clickedEmail);
+          });
         newList.append(newListEmail);
 
         const newListPoints = $("<li>").addClass("points").text(point.points);
@@ -77,12 +81,11 @@ async function addPoint() {
     const userEmail = document.querySelector("#super_user_email").value;
     const amount = parseInt(document.querySelector("#amount").value);
     const reason = document.querySelector("#reason").value;
-
+    
     const foundUser = response_json.find(user => user.user_email === userEmail);
     if (foundUser) {
         const userId = foundUser.user;
         if (userId) {
-            console.log("사용자 ID:", userId);
             const response = await fetch(`${backend_base_url}/user/points/${userId}/`, {
                 method: 'PATCH',
                 headers: {
@@ -93,9 +96,6 @@ async function addPoint() {
             });
 
             if (response.status === 200) {
-                const points = await getPointList();
-
-                const pointList = $("#point_list");
                 loadPointList();
                 loadPointHistoryList();
                 alert(`${amount} 포인트가 성공적으로 추가되었습니다.`);
@@ -105,6 +105,9 @@ async function addPoint() {
         } else {
             alert(`${userEmail} 이메일에 해당하는 사용자가 없습니다.`);
         }
+        document.querySelector("#super_user_email").value = "";
+        document.querySelector("#amount").value = "";
+        document.querySelector("#reason").value = "";
     }
 }
 
@@ -123,7 +126,6 @@ async function subtractPoint() {
     if (foundUser) {
         const userId = foundUser.user;
         if (userId) {
-            console.log("사용자 ID:", userId);
             const response = await fetch(`${backend_base_url}/user/points/${userId}/`, {
                 method: 'PATCH',
                 headers: {
@@ -143,6 +145,9 @@ async function subtractPoint() {
         } else {
             alert(`${userEmail} 이메일에 해당하는 사용자가 없습니다.`);
         }
+        document.querySelector("#super_user_email").value = "";
+        document.querySelector("#amount").value = "";
+        document.querySelector("#reason").value = "";
     }
 }
 
@@ -185,7 +190,11 @@ async function loadPointHistoryList() {
         const newList = $("<div>").addClass("point_list").attr("id", pointHistory.id);
         newListCol.append(newList);
 
-        const newListEmail = $("<li>").addClass("list_email").text(pointHistory.user_email);
+        const newListEmail = $("<li>").addClass("list_email").text(pointHistory.user_email)
+        .click(function() {
+            const clickedEmail = $(this).text();
+            $("#super_user_email").val(clickedEmail);
+          });
         newList.append(newListEmail);
 
         const newListPointChange = $("<li>").addClass("list_points").text(pointHistory.point_change);

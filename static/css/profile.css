@@ -214,6 +214,16 @@ h1 {
   margin-right: 20px;
 }
 
+.email:hover {
+  color: violet;
+  cursor: pointer;
+}
+
+.list_email:hover {
+  color: violet;
+  cursor: pointer;
+}
+
 .points {
   font-weight: 600;
   font-size: 18px;

@@ -32,7 +32,7 @@
         <div>
             <div class="add_tract_input">
                 <div><label for="super_user_email">User Email</label><br><input type="text" id="super_user_email" placeholder="이메일"></div>
-                <div><label for="amount">포인트</label><br><input type="text" id="amount" placeholder="숫자만 입력"></div>
+                <div><label for="amount">포인트</label><br><input type="number" pattern="[0-9]*" id="amount" step="100" placeholder="숫자만 입력"></div>
                 <div><label for="reason">이유</label><br><input type="text" id="reason" maxlength="10" placeholder="10자이내"></div>
             </div>
             <div class="add_tract_btn">
