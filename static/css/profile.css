@@ -1,4 +1,10 @@
 /* CSS 스타일링 */
+body {
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  background-color:rgb(168, 135, 229);
+}
 
 h1 {
   color: #333;
@@ -79,4 +85,182 @@ h1 {
 
 .bookmark-link:hover {
   text-decoration: underline;
+}
+
+/*포인트*/
+#user_points {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.point-section {
+  margin: auto;
+  width: 50%;
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#history_list {
+  height: 100px;
+  /* 스크롤 생성 */
+  overflow: auto;
+}
+
+.point_list {
+  display: flex;
+  height: 30px;
+}
+
+/*이메일 열 크기*/
+.point_list>li:first-child {
+  width: 40%;
+}
+
+/*포인트 열 크기*/
+.point_list>li:first-child+li {
+  width: 20%;
+}
+
+/*이유 열 크기*/
+.point_list>li:first-child+li+li {
+  width: 20%;
+}
+
+/*시간 열 크기*/
+.point_list>li:first-child+li+li+li {
+  width: 20%;
+}
+
+/*points.html*/
+#point_list {
+  height: 500px;
+  gap: 30px 20px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  /* 스크롤 생성 */
+  overflow: auto;
+}
+
+#point_list>div {
+  width: calc(25% - 10px);
+}
+
+#point_history_list {
+  height: 500px;
+  /* 스크롤 생성 */
+  overflow: auto;
+}
+
+.user_add_tract {
+  background-color: rgb(218, 218, 218);
+  border: solid 2px grey;
+  border-radius: 30px;
+  padding-bottom: 20px;
+  margin: 20px;
+  text-align: center;
+}
+
+.add_tract_input {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.add_tract_input div {
+  margin: 10px;
+}
+
+.add_tract_input input {
+  width: 300px;
+  height: 20px;
+}
+
+.user_add_tract button {
+  background-color: white;
+  border: solid 1px gray;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 100px;
+  padding: 5px;
+}
+
+.user_add_tract button:hover {
+  background-color: yellow;
+}
+
+.add_tract_btn {
+  display: block;
+  margin-top: 10px;
+}
+
+.user_check {
+  text-align: center;
+}
+
+.user_point_check {
+  list-style-type: none;
+  text-align: center;
+  background-color: rgb(235, 235, 235);
+  border: solid 2px grey;
+  margin: 20px;
+  border-radius: 30px;
+}
+
+.email {
+  margin-right: 20px;
+}
+
+.email:hover {
+  color: violet;
+  cursor: pointer;
+}
+
+.list_email:hover {
+  color: violet;
+  cursor: pointer;
+}
+
+.points {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.list {
+  display: flex;
+  height: 30px;
+}
+
+.user_history_check {
+  list-style-type: none;
+  margin: 20px;
+}
+
+#history {
+  height: 100px;
+  /* 스크롤 생성 */
+  overflow: auto;
+}
+
+.point_list {
+  display: flex;
+  height: 30px;
+}
+
+/*포인트 열 크기*/
+.point_list>li:first-child {
+  width: 40%;
+}
+
+/*이유 열 크기*/
+.point_list>li:first-child+li {
+  width: 40%;
+}
+
+/*시간 열 크기*/
+.point_list>li:first-child+li+li {
+  width: 20%;
 }

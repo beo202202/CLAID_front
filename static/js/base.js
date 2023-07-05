@@ -43,17 +43,38 @@ function handleLogout() {
  * 수정자 : 이준영
  * 수정 내용 :유동 header로 인해 제이쿼리로 바꿈
  * 업데이트 일자 : 2023.06.23
+ * 수정자 : 공민영
+ * 수정 내용 : 관리자계정인지 확인 후 아닌경우 관리자페이지버튼 안보이게 수정
+ * 업데이트 일자 : 2023.07.04
  */
 function loginChanger() {
     var access_token = localStorage.getItem('access_token');
+
     if (access_token) {
         // alert('login-state');
         $('#login-btn').hide();
         $('#logout-btn').show();
         $('#profile-btn').show();
+        $('#manager-btn').hide();
+        managerChanger();
     } else {
         $('#logout-btn').hide();
         $('#profile-btn').hide();
         $('#login-btn').show();
+        $('#manager-btn').hide();
     }
 };
+
+/**
+ * 작성자 : 공민영
+ * 내용 : 관리자계정일 경우에만 관리자 페이지 버튼 보이게
+ * 작성일 : 2023.07.04
+ */
+function managerChanger() {
+    const payload = localStorage.getItem('payload');
+    const payload_json = JSON.parse(payload)
+    const is_admin = payload_json.is_admin
+    if (is_admin) {
+        $('#manager-btn').show();
+    }
+}

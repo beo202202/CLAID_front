@@ -3,12 +3,24 @@ window.onload = () => {
   loadArticles();
 };
 
-// /**
-//  * 작성자 : 공민영
-//  * 내용 : 게시글 작성하기
-//  * 최초 작성일 : 2023.06.15
-//  * 업데이트 일자 : 2023.06.15
-//  */
+/**
+ * 작성자 : 공민영
+ * 내용 : 토큰 유무 확인
+ * 최초 작성일 : 2023.06.30
+ */
+function isLoggenIn() {
+  const access_token = localStorage.getItem("access_token");
+  if (access_token) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * 작성자 : 공민영
+ * 내용 : 게시글 작성하기
+ * 최초 작성일 : 2023.06.15
+ */
 async function postArticle() {
   const song_info = document.getElementById("song_info").value;
   const voice = document.getElementById("song_voice").value;
@@ -228,7 +240,9 @@ function showPreviewAudio(event) {
  * 작성자: 공민영
  * 내용: 노래자랑 페이지에서 게시글 작성 클릭 시 모달창
  * 최초 작성일: 2023.06.20
- * 업데이트 일자: 2023.06.20
+ * 수정자 : 공민영
+ * 업데이트 일자 : 2023.06.30
+ * 수정내용 : 비로그인 사용자가 게시글 작성 버튼 눌렀을 경우 로그인 필요 문구 출력
  */
 document.addEventListener("DOMContentLoaded", function () {
   const modal = document.getElementById("modal");
@@ -237,9 +251,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 모달창 열기
   openModalBtn.addEventListener("click", () => {
-    event.preventDefault(); // 새로고침 방지
-    modal.style.display = "block";
-    document.body.style.overflow = "hidden"; // 스크롤바 제거
+    if (!isLoggenIn()) {
+      alert('게시글 작성을 위해서는 로그인이 필요합니다!');
+    } else {
+      event.preventDefault(); // 새로고침 방지
+      modal.style.display = "block";
+      document.body.style.overflow = "hidden"; // 스크롤바 제거
+    }
   });
 
   // 모달창 닫기

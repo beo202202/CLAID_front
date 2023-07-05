@@ -94,3 +94,209 @@ body {
     text-align: center;
     border-color: rgb(83, 10, 219);
 }
+
+/* separator */
+.nav-section {
+    display: flex;
+}
+
+.separator main {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    margin: 1%;
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+.separator main section {
+    width: 80%;
+}
+
+.separator main .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.separator main .btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.separator .spinner {
+    /* position: absolute; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: rgb(83, 10, 219);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+
+.separator section {
+    margin: 1%;
+}
+
+.separator .result {
+    margin: 1%;
+    /* width: 100%; */
+}
+
+article .result-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#file-table {
+    position: relative;
+    /* width: 100%; */
+    margin-top: 20px;
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+#file-table th,
+#file-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#file-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+#file-table tr:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+#file-table .file-name {
+    color: var(--text-color2);
+    font-weight: bold;
+}
+
+#file-table .btn-delete {
+    display: inline-block;
+    border: none;
+    background-color: #dc3545;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#file-table .btn-delete:hover {
+    background-color: var(--text-color2);
+}
+
+#file-table .result-filename,
+#file-table .result-created-at {
+    min-width: 100px;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 0;
+}
+
+#file-table .result-vocals,
+#file-table .result-accompaniment {
+    width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#file-table .result-state,
+#file-table i {
+    width: 50px;
+}
+
+#file-table i {
+    font-size: 40px;
+}
+
+#loading2 {
+    box-sizing: border-box;
+    top: 50%;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 8px solid transparent;
+    border-top-color: #f19022;
+    border-bottom-color: #f19022;
+    animation: spinner .8s ease infinite;
+}
+
+#loading3 {
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 8px solid transparent;
+    border-top-color: #6527BE;
+    border-bottom-color: #6527BE;
+    animation: spinner .8s ease infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#refresh-button i {
+    color: #00FF00;
+}
+
+.fa-chair {
+    color: orange;
+}
+
+.fa-car-side {
+    color: blue;
+}
+
+.fa-check {
+    color: #00FF00;
+}
+
+.fa-triangle-exclamation {
+    color: red;
+}
+
+.volume1,
+.volume2 {
+    user-select: none;
+}

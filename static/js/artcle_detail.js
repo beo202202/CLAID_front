@@ -2,6 +2,11 @@ window.onload = () => {
   getArticleDetail();
   setButtonVisibility();
   getComments();
+  ArticleGood();
+  ArticleGood2();
+  getArticleGoodView();
+  GoodUser();
+  GoodToggle();
 };
 
 /**
@@ -238,7 +243,7 @@ async function saveEdited() {
 async function deleteArticle(articleId) {
   let access_token = localStorage.getItem("access_token");
 
-  if (confirm("삭제하시겠습니까?")) {
+  if (confirm("삭제하시겠습니까? 24시간이 지나지 않은 게시글 삭제시 1000포인트 차감됩니다.")) {
     const response = await fetch(`${backend_base_url}/article/${articleId}/`, {
       method: "DELETE",
       headers: {
@@ -394,7 +399,6 @@ async function getComments() {
     }
   );
   const comments_json = await comments.json();
-
   let profile_image = localStorage.getItem("pro");
   $("#comments").empty();
   comments_json.forEach((a) => {
@@ -405,7 +409,7 @@ async function getComments() {
 
     let image = profile_image ? profile_image : default_image;
     let comment_id = a["id"];
-
+    let good = a["good"].length;
     const commentAuthorId = a["user"]["id"];
 
     const payload = localStorage.getItem("payload");
@@ -421,6 +425,20 @@ async function getComments() {
         <button class="comment_save_button_${comment_id}" style="display:none" onclick=saveEditedComment(${comment_id})>저장</button>
         <button class="comment_cancel_button_${comment_id}" style="display:none" onclick=cancelEditedComment(${comment_id})>취소</button>`;
       }
+
+      var loggedInUserIdInGood = false;
+      for (var i = 0; i < a['good'].length; i++) {
+        if (a['good'][i]['id'] === loggedInUserId) {
+          loggedInUserIdInGood = true;
+          break;
+        }
+      }
+
+      if (loggedInUserIdInGood) {
+        like_btns = `<img src='static/img/heart_b_s.png' onclick=commentLike(${comment_id}) class="comment_heart"></img>${good}`;
+      } else {
+        like_btns = `<img src='static/img/heart_s.png' onclick=commentLike(${comment_id}) class="comment_heart"></img>${good}`;
+      }
     }
 
     let temp = `<div class="d-flex">
@@ -431,9 +449,8 @@ async function getComments() {
                         ${buttons}
                         <p id=comment_${comment_id}>${content}</p>
                     </div>
+                    ${like_btns}
                 </div>`;
-
-    let good = a["good"];
 
     $("#comments").append(temp);
   });
@@ -469,7 +486,6 @@ async function postComment() {
         body: formdata,
       }
     );
-
   } else {
     alert("유효하지 않은 게시물");
   }
@@ -515,7 +531,7 @@ async function saveCommentEdited(comment_id) {
  */
 function saveEditedComment(comment_id) {
   const editedComment = $(`#edit_comment_${comment_id}`).val();
-  article_id = getArticleIdFromUrl()
+  article_id = getArticleIdFromUrl();
   const formdata = new FormData();
   formdata.append("content", editedComment);
 
@@ -581,7 +597,7 @@ function onEditComment(articleId, commentId, newContent) {
 
 // 댓글 삭제 버튼 클릭 이벤트 핸들러
 function onDeleteComment(commentId) {
-  article_id = getArticleIdFromUrl()
+  article_id = getArticleIdFromUrl();
   const requestUrl = `${backend_base_url}/article/${article_id}/commentud/${commentId}/`;
   fetch(requestUrl, { method: "DELETE" })
     .then((response) => {
@@ -596,4 +612,146 @@ function onDeleteComment(commentId) {
     .catch((error) => {
       alert(error.message);
     });
+}
+
+/**
+ * 작성자: 김은수
+ * 내용: 코멘트 좋아요 누르기 & 두번 누르면 취소
+ * 최초 작성일: 2023.06.27
+ */
+async function commentLike(comment_id) {
+  article_id = getArticleIdFromUrl();
+  response = await fetch(
+    `${backend_base_url}/article/${article_id}/commentcr/${comment_id}/good/`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
+      },
+    }
+  );
+  getComments();
+}
+
+/**
+ * 작성자 : 왕규원
+ * 내용 : 게시글 좋아요 버튼을 누르면 좋아요 증가
+ * 최초 작성일 : 2023.06.28
+ * 업데이트 일자 : 2023.07.03
+ * 업데이트 내용 : 좋아요 횟수가 지수형태로 늘어나는 버그 수정, 게시글 로드시 좋아요 했는지 확인, 토글 기능 추가
+ */
+
+async function getArticleGoodView() {
+  // 좋아요 수 가져오기
+  const response = await getArticle(getArticleIdFromUrl());
+  $("#goodCount").text(response.good.length);
+  const goodCount = document.getElementById("goodCount");
+}
+
+//좋아요를 이미 눌렀는지 확인
+async function GoodUser() {
+  const response = await getArticle(getArticleIdFromUrl());
+  const goodButton = $("#goodButton");
+  const goodButtonCancle = $("#goodButtonCancle");
+
+  const payload = localStorage.getItem("payload");
+  if (payload) {
+    const payload_parse = JSON.parse(payload);
+    const loggedInUserId = payload_parse.user_id;
+
+    let GoodUserId = false;
+
+    for (let i = 0; i < response.good.length; i++) {
+      const obj = response.good[i];
+
+      if (obj === loggedInUserId) {
+        GoodUserId = true;
+        break;
+      }
+    }
+    if (GoodUserId) {
+      goodButtonCancle.show();
+      goodButton.hide();
+    } else {
+      goodButtonCancle.hide();
+      goodButton.show();
+    }
+  }
+}
+
+//좋아요 버튼 기능
+async function ArticleGood() {
+  const response = await getArticle(getArticleIdFromUrl());
+
+  // 좋아요 버튼 요소 가져오기
+  const goodButton = document.getElementById("goodButton");
+
+  // 버튼 클릭 이벤트 핸들러
+  goodButton.addEventListener("click", () => {
+    let article_id = getArticleIdFromUrl();
+    // 좋아요 요청 보내기
+    fetch(`${backend_base_url}/article/${article_id}/good/`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          GoodUser();
+          getArticleGoodView();
+        } else {
+          console.error("좋아요 요청 실패");
+        }
+      })
+
+      .catch((error) => {
+        console.error("네트워크 오류:", error);
+      });
+  });
+}
+
+async function ArticleGood2() {
+  const response = await getArticle(getArticleIdFromUrl());
+
+  // 좋아요 버튼 요소 가져오기
+  const goodButtonCancle = document.getElementById("goodButtonCancle");
+
+  // 버튼 클릭 이벤트 핸들러
+  goodButtonCancle.addEventListener("click", () => {
+    let article_id = getArticleIdFromUrl();
+    // 좋아요 요청 보내기
+    fetch(`${backend_base_url}/article/${article_id}/good/`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          GoodUser();
+          getArticleGoodView();
+        } else {
+          console.error("좋아요 요청 실패");
+        }
+      })
+
+      .catch((error) => {
+        console.error("네트워크 오류:", error);
+      });
+  });
+}
+
+//좋아요 버튼 토글 기능
+async function GoodToggle() {
+  const goodButton = document.querySelector("#goodButton");
+  const goodButtonCancle = document.querySelector("#goodButtonCancle");
+
+  goodButton.addEventListener("click", () => {
+    goodButtonCancle.classList.toggle("active");
+  });
+
+  goodButtonCancle.addEventListener("click", () => {
+    goodButtonCancle.classList.remove("active");
+  });
 }
