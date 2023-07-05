@@ -2,6 +2,11 @@ window.onload = () => {
   getArticleDetail();
   setButtonVisibility();
   getComments();
+  ArticleGood();
+  ArticleGood2();
+  getArticleGoodView();
+  GoodUser();
+  GoodToggle();
 };
 
 /**
@@ -233,7 +238,7 @@ async function saveEdited() {
 async function deleteArticle(articleId) {
   let access_token = localStorage.getItem("access_token");
 
-  if (confirm("삭제하시겠습니까?")) {
+  if (confirm("삭제하시겠습니까? 24시간이 지나지 않은 게시글 삭제시 1000포인트 차감됩니다.")) {
     const response = await fetch(
       `${backend_base_url}/article/notice/${articleId}/`,
       {
@@ -532,4 +537,126 @@ function onDeleteNoticeComment(commentId) {
     .catch((error) => {
       alert(error.message);
     });
+}
+
+/**
+ * 작성자 : 왕규원
+ * 내용 : 방법공유 게시판 좋아요 기능 추가
+ * 최초 작성일 : 2023.07.03
+ * 업데이트 일자 : 2023.07.03
+ */
+
+async function getArticleGoodView() {
+  // 좋아요 수 가져오기
+  const response = await getArticle(getArticleIdFromUrl());
+  $("#goodCount").text(response.good.length);
+  const goodCount = document.getElementById("goodCount");
+}
+
+//좋아요를 이미 눌렀는지 확인
+async function GoodUser() {
+  const response = await getArticle(getArticleIdFromUrl());
+  const goodButton = $("#goodButton");
+  const goodButtonCancle = $("#goodButtonCancle");
+
+  const payload = localStorage.getItem("payload");
+  if (payload) {
+    const payload_parse = JSON.parse(payload);
+    const loggedInUserId = payload_parse.user_id;
+
+    let GoodUserId = false;
+
+    for (let i = 0; i < response.good.length; i++) {
+      const obj = response.good[i];
+
+      if (obj === loggedInUserId) {
+        GoodUserId = true;
+        break;
+      }
+    }
+    if (GoodUserId) {
+      goodButtonCancle.show();
+      goodButton.hide();
+    } else {
+      goodButtonCancle.hide();
+      goodButton.show();
+    }
+  }
+}
+
+//좋아요 버튼 기능
+async function ArticleGood() {
+  const response = await getArticle(getArticleIdFromUrl());
+
+  // 좋아요 버튼 요소 가져오기
+  const goodButton = document.getElementById("goodButton");
+
+  // 버튼 클릭 이벤트 핸들러
+  goodButton.addEventListener("click", () => {
+    let article_id = getArticleIdFromUrl();
+    // 좋아요 요청 보내기
+    fetch(`${backend_base_url}/article/notice/${article_id}/good/`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          GoodUser();
+          getArticleGoodView();
+        } else {
+          console.error("좋아요 요청 실패");
+        }
+      })
+
+      .catch((error) => {
+        console.error("네트워크 오류:", error);
+      });
+  });
+}
+
+async function ArticleGood2() {
+  const response = await getArticle(getArticleIdFromUrl());
+
+  // 좋아요 버튼 요소 가져오기
+  const goodButtonCancle = document.getElementById("goodButtonCancle");
+
+  // 버튼 클릭 이벤트 핸들러
+  goodButtonCancle.addEventListener("click", () => {
+    let article_id = getArticleIdFromUrl();
+    // 좋아요 요청 보내기
+    fetch(`${backend_base_url}/article/notice/${article_id}/good/`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          GoodUser();
+          getArticleGoodView();
+        } else {
+          console.error("좋아요 요청 실패");
+        }
+      })
+
+      .catch((error) => {
+        console.error("네트워크 오류:", error);
+      });
+  });
+}
+
+//좋아요 버튼 토글 기능
+async function GoodToggle() {
+  const goodButton = document.querySelector("#goodButton");
+  const goodButtonCancle = document.querySelector("#goodButtonCancle");
+
+  goodButton.addEventListener("click", () => {
+    goodButtonCancle.classList.toggle("active");
+  });
+
+  goodButtonCancle.addEventListener("click", () => {
+    goodButtonCancle.classList.remove("active");
+  });
 }
