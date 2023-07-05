@@ -1,31 +1,90 @@
-
-.search_div1 {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
+a {
+  text-decoration: none;
 }
 
-.search_input {
-  flex: 1;
-  height: 40px;
-  padding: 0 10px;
+body {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Source Sans 3', sans-serif;
+}
+
+.search_div1{
+  margin-top: 10%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.search {
+  width: 300px;
+  padding: 10px;
   font-size: 16px;
-  border: 1px solid gray;
+  border: 1px solid #ccc;
   border-radius: 4px;
+
 }
 
 .search_btn {
-  background-color: white;
-  color: rgb(83, 10, 219);
-  border: solid 1px;
-  padding: 8px 14;
+  padding: 8px 16px;
+  border: none;
+  background-color: #6527BE;
+  color: white;
   font-size: 16px;
-  margin-left: 10px;
+  border-radius: 4px;
   cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .search_btn:hover {
-  background-color: rgb(83, 10, 219);
-  border: solid rgb(83, 10, 219);
-  color: white;
+  background-color: #6527BE;
+}
+
+
+#search-results {
+  margin-top: 20px;
+  cursor: pointer;
+}
+.song-info {
+  color: black;
+}
+.search-result {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.search-result a {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: black;
+  font-family: 'Arial', sans-serif;
+  cursor: default;
+}
+
+.search-result p {
+  font-size: 16px;
+  color: black;
+  font-family: 'Arial', sans-serif;
+  cursor: default;
+}
+
+.search-result:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.search-result .nickname {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 16px;
+  color: black;
+  font-family: 'Arial', sans-serif;
 }
