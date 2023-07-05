@@ -1,17 +1,18 @@
-/* CSS 스타일링 */
-
 h1 {
   color: #333;
 }
 
 .profile-container {
-  margin: auto;
+  margin-top: 100px;
+  margin-left: 24%;
   display: flex;
-  background: linear-gradient(to right,
-      white -20%,
-      rgb(168, 135, 229) 100%,
-      white 50%,
-      white 100%);
+  background: linear-gradient(
+    to right,
+    white -20%,
+    rgb(168, 135, 229) 100%,
+    white 50%,
+    white 100%
+  );
   width: 50%;
   align-items: center;
   margin-bottom: 20px;
@@ -37,46 +38,55 @@ h1 {
 
 .profile-info {
   flex: 1;
-  color: rgb(83, 10, 219);
+  color: black;
 }
 
 .profile-nickname {
   font-size: 30px;
   margin-left: 10px;
-
 }
 
-.bookmark-section {
-  margin: auto;
+.articles-section,
+.notices-section,
+.liked-articles-section,
+.liked-notices-section {
+  margin: 20px auto;
   width: 50%;
-  margin-top: 20px;
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.bookmark-title {
-  font-size: 18px;
+.articles-title,
+.notices-title,
+.liked-articles-title,
+.liked-notices-title {
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #333;
 }
 
-.bookmark-list {
+.articles-list,
+.notices-list,
+.liked-articles-list,
+.liked-notices-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.bookmark-item {
+.articles-item,
+.notices-item,
+.liked-articles-item,
+.liked-notices-item {
   margin-bottom: 10px;
 }
 
-.bookmark-link {
+.articles-link,
+.notices-link,
+.liked-articles-link,
+.liked-notices-link {
   color: rgb(83, 10, 219);
   text-decoration: none;
-}
-
-.bookmark-link:hover {
-  text-decoration: underline;
 }
