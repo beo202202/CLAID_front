@@ -130,6 +130,9 @@ async function upload() {
  * 작성자: 이준영
  * 내용: 오디오 결과 표, 페이지네이션, 메모리 누적 방지, 데이터 자동 갱신
  * 최초 작성일: 2023.07.03
+ * 수정자: 이준영
+ * 내용: 이전, 다음(http > https)
+ * 수정일: 2023.07.6
  */
 let waveSurfers = [];
 let files = [];
@@ -249,9 +252,11 @@ async function ResultFiles(data) {
         var pageButtons = $('#page-buttons');
         pageButtons.empty();
         if (data.previous) {
+            data.previous = data.previous.replace('http://', 'https://');
             pageButtons.append('<button id="prev-page" data-url="' + data.previous + '">이전</button>');
         }
         if (data.next) {
+            data.next = data.next.replace('http://', 'https://');
             pageButtons.append('<button id="next-page" data-url="' + data.next + '">다음</button>');
         }
         pageButtons.append('<button id="refresh-button"><div id="loading3"></div></button>');
@@ -262,9 +267,6 @@ async function ResultFiles(data) {
         });
 
         $('#next-page').click(function () {
-            // $('#loading3').stop();
-            // $('#loading3').hide();
-            // $('#refresh-button').hide();
             stopAutoUpdate();
             fetchFiles($(this).data('url'));
         });
