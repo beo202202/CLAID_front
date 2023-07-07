@@ -1998,7 +1998,7 @@ New Features:
 * [#10856](https://dev.ckeditor.com/ticket/10856): Menu buttons will now toggle the visibility of their panels when clicked multiple times. [Language](https://ckeditor.com/cke4/addon/language) plugin fixes: Added active language highlighting, added an option to remove the language.
 * [#10028](https://dev.ckeditor.com/ticket/10028): New [`config.dialog_noConfirmCancel`](https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-dialog_noConfirmCancel) configuration option that eliminates the need to confirm closing of a dialog window when the user changed any of its fields.
 * [#10848](https://dev.ckeditor.com/ticket/10848): Integrate remaining plugins ([Styles](https://ckeditor.com/cke4/addon/stylescombo), [Format](https://ckeditor.com/cke4/addon/format), [Font](https://ckeditor.com/cke4/addon/font), [Color Button](https://ckeditor.com/cke4/addon/colorbutton), [Language](https://ckeditor.com/cke4/addon/language) and [Indent](https://ckeditor.com/cke4/addon/indent)) with [active filter](https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#property-activeFilter).
-* [#10855](https://dev.ckeditor.com/ticket/10855): Change the extension of emoticons in the [BBCode](https://ckeditor.com/cke4/addon/bbcode) sample from GIF to PNG.
+* [#10855](https://dev.ckeditor.com/ticket/10855): Change the extension of emoticons in the [BBCode](https://ckeditor.com/cke4/addon/bbcode) sample from GIF to png.
 
 Fixed Issues:
 

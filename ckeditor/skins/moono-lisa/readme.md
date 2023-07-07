@@ -36,7 +36,7 @@ it's not loaded until the first menu open up,
 Other parts:
 - **skin.js**: the only JavaScript part of the skin that registers the skin, its browser specific files and its icons and defines the Chameleon feature,
 - **images/**: contains a fill general used images,
-- **dev/**: contains SVG and PNG source of the skin icons.
+- **dev/**: contains SVG and png source of the skin icons.
 
 License
 -------
