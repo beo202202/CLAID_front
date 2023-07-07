@@ -65,7 +65,7 @@ async function fetchUserProfileData() {
     fetchUserProfileData();
   });
   
-=======
+
 window.addEventListener("DOMContentLoaded", () => {
   loadProfile();
   getPointDetail();
@@ -101,7 +101,7 @@ function getUserIdFromUrl() {
  */
 async function getUserPoint(userId) {
   const access_token = localStorage.getItem("access_token");
-  const response = await fetch(`http://127.0.0.1:8000/user/points/${userId}/`, {
+  const response = await fetch(`${backend_base_url}/user/points/${userId}/`, {
       headers: {
           'Authorization': `Bearer ${access_token}`,
       },
