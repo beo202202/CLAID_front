@@ -11,7 +11,7 @@ window.onload = () => {
  * 업데이트 일자 : 2023.06.15
  */
 async function getArticles() {
-  const response = await fetch("http://127.0.0.1:8000/article/notice/");
+  const response = await fetch(`${backend_base_url}/article/notice/`);
 
   if (response.status == 200) {
     const response_json = await response.json();
