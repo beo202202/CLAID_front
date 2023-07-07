@@ -30,7 +30,7 @@ async function getArticleDetail() {
   $("#detail_updated_at").text(timeago(response.updated_at));
 
   const articleImage = $("#notice_detail_image");
-  // const newImage = $("<img>").attr("src", response.article_image ? `${backend_base_url}${response.article_image}` : "../static/img/default.PNG").addClass("notice_img_size");
+  // const newImage = $("<img>").attr("src", response.article_image ? `${backend_base_url}${response.article_image}` : "../static/img/default.png").addClass("notice_img_size");
   // articleImage.empty().append(newImage);
   articleImage.empty();
 }
