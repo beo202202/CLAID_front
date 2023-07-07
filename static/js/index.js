@@ -133,12 +133,12 @@ async function loadArticles() {
     newCardBody.append(newCardHits);
 
     const articleImage = $("<img>").addClass("card_img_top");
-    const articleImageOverlay = $("<img>").addClass("card_img_overlay").attr("src", "../static/img/play.PNG");
+    const articleImageOverlay = $("<img>").addClass("card_img_overlay").attr("src", "../static/img/play.png");
     if (article.article_image) {
       articleImage.attr("src", `${backend_base_url}${article.article_image}`);
       articleImage.after(articleImageOverlay);
     } else {
-      articleImage.attr("src", "../static/img/default.PNG");
+      articleImage.attr("src", "../static/img/default.png");
       articleImage.after(articleImageOverlay);
     }
     newCardPlay.append(articleImage);
