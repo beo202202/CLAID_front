@@ -37,7 +37,7 @@ async function getArticleDetail() {
       "src",
       response.article_image
         ? `${backend_base_url}${response.article_image}`
-        : "../static/img/default.PNG"
+        : "../static/img/default.png"
     )
     .addClass("img_size");
   articleImage.empty().append(newImage);
