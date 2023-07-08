@@ -26,8 +26,8 @@ body {
     text-align: center;
     width: 249px;
     font-size: 20px;
-    background-color: rgb(83, 10, 219);
-    border-color: rgb(83, 10, 219);
+    background-color: #530adb;
+    border-color: #530adb;
     color: white;
     font-weight: 400;
 }
@@ -92,10 +92,16 @@ body {
 .sign_input input {
     font-size: 120%;
     text-align: center;
-    border-color: rgb(83, 10, 219);
+    border-color: #530adb;
 }
 
 /* separator */
+.separator {
+    font-family: 'Bazzi', sans-serif;
+    font-size: 24px;
+    color: var(--text-color2);
+}
+
 .nav-section {
     display: flex;
 }
@@ -257,12 +263,12 @@ article .result-table {
 
 #loading3 {
     box-sizing: border-box;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    border: 8px solid transparent;
-    border-top-color: #6527BE;
-    border-bottom-color: #6527BE;
+    border: 8px solid violet;
+    border-top-color: var(--text-color2);
+    border-bottom-color: var(--text-color2);
     animation: spinner .8s ease infinite;
 }
 
@@ -276,8 +282,9 @@ article .result-table {
     }
 }
 
-#refresh-button i {
-    color: #00FF00;
+#refresh-button {
+    background-color: var(--background-color2);
+    border: none;
 }
 
 .fa-chair {
@@ -299,4 +306,27 @@ article .result-table {
 .volume1,
 .volume2 {
     user-select: none;
+}
+
+.separator-detail {
+    color: var(--text-color2);
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Bazzi', sans-serif;
+}
+
+.button-style {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: var(--text-color2);
+    color: yellow;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-style:hover {
+    opacity: 50%;
 }

@@ -1,9 +1,16 @@
 /* header */
+@font-face {
+    font-family: 'Bazzi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/Bazzi.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     --text-color: #f0f4f5;
     --text-color2: #6527BE;
     --background-color: #263343;
-    --background-color2: hsl(265, 66%, 85%);
+    --background-color2: #d5c0f2;
     /* --background-color2: #f0eada; */
     --accent-color: #d49466;
     --kakao-color: #FEE500;
@@ -32,7 +39,7 @@ a {
 }
 
 .navbar__logo {
-    font-family: 'Comic Sans MS', sans-serif;
+    font-family: 'Bazzi', sans-serif;
     font-size: 24px;
     color: var(--text-color);
 }

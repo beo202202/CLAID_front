@@ -185,7 +185,7 @@ async function ResultFiles(data) {
         if (files.length === 0) {
             fileTable.append('<tr><td colspan="5">변환된 파일이 없습니다.</td></tr>');
         } else {
-            fileTable.append('<tr><th class="result-filename">파일 이름</th><th class="result-crated-at">등록 시간</th><th class="result-vocals">보컬</th><th class="result-accompaniment">악기</th><th class="result-state">상태</th><th class="result-delete"></th></tr>');
+            fileTable.append('<tr><th class="result-filename">파일 이름</th><th class="result-crated-at">등록 시간</th><th class="result-vocals">보컬</th><th class="result-accompaniment">반주</th><th class="result-state">상태</th><th class="result-delete"></th></tr>');
 
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
@@ -252,12 +252,18 @@ async function ResultFiles(data) {
         var pageButtons = $('#page-buttons');
         pageButtons.empty();
         if (data.previous) {
-            data.previous = data.previous.replace('http://', 'https://');
-            pageButtons.append('<button id="prev-page" data-url="' + data.previous + '">이전</button>');
+            console.log(data.previous);
+            if (!data.previous.includes('127.0.0.1')) {
+                data.previous = data.previous.replace('http://', 'https://');
+            }
+            pageButtons.append('<button id="prev-page" class="button-style" data-url="' + data.previous + '">이전</button>');
         }
         if (data.next) {
-            data.next = data.next.replace('http://', 'https://');
-            pageButtons.append('<button id="next-page" data-url="' + data.next + '">다음</button>');
+            console.log(data.next);
+            if (!data.next.includes('127.0.0.1')) {
+                data.next = data.next.replace('http://', 'https://');
+            }
+            pageButtons.append('<button id="next-page" class="button-style" data-url="' + data.next + '">다음</button>');
         }
         pageButtons.append('<button id="refresh-button"><div id="loading3"></div></button>');
 
