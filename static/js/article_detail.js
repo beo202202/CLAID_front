@@ -174,6 +174,9 @@ function cancelEditedArticle() {
  * 수정자: 이준영
  * 업데이트 내용: 업데이트 되게 수정, PUT > PATCH, Fetch > JQuery Ajax Request
  * 업데이트 일자: 2023.06.18
+ * 수정자 : 이준영
+ * 내용 : 기존 song 유지할 수 있게 필수를 해제함
+ * 수정일 : 2023.07.09
  */
 function saveEditedArticle(articleId) {
   const editedSongInfo = $("#edit_song_info").val();
@@ -187,11 +190,9 @@ function saveEditedArticle(articleId) {
   if (editedImage !== undefined) {
     formdata.append("article_image", editedImage);
   }
-  if (editedSong === undefined) {
-    alert("오디오는 필수입니다.");
-    return;
+  if (editedSong !== undefined) {
+    formdata.append("song", editedSong);
   }
-  formdata.append("song", editedSong);
 
   $.ajax({
     type: "PATCH",
@@ -353,22 +354,6 @@ function showPreviewAudio(event) {
     $(".playback_bar").attr("src", "");
   }
 }
-
-/**
- * 작성자 : 공민영
- * 내용 : 로그인 로그아웃 시 버튼 바꾸기
- * 최초 작성일 : 2023.06.15
- * 업데이트 일자 : 2023.06.15
- */
-document.addEventListener("DOMContentLoaded", function () {
-  var access_token = localStorage.getItem("access_token");
-  if (access_token) {
-    document.getElementById("login_container").style.display = "none";
-  } else {
-    document.getElementById("logged_in_container").style.display = "none";
-    document.getElementById("logged_out").style.display = "none";
-  }
-});
 
 /**
  * 작성자 : 공민영
