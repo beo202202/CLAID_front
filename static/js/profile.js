@@ -1,8 +1,14 @@
 async function fetchUserProfileData() {
+    function getUserId() {
+        const payload = JSON.parse(localStorage.getItem("payload"));
+        const userId = payload.user_id;
+        return userId;
+    }
+
     const userId = getUserId();
     if (!userId) {
-      console.error('사용자 ID를 가져오지 못했습니다.');
-      return;
+        console.error('사용자 ID를 가져오지 못했습니다.');
+        return;
     }
   
     const accessToken = getAccessToken();
