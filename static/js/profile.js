@@ -1,15 +1,26 @@
 async function fetchUserProfileData() {
-    const userId = getUserId();
-    if (!userId) {
+  function getUserId() {
+      const payload = JSON.parse(localStorage.getItem("payload"));
+      const userId = payload.user_id;
+      return userId;
+  }
+
+  function getAccessToken() {
+      const accessToken = localStorage.getItem("access_token");
+      return accessToken;
+  }
+
+  const userId = getUserId();
+  if (!userId) {
       console.error('사용자 ID를 가져오지 못했습니다.');
       return;
-    }
-  
-    const accessToken = getAccessToken();
-    if (!accessToken) {
-      console.error('액세스 토큰이 없습니다.');
-      return;
-    }
+  }
+
+  const accessToken = getAccessToken();
+  if (!accessToken) {
+    console.error('액세스 토큰이 없습니다.');
+    return;
+  }
     $.ajax({
       url: `${backend_base_url}/user/profile/${userId}/`,  // 프로필 API 엔드포인트의 URL을 여기에 입력
       method: 'GET',
