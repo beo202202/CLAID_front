@@ -74,9 +74,9 @@
     <main class="sign_">
         <h1>회원가입</h1>
 
-        <form action="email">
-            <div class="signup_">
-                <div class="sign_input">
+        <div class="signup_">
+            <div class="sign_input">
+                <form action="email">
                     <div>
                         <input type="text" name="nickname" id="nickname" placeholder="nickname">
                     </div>
@@ -90,25 +90,29 @@
                         <input type="password" name="password_check" id="password_check" onkeypress="EnterSignup()"
                             placeholder="password_check">
                     </div>
-                </div>
-                <div class="sign_btn">
-                    <button type="button" id="save_mail" onclick="saveMail()">인증메일보내기</button>
-                </div>
-                <div>
-                    <a href="login.html">로그인</a>
-                </div>
-
-                <div class="sns_login">
-                    <a id="kakao-login-btn" href="javascript:loginWithKakao()">
-                        <img src="../static/img/kakao_login_large_wide.png" class="kakao-login-img" alt="카카오 로그인 버튼" />
-                    </a>
-                    <a id="kakao-login-btn" href="javascript:loginWithGoogle()">
-                        <img src="../static/img/btn_google_signin_dark_normal_web@2x.png" class="kakao-login-img"
-                            alt="구글 로그인 버튼" />
-                    </a>
-                </div>
             </div>
-        </form>
+            <div class="sign_btn">
+                <button type="button" id="save_mail" onclick="saveMail()">인증메일보내기</button>
+            </div>
+            </form>
+            <div>
+                <a href="login.html">로그인</a>
+            </div>
+
+            <div class="sns_login">
+                <div class="LoginPage_kkoLogin">
+                    <button onclick="javascript:loginWithKakao()"><i class="fa-sharp fa-solid fa-comment"></i> 카카오로
+                        1초만에
+                        시작하기</button>
+                    </a>
+                </div>
+                <a id="google-login-btn" href="javascript:loginWithGoogle()">
+                    <img src="static/img/btn_google_signin_dark_pressed_web@2x.png" class="google-login-img"
+                        alt="구글 로그인 버튼" />
+                </a>
+            </div>
+        </div>
+
     </main>
 </body>
 

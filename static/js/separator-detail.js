@@ -33,6 +33,14 @@ $(document).ready(function () {
             wave2.load(response.accompaniment_path);
             wave2.setVolume(0.1);
 
+            $('#download-vocals').on('click', function () {
+                downloadAudio(response.vocals_path);
+            });
+
+            $('#download-accompaniment').on('click', function () {
+                downloadAudio(response.accompaniment_path);
+            });
+
             var syncInProgress = false;
 
             function handleWaveformClick(e, wave1, wave2) {
@@ -85,8 +93,20 @@ $(document).ready(function () {
             });
 
             $('#play-pause').on('click', function () {
-                wave1.playPause();
+                if (wave1.isPlaying()) {
+                    $("#play-pause").html('<i class="fa-solid fa-play"></i>');
+                    wave1.pause();
+                } else {
+                    $("#play-pause").html('<i class="fa-solid fa-pause"></i>');
+                    wave1.play();
+                }
                 wave2.playPause();
+            });
+
+            $('#stop').on('click', function () {
+                $("#play-pause").html('<i class="fa-solid fa-play"></i>');
+                wave1.stop();
+                wave2.stop();
             });
 
             $('#volume1, #volume2').on('input', function () {
@@ -104,3 +124,17 @@ $(document).ready(function () {
         }
     });
 });
+
+/**
+ * 작성자: 이준영
+ * 내용: 오디오 다운로드
+ * 최초 작성일: 2023.07.03
+ */
+function downloadAudio(fileUrl) {
+    var link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = 'audio.mp3';
+    link.target = '_blank'; // 새 창에서 열도록 설정
+    link.rel = 'noopener noreferrer'; // 보안을 위해 rel 속성 추가
+    link.click();
+}

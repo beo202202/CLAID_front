@@ -56,7 +56,7 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 
-<body class="separator body">
+<body>
     <header id="header">
         <!-- 
         작성자 : 이준영
@@ -76,7 +76,7 @@
         -->
         <section class="separator upload">
             <airticle class="separator audio-input">
-                <input type="file" accept="audio/mp3" id="audio-file_input" required>
+                <input type="file" accept="audio/mp3" id="audio-file_input" class="button-style" required>
                 <div id="waveform"></div>
                 <script>
                     $(document).ready(function () {
@@ -150,9 +150,9 @@
             </article>
             <article class="separator btn">
                 <div id="waveform-btn" style="display:none;">
-                    <button id="play-button" disabled><i class="bi bi-play-fill"></i></button>
-                    <button id="pause-button" disabled><i class="bi bi-pause-fill"></i></button>
-                    <button id="uploadBtn" onclick="upload()" disabled>추출</button>
+                    <button id="play-button" class="button-style" disabled><i class="bi bi-play-fill"></i></button>
+                    <button id="pause-button" class="button-style" disabled><i class="bi bi-pause-fill"></i></button>
+                    <button id="uploadBtn" class="button-style" onclick="upload()" disabled>추출</button>
                 </div>
             </article>
         </section>
